@@ -7,16 +7,17 @@
 #include<stdlib.h>
 #include<string.h>
 
-#define PATH_DATASET_DIRECTORY "./dataset/"
 
 FILE* open_file_read_mode(char path[]);
+No* get_station(No** stations, int stations_length, char *code);
 
 /*
     Essa função irá pegar todas as estações da cidade especificada,
-    E poderá ser acessada por como se fosse um array.
+    da qual poderá ser acessada por como se fosse um array, sem estarem interligadas
 */
-ResponseObjectLength* get_stations(){
-    FILE* stations = open_file_read_mode(strcat(PATH_DATASET_DIRECTORY,"stations.csv"));
+ResponseObjectLength* inicializa_stations(){
+    printf("./dataset/stations.csv");
+    FILE* stations = open_file_read_mode("./dataset/stations.csv");
 
     char buffer[BUFFER_SIZE];
     int count_lines = 0;
@@ -38,7 +39,7 @@ ResponseObjectLength* get_stations(){
         station->longitude = longitude;
         station->nome = nome;
         station->qtd_alloc_aresta = ARESTA_DEFAULT_INCREASE;
-        station->proximos = (Aresta**)malloc(sizeof(Aresta*) * stations->qtd_alloc_aresta);
+        station->proximos = (Aresta**)calloc(station->qtd_alloc_aresta, sizeof(Aresta*));
         if(count_lines + 1 >= all_stations_length){
             all_stations_length *= 2;
             all_stations = realloc(all_stations,sizeof(No*) * all_stations_length);
@@ -47,99 +48,83 @@ ResponseObjectLength* get_stations(){
                 exit(EXIT_FAILURE);
             }
         }
-        all_stations[count_lines-1] = station;
+        all_stations[count_lines - 2] = station;
     }
     
     ResponseObjectLength *response = (ResponseObjectLength*)malloc(sizeof(ResponseObjectLength));
 
-    response->object = all_stations;
+    response->object = (void**)all_stations;
     response->length = count_lines - 1;
 
     fclose(stations);
     return response;
 }
 
-// int get_quantity_stations(){
-//     enum StationsCols{id,name,geometry,buildstart,opening,closure,c_id};
-//     FILE* stations = open_file_read_mode(strcat(PATH_DATASET_DIRECTORY,"stations.csv"));
-//     char buffer[BUFFER_SIZE];
-    
-//     int count = 0;
-//     while(fgets(buffer,BUFFER_SIZE,stations) != NULL){
-//         count++;
-//     }
-    
-//     fclose(stations);
-//     return count -1;
-// }
-
-// 
-ResponseObjectLength* get_edges(){
-    FILE* edges = open_file_read_mode(strcat(PATH_DATASET_DIRECTORY,"edges.csv"));
+// Conecta as estações as suas devidas arestas enquanto as inicializa em formato de array
+ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
+    FILE* edges = open_file_read_mode("./dataset/edges.csv");
 
     char buffer[BUFFER_SIZE];
-    int count_lines = 0;
-
+    unsigned int count_lines = 0;
+ 
     unsigned int array_arestas_length = 1000;
-    Aresta **array_arestas = (Aresta*)malloc(sizeof(Aresta) * array_arestas_length);
+    Aresta **array_arestas = (Aresta**)malloc(sizeof(Aresta*) * array_arestas_length);
     while(fgets(buffer, BUFFER_SIZE, edges)){
         count_lines++;
         if(count_lines == 1)continue;
-        char* source = (char*)calloc(4,sizeof(char));
-        if(source == NULL){perror("Erro ao alocar memória para {source} dos edges"); exit(EXIT_FAILURE);}
-        char *target = (char*)calloc(4,sizeof(char));
-        if(target == NULL){perror("Erro ao alocar memória para {target} dos edges"); exit(EXIT_FAILURE);}
+
+        char source[4] = {'\0','\0','\0','\0'};
+        char target[4] = {'\0','\0','\0','\0'};
         float distance = -1.0;
         
-        sscan(buffer,"%[^,],%[^,],%f\n",source,target, distance);
-        
+        sscanf(buffer,"%[^,],%[^,],%f\n",source,target, &distance);
+
+        No *no_source = NULL, *no_target = NULL;
         Aresta *aresta = (Aresta*)malloc(sizeof(Aresta));
         if(aresta == NULL){perror("Erro ao alocar memória para {aresta} dos edges"); exit(EXIT_FAILURE);}
-        aresta->source = source;
-        aresta->target = target;
+        
+        if(no_source == NULL || strcmp(no_source->code, source)){
+            no_source = get_station(stations, stations_length, source);
+        }
+        if(no_source == NULL){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
+        aresta->source = no_source;
+        
+        if(no_target == NULL || strcmp(no_target->code, target)){
+            no_target = get_station(stations, stations_length, target);
+        }
+        if(no_target == NULL){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
+        aresta->target = no_target;
+
         aresta->distance = distance;
 
         if(count_lines + 1 >= array_arestas_length){
             array_arestas_length *= 2;
-            array_arestas = realloc(array_arestas,sizeof(Aresta*) * array_arestas_length);
+            array_arestas = (Aresta**)realloc(array_arestas,sizeof(Aresta*) * array_arestas_length);
             if(array_arestas == NULL){
                 perror("Erro ao realocar mais memória para {array_arestas}");
                 exit(EXIT_FAILURE);
             }
         }
-        array_arestas[count_lines - 1] = aresta;
+        array_arestas[count_lines - 2] = aresta;
+        _Insert_Aresta_No(no_source,aresta);
     }
 
     ResponseObjectLength *response = (ResponseObjectLength*)malloc(sizeof(ResponseObjectLength));
 
-    response->object = array_arestas;
+    response->object = (void**)array_arestas;
     response->length = count_lines -1;
 
-    return ResponseObjectLength;
+    return response;
 }
 
-void connect_stations(
-    No** stations,
-    unsigned int stations_length,
-    Aresta** edges,
-    unsigned int arestas_length
-){
-    for(int idx_aresta = 0; idx_aresta < arestas_length; idx_aresta++){
-        Aresta* aresta = edges[idx_aresta];
-        No* source = NULL;
-        No* target = NULL;
-        for(int idx_stations = 0; idx_stations < stations_length; idx_stations++){
-            if(source != NULL && target != NULL){
-                break;
-            }else if(!strcmp(aresta->source,stations[idx_stations]->code)){
-                source = station[idx_stations];
-            }else if(!strcmp(aresta->target,stations[idx_stations]->code)){
-                target = stations[idx_stations];
-            }
+//Busca uma estação especifica a partir de seu code
+No* get_station(No** stations, int stations_length, char *code){
+    for(int idx_station = 0; idx_station < stations_length; idx_station++){
+        if(!strcmp(stations[idx_station]->code,code)){
+            return stations[idx_station];
         }
-        _Insert_Aresta(source, aresta);
-
     }
+    return NULL;
 }
 
 

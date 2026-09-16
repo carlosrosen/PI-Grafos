@@ -10,8 +10,9 @@ typedef struct response_object_length{
     unsigned int length;
 } ResponseObjectLength;
 
-No** get_stations();
-Aresta** get_edges();
+ResponseObjectLength* inicializa_stations();
+ResponseObjectLength* Inicializar_edges(No** stations,int stations_length);
+No* get_station(No** stations, int stations_length, char *code);
 // int get_quantity_stations();
 
 #endif

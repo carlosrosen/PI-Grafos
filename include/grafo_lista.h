@@ -20,12 +20,13 @@ typedef struct Aresta{
 }Aresta;
 
 typedef struct grafo{
-    int qtd_no;
+    unsigned int qtd_no;
+    unsigned int qtd_arestas;
     No **lista;
 }GrafoLista;
 
 GrafoLista *inicializar_grafo_l();
 
-void _Insert_Aresta(Aresta** no_proximos, Aresta* aresta);
+void _Insert_Aresta_No(No* no, Aresta* aresta);
 
 #endif
