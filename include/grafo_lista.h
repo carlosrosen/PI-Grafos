@@ -28,5 +28,6 @@ typedef struct grafo{
 GrafoLista *inicializar_grafo_l();
 
 void _Insert_Aresta_No(No* no, Aresta* aresta);
+void Liberar_Grafo(GrafoLista* grafo);
 
 #endif

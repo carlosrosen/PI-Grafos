@@ -9,6 +9,8 @@
 
 #define BUFFER_SIZE 4096
 
+void Liberar_Nos_Arestas(No** nos, unsigned int no_length);
+
 GrafoLista* inicializar_grafo_l(){
     GrafoLista* grafo = (GrafoLista *)malloc(sizeof(GrafoLista));
     if(grafo == NULL){
@@ -16,14 +18,16 @@ GrafoLista* inicializar_grafo_l(){
         exit(EXIT_FAILURE);
     }
 
-    ResponseObjectLength *res_station = inicializa_stations();
-    No **stations = (No**)res_station->object;
-    unsigned int stations_length = res_station->length;
+    ResponseObjectLength *response = inicializa_stations();
+    No **stations = (No**)response->object;
+    unsigned int stations_length = response->length;
+    free(response);
 
-    ResponseObjectLength *res_edges = Inicializar_edges(stations,stations_length);
+    response = Inicializar_edges(stations,stations_length);
 
-    // Aresta **array_arestas = (Aresta**)res_edges->object;
-    unsigned int arestas_length = res_edges->length;
+    // Aresta **array_arestas = (Aresta**)response->object;
+    unsigned int arestas_length = response->length;
+    free(response);
 
     grafo->lista = stations;
     grafo->qtd_no = stations_length;
@@ -54,4 +58,25 @@ void _Insert_Aresta_No(No* no, Aresta* aresta){
                 no->proximos[no->qtd_alloc_aresta - ARESTA_DEFAULT_INCREASE + i] = NULL;
             }
         }
+}
+
+void Liberar_Nos_Arestas(No** nos, unsigned int no_length){
+    if(nos == NULL)return;
+    for(unsigned int i = 0; i < no_length; i++){
+        Aresta ** aresta = nos[i]->proximos;
+        for(unsigned int j = 0; j < nos[i]->qtd_alloc_aresta; j ++){
+            if(aresta[j] == NULL)continue;
+            free(aresta[j]);
+        }
+        free(nos[i]->nome);
+        free(nos[i]->code);
+        free(nos[i]);
+    }
+    free(nos);
+}
+
+void Liberar_Grafo(GrafoLista *grafo){
+    if(grafo == NULL)return;
+    Liberar_Nos_Arestas(grafo->lista, grafo->qtd_no);
+    free(grafo);
 }

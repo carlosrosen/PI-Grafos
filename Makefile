@@ -16,7 +16,7 @@ LIBS = src/libs/*.c
 
 
 SPEC = spec/*.c
-SPEC_TARGET = spec/bin/run.out
+SPEC_TARGET = spec/run.out
 
 # Alvo padrão
 # Executado quando usamos apenas: make

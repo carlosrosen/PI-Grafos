@@ -14,5 +14,7 @@ int main(){
             }
         }
     }
+
+    Liberar_Grafo(grafo);
     return 0;
 }
