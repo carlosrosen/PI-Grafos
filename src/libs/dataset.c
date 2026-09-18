@@ -32,14 +32,17 @@ ResponseObjectLength* inicializa_stations(){
         char *code = (char*)calloc(4,sizeof(char));
         if(code == NULL){perror("Erro ao alocar memória para {code} da estação"); exit(EXIT_FAILURE);}
         sscanf(buffer,"\"%[^\"]\",\"%lf\",\"%lf\",\"%[^\"]\"\n",code,&latitude,&longitude,nome);
-        
+
         No* station = (No*)malloc(sizeof(No));
-        station->code = code;
-        station->latitude = latitude;
-        station->longitude = longitude;
-        station->nome = nome;
-        station->qtd_alloc_aresta = ARESTA_DEFAULT_INCREASE;
-        station->proximos = (Aresta**)calloc(station->qtd_alloc_aresta, sizeof(Aresta*));
+        Dados *dados = (Dados*)malloc(sizeof(Dados));
+        dados->code = code;
+        dados->latitude = latitude;
+        dados->longitude = longitude;
+        dados->nome = nome;
+
+        station->vertice = count_lines - 1;
+        station->dados = dados;
+        station->proximo = NULL;
         if(count_lines + 1 >= all_stations_length){
             all_stations_length *= 2;
             all_stations = realloc(all_stations,sizeof(No*) * all_stations_length);
@@ -83,13 +86,13 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
         Aresta *aresta = (Aresta*)malloc(sizeof(Aresta));
         if(aresta == NULL){perror("Erro ao alocar memória para {aresta} dos edges"); exit(EXIT_FAILURE);}
         
-        if(no_source == NULL || strcmp(no_source->code, source)){
+        if(no_source == NULL || strcmp(no_source->dados->code, source)){
             no_source = get_station(stations, stations_length, source);
         }
         if(no_source == NULL){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
         aresta->source = no_source;
         
-        if(no_target == NULL || strcmp(no_target->code, target)){
+        if(no_target == NULL || strcmp(no_target->dados->code, target)){
             no_target = get_station(stations, stations_length, target);
         }
         if(no_target == NULL){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
@@ -106,7 +109,16 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
             }
         }
         array_arestas[count_lines - 2] = aresta;
-        _Insert_Aresta_No(no_source,aresta);
+
+        No* new_node = (No*)malloc(sizeof(No));
+        new_node->dados = no_target->dados;
+        new_node->vertice = no_target->vertice;
+        new_node->proximo = NULL;
+        No* aux = stations[no_source->vertice - 1];
+        while(aux->proximo != NULL){
+            aux = aux->proximo;
+        }
+        aux->proximo = new_node;
     }
 
     ResponseObjectLength *response = (ResponseObjectLength*)malloc(sizeof(ResponseObjectLength));
@@ -120,7 +132,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
 //Busca uma estação especifica a partir de seu code
 No* get_station(No** stations, int stations_length, char *code){
     for(int idx_station = 0; idx_station < stations_length; idx_station++){
-        if(!strcmp(stations[idx_station]->code,code)){
+        if(!strcmp(stations[idx_station]->dados->code,code)){
             return stations[idx_station];
         }
     }

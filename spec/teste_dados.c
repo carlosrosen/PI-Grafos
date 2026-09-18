@@ -7,13 +7,15 @@ int main(){
     // IMPRESSÃO DAS ESTAÇÕES COM SUAS ARESTAS :
     puts("");
     for(unsigned int i = 0; i < grafo->qtd_no; i++){
-        printf("code: %s, lat: %f, long: %f, nome: %s, qtd_alloc: %d\n",grafo->lista[i]->code,grafo->lista[i]->latitude,grafo->lista[i]->longitude,grafo->lista[i]->nome,grafo->lista[i]->qtd_alloc_aresta);
-        for(unsigned int j = 0; j < grafo->lista[i]->qtd_alloc_aresta; j++){
-            if(grafo->lista[i]->proximos[j] != NULL){
-                printf("\tj: %d | source: %s, target: %s, distance: %f\n",j,grafo->lista[i]->proximos[j]->source->code,grafo->lista[i]->proximos[j]->target->code,grafo->lista[i]->proximos[j]->distance);
-            }
+        No* no = grafo->lista[i];
+        printf("code: %s, lat: %f, long: %f, nome: %s\n",no->dados->code, no->dados->latitude, no->dados->longitude, no->dados->nome);
+        while(no != NULL){
+            if(no->proximo != NULL)printf("[ %d | %s ] -> ",no->vertice, no->dados->code);
+            else printf("[ %d | %s ]\n",no->vertice, no->dados->code);
+            no = no->proximo;
         }
     }
+    // printf("\tsource: %s, target: %s, distance: %f\n",no->proximos[j]->source->code,no->proximos[j]->target->code,no->proximos[j]->distance);
 
     Liberar_Grafo(grafo);
     return 0;
