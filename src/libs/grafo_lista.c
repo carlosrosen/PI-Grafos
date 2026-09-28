@@ -49,6 +49,7 @@ GrafoLista* inicializar_grafo_lista(){
 
 
 void exibir_lista(GrafoLista* grafo){
+    if(!grafo)return;
     puts("");
     for(unsigned int i = 0; i < grafo->qtd_no; i++){
         No* no = grafo->lista[i];
@@ -59,10 +60,48 @@ void exibir_lista(GrafoLista* grafo){
             no = no->proximo;
         }
     }
+    puts("");
     // printf("\tsource: %s, target: %s, distance: %f\n",no->proximos[j]->source->code,no->proximos[j]->target->code,no->proximos[j]->distance);
-
 }
 
+void imprimir_lista(GrafoLista *grafo,char* output_path){
+    if(!grafo)return;
+    FILE* fp = fopen(output_path, "w");
+    if(!fp){
+        fprintf(stderr, "Erro ao abrir o arquivo %s", output_path);
+        return;
+    }
+    for(unsigned int i = 0; i < grafo->qtd_no; i++){
+        No* no = grafo->lista[i];
+        printf("code: %s, lat: %f, long: %f, nome: %s\n",no->dados->code, no->dados->latitude, no->dados->longitude, no->dados->nome);
+        while(no != NULL){
+            if(no->proximo != NULL)printf("[ %d | %s ] -> ",no->vertice, no->dados->code);
+            else printf("[ %d | %s ]\n",no->vertice, no->dados->code);
+            no = no->proximo;
+        }
+    }
+    fclose(fp);
+}
+
+
+void imprimir_lista_dot(GrafoLista *grafo,char* output_path){
+    if(!grafo)return;
+    FILE* fp = fopen(output_path, "w");
+    if(!fp) return;
+    fprintf(fp, "digraph G1{\n");
+    for(unsigned int i = 0; i < grafo->qtd_no; i++){
+        int vertice = grafo->lista[i]->vertice;
+        fprintf(fp, "\t%d [shape=\"circle\"]\n",vertice);
+    }
+    fprintf(fp, "\n");
+    for(unsigned int i = 0; i < grafo->qtd_arestas; i++){
+        int vertice_source = grafo->arestas[i]->source->vertice;
+        int vertice_target = grafo->arestas[i]->source->vertice;
+        fprintf(fp,"\t%d -> %d\n", vertice_source, vertice_target);
+    }
+    fprintf(fp,"\n}");
+    fclose(fp);
+}
 
 
 void Liberar_Nos(No** nos, unsigned int no_length){

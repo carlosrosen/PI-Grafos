@@ -10,6 +10,7 @@ typedef struct DadosEstacao{
 }DadosEstacao;
 
 typedef struct DadosAresta{
+    int id_source, id_target;
     char *source, *target;
     float distancia;
     float tempo_viagem;

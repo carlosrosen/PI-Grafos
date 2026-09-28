@@ -25,6 +25,7 @@ typedef struct grafo{
 GrafoLista *inicializar_grafo_lista();
 void exibir_lista(GrafoLista* grafo);
 void imprimir_lista(GrafoLista *grafo,char* output_path);
+void imprimir_lista_dot(GrafoLista *grafo,char* output_path);
 void Liberar_Grafo(GrafoLista* grafo);
 
 #endif

@@ -48,13 +48,96 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
             exit(EXIT_FAILURE);
         }
     }
+
+    for(int i = 0; i < grafo->qtd_arestas; i++){
+        DadosAresta* data = grafo->dados_arestas[i];
+        if(data == NULL) continue;
+        grafo->matriz[data->id_source][data->id_target] = 1;
+    }
+
     return grafo;
 }
 
 
-void exibir_matriz(GrafoMatriz* grafo);
-void imprimir_matriz(GrafoMatriz* grafo);
-void liberar_grafo_matriz(GrafoMatriz** grafo);
+void exibir_matriz(GrafoMatriz* grafo){
+    if(!grafo)return;
+    for(int row = 0; row < grafo->qtd_estacoes; row++){
+        for(int col = 0; col < grafo->qtd_estacoes; col++){
+            if(row == 0){
+                printf("[%d ", grafo->matriz[row][col]);
+            }else if(row == grafo->qtd_estacoes - 1){
+                printf("%d]", grafo->matriz[row][col]);
+            }else{
+                printf("%d ",grafo->matriz[row][col]);
+            }
+        }
+        puts("");
+    }
+    puts("");
+}
+void imprimir_matriz(GrafoMatriz* grafo, char* output_path){
+    if(!grafo)return;
+    FILE* fp = fopen(output_path,"w");
+    if(!fp){
+        fprintf(stderr, "Erro ao abrir o arquivo %s", output_path);
+        return;
+    }
+    // for(int row = 0; row < grafo->qtd_estacoes; row++){
+    //     fprintf(fp,"\t%s ", grafo->dados_estacao[row]->code);
+    // }
+    // fprintf(fp,"\n");
+    for(int row = 0; row < grafo->qtd_estacoes; row++){
+        for(int col = 0; col < grafo->qtd_estacoes; col++){
+            if(col == 0){
+                fprintf(fp,"%s [%d ",grafo->dados_estacao[row]->code,grafo->matriz[row][col]);
+            }else if(col == grafo->qtd_estacoes - 1){
+                fprintf(fp,"%d]", grafo->matriz[row][col]);
+            }else{
+                fprintf(fp,"%d ",grafo->matriz[row][col]);
+            }
+        }
+        fprintf(fp,"\n");
+    }
+    fclose(fp);
+}
+
+void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
+    if(!grafo)return;
+    FILE* fp = fopen(output_path, "w");
+    if(!fp) return;
+    fprintf(fp, "digraph G1{\n");
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        int vertice = grafo->dados_estacao[i]->id;
+        fprintf(fp, "\t%d [shape=\"circle\"]\n",vertice);
+    }
+    fprintf(fp, "\n");
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        for(int j = 0; j < grafo->qtd_estacoes; j++){
+            if(grafo->matriz[i][j] == 1) fprintf(fp, "\t%d -> %d\n", i+1, j+1);
+        }
+    }
+    fprintf(fp,"\n}");
+    fclose(fp);
+}
+
+
+
+void liberar_grafo_matriz(GrafoMatriz** grafo){
+    for(int i = 0; i < (*grafo)->qtd_estacoes; i++){
+        free((*grafo)->matriz[i]);
+        free((*grafo)->dados_estacao[i]->code);
+        free((*grafo)->dados_estacao[i]->nome);
+        free((*grafo)->dados_estacao[i]);
+    }
+    for(int i = 0; i < (*grafo)->qtd_arestas; i++){
+        free((*grafo)->dados_arestas[i]);
+    }
+    free((*grafo)->matriz);
+    free((*grafo)->dados_arestas);
+    free((*grafo)->dados_estacao);
+    free((*grafo));
+    grafo = NULL;
+}
 
 
 int get_station_matriz(DadosEstacao** dados, int tamanho, char* search){
@@ -78,35 +161,39 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
     
     char *buffer = (char*)calloc(BUFFER_SIZE,sizeof(char));
     size_t count_lines = 0;
-    
+    char* nome = NULL;
+    char* code = NULL;
     
     // Realiza a leitura das estações e coloca os dados em array_dados_estacao para ser acessado como vetor;
-    
     while(fgets(buffer,BUFFER_SIZE,stations) != NULL){
         count_lines++;
         if(count_lines == 1)continue;
-        
         double latitude = -1, longitude = -1;
-        char *nome = (char*)calloc(50, sizeof(char));
+        nome = (char*)calloc(50, sizeof(char));
         if(nome == NULL){perror("Falha ao alocar memoria para \'nome\'"); exit(EXIT_FAILURE);}
-        char *code = (char*)calloc(4,sizeof(char));
+        code = (char*)calloc(4,sizeof(char));
         if(code == NULL){perror("Falha ao alocar memoria para \'code\'"); exit(EXIT_FAILURE);}
         double tempo_transferencia = -1;
         
-        sscanf(buffer,"\"%[^\"]\",\"%lf\",\"%lf\",\"%[^\"]\",\"%lf\"\n",code,&latitude,&longitude,nome,&tempo_transferencia);
+        sscanf(buffer,"%[^,],%lf,%lf,%[^,],%lf\n",code,&latitude,&longitude,nome,&tempo_transferencia);
         
         DadosEstacao* dados = (DadosEstacao*)malloc(sizeof(DadosEstacao));
+        if(dados == NULL){
+            perror("Falha ao alocar memoria para \'dados\'");
+            exit(EXIT_FAILURE);
+        }
         
-        dados->id = count_lines;
+        dados->id = count_lines- 1;
         dados->code = code;
         dados->latitude = latitude;
         dados->longitude = longitude;
         dados->nome = nome;
         dados->tempo_transferencia = tempo_transferencia;
+
         
         if(count_lines >= array_dados_length -1){
             array_dados_length *= 2;
-            array_dados_estacao = (DadosEstacao**)realloc(array_dados_estacao, array_dados_length);
+            array_dados_estacao = (DadosEstacao**)realloc(array_dados_estacao,sizeof(DadosEstacao**) * array_dados_length);
             if(!array_dados_estacao){
                 perror("não foi possivel realocar a memoria do array_dados_estacao");
                 fclose(stations);
@@ -115,10 +202,11 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
                 exit(EXIT_FAILURE);
             }
         }
-        array_dados_estacao[count_lines -1] = dados;
+        array_dados_estacao[count_lines -2] = dados;
     }
     fclose(stations);
     response->qtd_estacoes = count_lines-1;
+    response->dados_estacao = array_dados_estacao;
 
 
     count_lines = 0;
@@ -146,6 +234,7 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
             int idx = get_station_matriz(array_dados_estacao, response->qtd_estacoes, source);
             if(idx == -1){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
             dados_source = array_dados_estacao[idx];
+            dados->id_source = idx;
         }
         dados->source = dados_source->code;
         
@@ -153,9 +242,9 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
             int idx = get_station_matriz(array_dados_estacao, response->qtd_estacoes, target);
             if(idx == -1){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
             dados_target = array_dados_estacao[idx];
+            dados->id_target = idx;
         }
         dados->target = dados_target->code;
-
         dados->distancia = distance;
         dados->tempo_viagem = travel_time;
 
@@ -167,7 +256,7 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
                 exit(EXIT_FAILURE);
             }
         }
-        array_dados_aresta[count_lines - 1] = dados;
+        array_dados_aresta[count_lines - 2] = dados;
     }
     fclose(edges);
 
