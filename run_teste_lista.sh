@@ -1,0 +1,1 @@
+make clean; make compile_testes_lista; make run_testes_lista
