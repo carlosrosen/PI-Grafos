@@ -23,7 +23,7 @@ MATRIZ_SPEC_MAIN = ./spec/grafo_matriz/teste_grafo_matriz.c
 # Alvo padrão
 # Executado quando usamos apenas: make
 all:
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
 
 # Roda o arquivo compilado
 run: $(TARGET)
