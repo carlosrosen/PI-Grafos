@@ -1,0 +1,13 @@
+====================================
+      RESULTADOS DO BENCHMARK
+====================================
+
+LISTA DE ADJACENCIA
+Quantidade de vertices: 2581
+Quantidade de arestas: 7636
+Memoria estimada: 878472 bytes
+
+MATRIZ DE ADJACENCIA
+Quantidade de vertices: 2581
+Quantidade de arestas: 7636
+Memoria estimada: 27116900 bytes
