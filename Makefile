@@ -20,6 +20,9 @@ LISTA_SPEC_MAIN = ./spec/grafo_lista/teste_grafo_lista.c
 MATRIZ_SPEC_TARGET = ./spec/grafo_matriz/bin/run.out
 MATRIZ_SPEC_MAIN = ./spec/grafo_matriz/teste_grafo_matriz.c
 
+BICONEXO_SPEC_TARGET = ./spec/grafo_biconexo/bin/run.out
+BICONEXO_SPEC_MAIN = ./spec/grafo_biconexo/teste_grafo_biconexo.c
+
 # Alvo padrão
 # Executado quando usamos apenas: make
 all:
@@ -41,11 +44,20 @@ compile_testes_matriz:
 run_testes_matriz: $(MATRIZ_SPEC_TARGET)
 	./$(MATRIZ_SPEC_TARGET)
 
+compile_testes_biconexo:
+	$(CC) $(CFLAGS) $(LIBS) $(BICONEXO_SPEC_MAIN) -o $(BICONEXO_SPEC_TARGET)
+
+run_testes_biconexo: $(BICONEXO_SPEC_TARGET)
+	./$(BICONEXO_SPEC_TARGET)
+
 compile_debug_lista:
 	$(CC) -g $(CFLAGS) $(LIBS) $(LISTA_SPEC_MAIN) -o $(LISTA_SPEC_TARGET)
 
 compile_debug_matriz:
 	$(CC) -g $(CFLAGS) $(LIBS) $(MATRIZ_SPEC_MAIN) -o $(MATRIZ_SPEC_TARGET)
+
+compile_debug_biconexo:
+	$(CC) -g $(CFLAGS) $(LIBS) $(BICONEXO_SPEC_MAIN) -o $(BICONEXO_SPEC_TARGET)
 
 
 # Remove o arquivo executável

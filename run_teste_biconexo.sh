@@ -1,0 +1,3 @@
+make clean
+make compile_testes_biconexo
+make run_testes_biconexo
