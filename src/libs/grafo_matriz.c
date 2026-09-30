@@ -53,6 +53,7 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
         DadosAresta* data = grafo->dados_arestas[i];
         if(data == NULL) continue;
         grafo->matriz[data->id_source][data->id_target] = 1;
+        grafo->matriz[data->id_target][data->id_source] = 1;
     }
 
     return grafo;
@@ -63,9 +64,9 @@ void exibir_matriz(GrafoMatriz* grafo){
     if(!grafo)return;
     for(int row = 0; row < grafo->qtd_estacoes; row++){
         for(int col = 0; col < grafo->qtd_estacoes; col++){
-            if(row == 0){
+            if(col == 0){
                 printf("[%d ", grafo->matriz[row][col]);
-            }else if(row == grafo->qtd_estacoes - 1){
+            }else if(col == grafo->qtd_estacoes - 1){
                 printf("%d]", grafo->matriz[row][col]);
             }else{
                 printf("%d ",grafo->matriz[row][col]);
@@ -105,7 +106,19 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
     if(!grafo)return;
     FILE* fp = fopen(output_path, "w");
     if(!fp) return;
-    fprintf(fp, "digraph G1{\n");
+    int **verificador = (int**)calloc(grafo->qtd_estacoes, sizeof(int*));
+    if(!verificador)return;
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        verificador[i] = (int*)calloc(grafo->qtd_estacoes,sizeof(int));
+        if(!verificador[i]){
+            for(int j = 0; j < i; j++){
+                free(verificador[j]);
+            }
+            free(verificador);
+            return;
+        }
+    }
+    fprintf(fp, "graph G1{\n");
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         int vertice = grafo->dados_estacao[i]->id;
         fprintf(fp, "\t%d [shape=\"circle\"]\n",vertice);
@@ -113,10 +126,20 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
     fprintf(fp, "\n");
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         for(int j = 0; j < grafo->qtd_estacoes; j++){
-            if(grafo->matriz[i][j] == 1) fprintf(fp, "\t%d -> %d\n", i+1, j+1);
+            
+            if(grafo->matriz[i][j] == 1 && verificador[i][j] == 0){
+                fprintf(fp, "\t%d -- %d\n", i+1, j+1);
+                verificador[j][i] = 1;
+            }
         }
     }
+    
     fprintf(fp,"\n}");
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        free(verificador[i]);
+    }
+    free(verificador);
+    return;
     fclose(fp);
 }
 

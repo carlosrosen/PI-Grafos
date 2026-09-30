@@ -71,12 +71,14 @@ void imprimir_lista(GrafoLista *grafo,char* output_path){
         fprintf(stderr, "Erro ao abrir o arquivo %s", output_path);
         return;
     }
+    fprintf(fp,"Quantidade de Nós: %d | Quantidade de arestas: %d\n\n",grafo->qtd_no, grafo->qtd_arestas);
     for(unsigned int i = 0; i < grafo->qtd_no; i++){
         No* no = grafo->lista[i];
-        printf("code: %s, lat: %f, long: %f, nome: %s\n",no->dados->code, no->dados->latitude, no->dados->longitude, no->dados->nome);
+        fprintf(fp,"code: %s, lat: %f, long: %f, nome: %s\n",no->dados->code, no->dados->latitude, no->dados->longitude, no->dados->nome);
+        fprintf(fp,"\t");
         while(no != NULL){
-            if(no->proximo != NULL)printf("[ %d | %s ] -> ",no->vertice, no->dados->code);
-            else printf("[ %d | %s ]\n",no->vertice, no->dados->code);
+            if(no->proximo != NULL)fprintf(fp,"[ %d | %s ] -> ",no->vertice, no->dados->code);
+            else fprintf(fp,"[ %d | %s ]\n",no->vertice, no->dados->code);
             no = no->proximo;
         }
     }
@@ -88,7 +90,7 @@ void imprimir_lista_dot(GrafoLista *grafo,char* output_path){
     if(!grafo)return;
     FILE* fp = fopen(output_path, "w");
     if(!fp) return;
-    fprintf(fp, "digraph G1{\n");
+    fprintf(fp, "graph G1{\n");
     for(unsigned int i = 0; i < grafo->qtd_no; i++){
         int vertice = grafo->lista[i]->vertice;
         fprintf(fp, "\t%d [shape=\"circle\"]\n",vertice);
@@ -96,8 +98,8 @@ void imprimir_lista_dot(GrafoLista *grafo,char* output_path){
     fprintf(fp, "\n");
     for(unsigned int i = 0; i < grafo->qtd_arestas; i++){
         int vertice_source = grafo->arestas[i]->source->vertice;
-        int vertice_target = grafo->arestas[i]->source->vertice;
-        fprintf(fp,"\t%d -> %d\n", vertice_source, vertice_target);
+        int vertice_target = grafo->arestas[i]->target->vertice;
+        fprintf(fp,"\t%d -- %d\n", vertice_source, vertice_target);
     }
     fprintf(fp,"\n}");
     fclose(fp);
@@ -190,6 +192,8 @@ ResponseObjectLength* inicializa_stations(){
 }
 
 // Conecta as estações as suas devidas arestas enquanto as inicializa em formato de array
+// Garante grafo NÃO orientado: para cada linha do CSV verifica se source->target e target->source
+// já existem. Cria apenas os apontamentos faltantes.
 ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
     FILE* edges = open_file_read_mode("./dataset/edges.csv");
 
@@ -197,6 +201,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
     unsigned int count_lines = 0;
  
     unsigned int array_arestas_length = 1000;
+    unsigned int total_arestas = 0; // contador real de arestas inseridas
     Aresta **array_arestas = (Aresta**)malloc(sizeof(Aresta*) * array_arestas_length);
     while(fgets(buffer, BUFFER_SIZE, edges)){
         count_lines++;
@@ -210,52 +215,110 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
         sscanf(buffer,"%[^,],%[^,],%lf,%lf\n",source,target, &distance, &travel_time);
 
         No *no_source = NULL, *no_target = NULL;
-        Aresta *aresta = (Aresta*)malloc(sizeof(Aresta));
-        if(aresta == NULL){perror("Erro ao alocar memória para {aresta} dos edges"); exit(EXIT_FAILURE);}
 
-        DadosAresta* dados = (DadosAresta*)calloc(1,sizeof(DadosAresta));
-        
-        if(no_source == NULL || strcmp(no_source->dados->code, source)){
-            no_source = get_station(stations, stations_length, source);
-        }
+        no_source = get_station(stations, stations_length, source);
         if(no_source == NULL){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
-        aresta->source = no_source;
-        
-        if(no_target == NULL || strcmp(no_target->dados->code, target)){
-            no_target = get_station(stations, stations_length, target);
-        }
+
+        no_target = get_station(stations, stations_length, target);
         if(no_target == NULL){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
-        aresta->target = no_target;
 
-        dados->distancia = distance;
-        dados->tempo_viagem = travel_time;
-        aresta->dados = dados;
-
-        if(count_lines + 1 >= array_arestas_length){
-            array_arestas_length *= 2;
-            array_arestas = (Aresta**)realloc(array_arestas,sizeof(Aresta*) * array_arestas_length);
-            if(array_arestas == NULL){
-                perror("Erro ao realocar mais memória para {array_arestas}");
-                exit(EXIT_FAILURE);
+        // Verificar se já existem arestas source->target e target->source
+        int existe_source_target = 0;
+        int existe_target_source = 0;
+        for(unsigned int i = 0; i < total_arestas; i++){
+            if(array_arestas[i]->source->vertice == no_source->vertice &&
+               array_arestas[i]->target->vertice == no_target->vertice){
+                existe_source_target = 1;
             }
+            if(array_arestas[i]->source->vertice == no_target->vertice &&
+               array_arestas[i]->target->vertice == no_source->vertice){
+                existe_target_source = 1;
+            }
+            if(existe_source_target && existe_target_source) break;
         }
-        array_arestas[count_lines - 2] = aresta;
 
-        No* new_node = (No*)malloc(sizeof(No));
-        new_node->dados = no_target->dados;
-        new_node->vertice = no_target->vertice;
-        new_node->proximo = NULL;
-        No* aux = stations[no_source->vertice - 1];
-        while(aux->proximo != NULL){
-            aux = aux->proximo;
+        // Se ambas já existem, pula para a próxima linha
+        if(existe_source_target && existe_target_source){
+            continue;
         }
-        aux->proximo = new_node;
+
+        // Criar aresta source->target se não existe
+        if(!existe_source_target){
+            Aresta *aresta_st = (Aresta*)malloc(sizeof(Aresta));
+            if(aresta_st == NULL){perror("Erro ao alocar memória para {aresta} dos edges"); exit(EXIT_FAILURE);}
+            DadosAresta* dados_st = (DadosAresta*)calloc(1,sizeof(DadosAresta));
+            dados_st->distancia = distance;
+            dados_st->tempo_viagem = travel_time;
+            aresta_st->source = no_source;
+            aresta_st->target = no_target;
+            aresta_st->dados = dados_st;
+
+            // Garantir espaço no array
+            if(total_arestas + 2 >= array_arestas_length){
+                array_arestas_length *= 2;
+                array_arestas = (Aresta**)realloc(array_arestas,sizeof(Aresta*) * array_arestas_length);
+                if(array_arestas == NULL){
+                    perror("Erro ao realocar mais memória para {array_arestas}");
+                    exit(EXIT_FAILURE);
+                }
+            }
+            array_arestas[total_arestas] = aresta_st;
+            total_arestas++;
+
+            // Inserir no_target na lista de adjacência de no_source
+            No* new_node_st = (No*)malloc(sizeof(No));
+            new_node_st->dados = no_target->dados;
+            new_node_st->vertice = no_target->vertice;
+            new_node_st->proximo = NULL;
+            No* aux_st = stations[no_source->vertice - 1];
+            while(aux_st->proximo != NULL){
+                aux_st = aux_st->proximo;
+            }
+            aux_st->proximo = new_node_st;
+        }
+
+        // Criar aresta target->source se não existe (garante bidirecionalidade)
+        if(!existe_target_source){
+            Aresta *aresta_ts = (Aresta*)malloc(sizeof(Aresta));
+            if(aresta_ts == NULL){perror("Erro ao alocar memória para {aresta} dos edges"); exit(EXIT_FAILURE);}
+            DadosAresta* dados_ts = (DadosAresta*)calloc(1,sizeof(DadosAresta));
+            dados_ts->distancia = distance;
+            dados_ts->tempo_viagem = travel_time;
+            aresta_ts->source = no_target;
+            aresta_ts->target = no_source;
+            aresta_ts->dados = dados_ts;
+
+            // Garantir espaço no array
+            if(total_arestas + 1 >= array_arestas_length){
+                array_arestas_length *= 2;
+                array_arestas = (Aresta**)realloc(array_arestas,sizeof(Aresta*) * array_arestas_length);
+                if(array_arestas == NULL){
+                    perror("Erro ao realocar mais memória para {array_arestas}");
+                    exit(EXIT_FAILURE);
+                }
+            }
+            array_arestas[total_arestas] = aresta_ts;
+            total_arestas++;
+
+            // Inserir no_source na lista de adjacência de no_target
+            No* new_node_ts = (No*)malloc(sizeof(No));
+            new_node_ts->dados = no_source->dados;
+            new_node_ts->vertice = no_source->vertice;
+            new_node_ts->proximo = NULL;
+            No* aux_ts = stations[no_target->vertice - 1];
+            while(aux_ts->proximo != NULL){
+                aux_ts = aux_ts->proximo;
+            }
+            aux_ts->proximo = new_node_ts;
+        }
     }
+
+    fclose(edges);
 
     ResponseObjectLength *response = (ResponseObjectLength*)malloc(sizeof(ResponseObjectLength));
 
     response->object = (void**)array_arestas;
-    response->length = count_lines -1;
+    response->length = total_arestas;
 
     return response;
 }
