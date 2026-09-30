@@ -7,40 +7,74 @@
 #define BUFFER_SIZE 4096
 
 typedef struct InitializeMatrizResponse{
+    //Número de vértices
     int qtd_estacoes;
+    //Número de arestas
     int qtd_arestas;
+    //Vetor do tipo struct DadosAresta com os dados de cada aresta.
     DadosAresta **dados_aresta;
+    //Vetor com os dados de cada estação.
     DadosEstacao **dados_estacao;
 }InitMatrizResponse;
 
-
+/*Inicialização da Matriz
+char* path_stations: caminho do arquivo CSV das estações (vértices do grafo).
+char* path_edges: caminho do arquivo CSV das arestas (ligações entre as estações).
+*/
 
 InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges);
 
+//Inicialização do GrafoMatriz 
+
 GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
+
+    //Alocação de memória
     GrafoMatriz* grafo = (GrafoMatriz*)malloc(sizeof(GrafoMatriz));
+    //Verificação 
     if(grafo == NULL){
         perror("Erro ao alocar memória para o grafo matriz");
         exit(EXIT_FAILURE);
     }
-    
+
+    /* O Response lê os arquivos CSV e guarda os resultados (estações, arestas e
+   quantidades) em uma struct temporária, o response */
     InitMatrizResponse* response = inicializar_matriz(path_stations,path_edges);
+
+    //Tamanho total do número de vértices
     int capacidade = response->qtd_estacoes;
+
+    //O grafo recebe dados sobre a aresta
     grafo->dados_arestas = response->dados_aresta;
+
+    //O grafo recebe dados sobre o vértice
     grafo->dados_estacao = response->dados_estacao;
+
+    //O grafo recebe o número total de arestas
     grafo->qtd_arestas = response->qtd_arestas;
+
+    //Libera só a struct temporária; os vetores agora pertencem ao grafo
     free(response);response = NULL;
 
+    /*Copia o número de estações para dentro do grafo. Assim, qualquer função que receba
+    * o grafo sabe o tamanho da matriz (N × N) sem precisar de outro parâmetro.*/
     grafo->qtd_estacoes = capacidade;
+
+    //Cria o vetor de linhas, cada indíce do vetor guarda um endereço de uma delas.
     grafo->matriz = (int**)calloc(capacidade,sizeof(int*));
+
+    //Verificação
     if(grafo->matriz == NULL){
         free(grafo);
         perror("Erro ao alocar memória para a lista do grafo matriz");
         exit(EXIT_FAILURE);
     }
+
+    //Para cada posição do vetor, aloca uma linha com N inteiros, todos iguais a 0. Depois disso a matriz N × N existe:
     for(int row = 0; row < capacidade; row++){
         grafo->matriz[row] = calloc(capacidade, sizeof(int));
         
+        //Tratamento de erros.
+
         if(grafo->matriz[row] == NULL){
             for(int i = 0; i < row; i ++) free(grafo->matriz[i]);
             free(grafo->matriz);
@@ -49,36 +83,54 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
         }
     }
 
+    //Percorre todas as arestas no csv e marca elas na matriz.
+
     for(int i = 0; i < grafo->qtd_arestas; i++){
+
         DadosAresta* data = grafo->dados_arestas[i];
+
+        //Se a aresta estiver vazia, marca como NULL e continua.
         if(data == NULL) continue;
+
+        //Se não, coloca 1 na posição [origem][destino].
+        /*Exemplo: se a aresta liga a estação de índice 0 à de índice 2, então matriz[0][2] = 1. 
+        Como matriz[2][0] não é alterada, a ligação vale só em um sentido (grafo dirigido).*/
         grafo->matriz[data->id_source][data->id_target] = 1;
         grafo->matriz[data->id_target][data->id_source] = 1;
     }
 
+    //Retorna o grafo.
+
     return grafo;
 }
 
+//Exibe a matriz:
 
-void exibir_matriz(GrafoMatriz* grafo){
-    if(!grafo)return;
+void exibir_matriz(GrafoMatriz* grafo){ 
+    if(!grafo)return; // grafo inexistente: nada a mostrar
     for(int row = 0; row < grafo->qtd_estacoes; row++){
+
+        // Colchete de abertura na 1ª coluna, de fechamento na última
         for(int col = 0; col < grafo->qtd_estacoes; col++){
             if(col == 0){
                 printf("[%d ", grafo->matriz[row][col]);
             }else if(col == grafo->qtd_estacoes - 1){
                 printf("%d]", grafo->matriz[row][col]);
             }else{
-                printf("%d ",grafo->matriz[row][col]);
+                printf("%d ", grafo->matriz[row][col]);
             }
         }
-        puts("");
+        puts(""); // fim da linha da matriz
     }
-    puts("");
+    puts(""); // linha em branco após a matriz
 }
+
+// Escreve a matriz num arquivo texto, uma linha por estação,
+// começando pelo código da estação
+
 void imprimir_matriz(GrafoMatriz* grafo, char* output_path){
     if(!grafo)return;
-    FILE* fp = fopen(output_path,"w");
+    FILE* fp = fopen(output_path,"w"); // "w" apaga o conteúdo anterior
     if(!fp){
         fprintf(stderr, "Erro ao abrir o arquivo %s", output_path);
         return;
@@ -102,7 +154,15 @@ void imprimir_matriz(GrafoMatriz* grafo, char* output_path){
     fclose(fp);
 }
 
+//Gera um arquivo no formato DOT, que o Graphviz transforma em imagem do grafo:
+
 void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
+
+    // fopen abre o arquivo em output_path e devolve um FILE*,
+    // o "identificador" usado depois por fprintf e fclose.
+    // Modo "w": escrita; cria o arquivo se não existir e APAGA
+    // o conteúdo se já existir.
+
     if(!grafo)return;
     FILE* fp = fopen(output_path, "w");
     if(!fp) return;
@@ -119,11 +179,15 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
         }
     }
     fprintf(fp, "graph G1{\n");
+    // Declara os vértices (id da estação, desenhados como círculo)
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         int vertice = grafo->dados_estacao[i]->id;
         fprintf(fp, "\t%d [shape=\"circle\"]\n",vertice);
     }
     fprintf(fp, "\n");
+
+    // Cada 1 na matriz vira uma aresta; +1 converte índice (base 0) em id (base 1)
+    
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         for(int j = 0; j < grafo->qtd_estacoes; j++){
             
@@ -162,6 +226,8 @@ void liberar_grafo_matriz(GrafoMatriz** grafo){
     grafo = NULL;
 }
 
+// Procura a estação cujo code é igual a search.
+// Devolve o índice no vetor, ou -1 se não existir.
 
 int get_station_matriz(DadosEstacao** dados, int tamanho, char* search){
     for(int i = 0; i< tamanho; i++)
