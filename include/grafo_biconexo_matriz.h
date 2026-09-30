@@ -1,5 +1,5 @@
-#ifndef GRAFO_BICONEXO_H
-#define GRAFO_BICONEXO_H
+#ifndef GRAFO_BICONEXO_MATRIZ_H
+#define GRAFO_BICONEXO_MATRIZ_H
 
 #include "grafo_matriz.h"
 
