@@ -96,7 +96,7 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
         /*Exemplo: se a aresta liga a estação de índice 0 à de índice 2, então matriz[0][2] = 1. 
         Como matriz[2][0] não é alterada, a ligação vale só em um sentido (grafo dirigido).*/
         grafo->matriz[data->id_source][data->id_target] = 1;
-
+        grafo->matriz[data->id_target][data->id_source] = 1;
     }
 
     //Retorna o grafo.
@@ -166,10 +166,20 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
     if(!grafo)return;
     FILE* fp = fopen(output_path, "w");
     if(!fp) return;
-    fprintf(fp, "digraph G1{\n");
-
+    int **verificador = (int**)calloc(grafo->qtd_estacoes, sizeof(int*));
+    if(!verificador)return;
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        verificador[i] = (int*)calloc(grafo->qtd_estacoes,sizeof(int));
+        if(!verificador[i]){
+            for(int j = 0; j < i; j++){
+                free(verificador[j]);
+            }
+            free(verificador);
+            return;
+        }
+    }
+    fprintf(fp, "graph G1{\n");
     // Declara os vértices (id da estação, desenhados como círculo)
-
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         int vertice = grafo->dados_estacao[i]->id;
         fprintf(fp, "\t%d [shape=\"circle\"]\n",vertice);
@@ -180,10 +190,20 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
     
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         for(int j = 0; j < grafo->qtd_estacoes; j++){
-            if(grafo->matriz[i][j] == 1) fprintf(fp, "\t%d -> %d\n", i+1, j+1);
+            
+            if(grafo->matriz[i][j] == 1 && verificador[i][j] == 0){
+                fprintf(fp, "\t%d -- %d\n", i+1, j+1);
+                verificador[j][i] = 1;
+            }
         }
     }
+    
     fprintf(fp,"\n}");
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        free(verificador[i]);
+    }
+    free(verificador);
+    return;
     fclose(fp);
 }
 

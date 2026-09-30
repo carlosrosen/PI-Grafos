@@ -2,7 +2,10 @@
 CC = gcc
 
 # Opções de compilação
-CFLAGS = -Wall -Wextra -std=c11 -I include/
+# -Wall: ativa avisos importantes
+# -Wextra: ativa avisos adicionais
+# -std=c11: utiliza o padrão C11
+CFLAGS = -Wall -Wextra -std=c11 -I include/ -lm
 
 # Nome do arquivo executável que será gerado
 TARGET = run.out
@@ -25,7 +28,7 @@ BICONEXO_LISTA_SPEC_MAIN = ./spec/grafo_biconexo_lista/teste_grafo_biconexo_list
 
 # Alvo padrão
 all:
-	$(CC) $(CFLAGS) $(SRC) -o $(TARGET)
+	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
 
 # Roda o arquivo compilado
 run: $(TARGET)
