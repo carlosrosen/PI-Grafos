@@ -173,25 +173,56 @@ ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
     return resultado;
 }
 
-void imprimir_resultado_biconexo(GrafoMatriz* grafo, ResultadoBiconexo* resultado){
-    if(!resultado) return;
+    void imprimir_resultado_biconexo(
+        GrafoMatriz* grafo,
+        ResultadoBiconexo* resultado,
+        FILE* arquivo
+    ) {
+        if (!resultado) return;
 
-    printf("Vértices de articulação:\n");
-    for(int i = 0; i < grafo->qtd_estacoes; i++)
-        if(resultado->articulacoes[i])
-            printf("  %s\n", grafo->dados_estacao[i]->code);
+        fprintf(arquivo, "===== RELATORIO DE BICONEXIDADE =====\n\n");
 
-    printf("\nComponentes biconexos (%d):\n", resultado->qtd_componentes);
-    for(int c = 0; c < resultado->qtd_componentes; c++){
-        printf("  Componente %d:", c + 1);
-        for(int e = 0; e < resultado->componentes[c].qtd_arestas; e++){
+        fprintf(arquivo, "Vertices de articulacao:\n");
+
+        for (int i = 0; i < grafo->qtd_estacoes; i++) {
+            if (resultado->articulacoes[i]) {
+                fprintf(arquivo, "  %s\n",
+                        grafo->dados_estacao[i]->code);
+            }
+        }
+
+        fprintf(arquivo,
+                "\nComponentes biconexos (%d):\n",
+                resultado->qtd_componentes);
+
+        for (int c = 0;
+            c < resultado->qtd_componentes;
+            c++) {
+
+            fprintf(arquivo,
+                    "  Componente %d:",
+                    c + 1);
+
+            for (int e = 0;
+                e < resultado->componentes[c].qtd_arestas;
+                e++) {
+
             int u = resultado->componentes[c].arestas[e].u;
             int v = resultado->componentes[c].arestas[e].v;
-            printf(" (%s-%s)", grafo->dados_estacao[u]->code, grafo->dados_estacao[v]->code);
+
+            fprintf(arquivo,
+                    " (%s-%s)",
+                    grafo->dados_estacao[u]->code,
+                    grafo->dados_estacao[v]->code);
         }
-        printf("\n");
+
+        fprintf(arquivo, "\n");
     }
+
+    fprintf(arquivo,
+            "\n===== FIM DO RELATORIO =====\n");
 }
+
 
 void liberar_resultado_biconexo(ResultadoBiconexo** resultado){
     if(!resultado || !*resultado) return;
