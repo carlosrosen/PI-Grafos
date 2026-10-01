@@ -57,3 +57,7 @@ dkms.conf
 #build.exe
 
 build
+
+# output files
+output/pontes_lista.txt
+output/pontes_matriz.txt
