@@ -235,8 +235,8 @@ ResponseObjectLength* inicializa_stations(char* path_stations){
 // Conecta as estações as suas devidas arestas enquanto as inicializa em formato de array
 // Garante grafo NÃO orientado: para cada linha do CSV verifica se source->target e target->source
 // já existem. Cria apenas os apontamentos faltantes.
-ResponseObjectLength* Inicializar_edges(No** stations,int stations_length){
-    FILE* edges = open_file_read_mode("./dataset/edges.csv");
+ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char* path_edges){
+    FILE* edges = open_file_read_mode(path_edges);
 
     char buffer[BUFFER_SIZE];
     unsigned int count_lines = 0;

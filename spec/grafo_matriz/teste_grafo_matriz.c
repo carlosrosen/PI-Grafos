@@ -6,7 +6,7 @@ int main(){
 
     // exibir_matriz(grafo);
     imprimir_matriz(grafo,"output/matriz.txt");
-    imprimir_matriz_dot(grafo,"output/matriz.dot");
+    imprimir_matriz_dot(grafo,"output/grafo_sem_aresta_duplicada.dot");
 
     liberar_grafo_matriz(&grafo);
     return 0;
