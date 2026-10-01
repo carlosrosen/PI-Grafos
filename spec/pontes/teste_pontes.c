@@ -15,12 +15,12 @@ static int contar_componentes_de_uma_aresta(ResultadoBiconexo *resultado) {
 int main() {
     GrafoLista *grafo_lista = inicializar_grafo_lista("./dataset/stations.csv", "./dataset/edges.csv");
     ListaPontes *pontes_lista = encontrar_pontes_lista(grafo_lista);
-    imprimir_pontes_lista(grafo_lista, pontes_lista);
+    exportar_pontes_lista(grafo_lista, pontes_lista, "./output/pontes_lista.txt");
     printf("Total de pontes (lista): %d\n", pontes_lista->quantidade);
 
     GrafoMatriz *grafo_matriz = inicializar_grafo_matriz("./dataset/stations.csv", "./dataset/edges.csv");
     ListaPontes *pontes_matriz = encontrar_pontes_matriz(grafo_matriz);
-    imprimir_pontes_matriz(grafo_matriz, pontes_matriz);
+    exportar_pontes_matriz(grafo_matriz, pontes_matriz, "./output/pontes_matriz.txt");
     printf("Total de pontes (matriz): %d\n", pontes_matriz->quantidade);
 
     ResultadoBiconexo *biconexo = encontrar_biconexos_lista(grafo_lista);

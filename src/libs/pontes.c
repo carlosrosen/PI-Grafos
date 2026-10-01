@@ -156,6 +156,40 @@ void imprimir_pontes_matriz(GrafoMatriz *grafo, ListaPontes *pontes) {
     }
 }
 
+void exportar_pontes_lista(GrafoLista *grafo, ListaPontes *pontes, char *output_path) {
+    FILE *fp = fopen(output_path, "w"); /* "w" apaga o conteudo anterior */
+    if (fp == NULL) {
+        perror("Falha ao abrir arquivo de saida das pontes (lista)");
+        return;
+    }
+    fprintf(fp, "=== Pontes encontradas (lista de adjacencia): %d ===\n", pontes->quantidade);
+    for (int i = 0; i < pontes->quantidade; i++) {
+        int u = pontes->itens[i].u, v = pontes->itens[i].v;
+        DadosEstacao *du = grafo->lista[u]->dados;
+        DadosEstacao *dv = grafo->lista[v]->dados;
+        fprintf(fp, "%d. [%d <-----> %d] (%s) %s <--------> (%s) %s\n",
+                i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
+    }
+    fclose(fp);
+}
+
+void exportar_pontes_matriz(GrafoMatriz *grafo, ListaPontes *pontes, char *output_path) {
+    FILE *fp = fopen(output_path, "w"); 
+    if (fp == NULL) {
+        perror("Falha ao abrir arquivo de saida das pontes (matriz)");
+        return;
+    }
+    fprintf(fp, "=== Pontes encontradas (matriz de adjacencia): %d ===\n", pontes->quantidade);
+    for (int i = 0; i < pontes->quantidade; i++) {
+        int u = pontes->itens[i].u, v = pontes->itens[i].v;
+        DadosEstacao *du = grafo->dados_estacao[u];
+        DadosEstacao *dv = grafo->dados_estacao[v];
+        fprintf(fp, "%d. [%d <-----> %d] (%s) %s <--------> (%s) %s\n",
+                i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
+    }
+    fclose(fp);
+}
+
 void liberar_pontes(ListaPontes *pontes) {
     if (pontes == NULL) return;
     free(pontes->itens);
