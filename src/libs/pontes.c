@@ -90,6 +90,8 @@ ListaPontes *encontrar_pontes_lista(GrafoLista *grafo) {
     int V = (int)grafo->qtd_no;
     EstadoDFS *estado = criar_estado_dfs(V);
 
+    if(!estado) return NULL;
+
     for (int i = 0; i < V; i++) {
         if (estado->disc[i] == -1) dfs_pontes_lista(i, estado, grafo);
     }
@@ -120,6 +122,8 @@ static void dfs_pontes_matriz(int u, EstadoDFS *estado, GrafoMatriz *grafo) {
 ListaPontes *encontrar_pontes_matriz(GrafoMatriz *grafo) {
     int V = grafo->qtd_estacoes;
     EstadoDFS *estado = criar_estado_dfs(V);
+
+    if(!estado) return NULL;
 
     for (int i = 0; i < V; i++) {
         if (estado->disc[i] == -1) dfs_pontes_matriz(i, estado, grafo);
