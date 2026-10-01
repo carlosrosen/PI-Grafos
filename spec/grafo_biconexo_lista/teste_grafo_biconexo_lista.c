@@ -1,5 +1,5 @@
 #include "grafo_lista.h"
-#include "grafo_biconexo_lista.h"
+#include "grafo_biconexo.h"
 #include <stdio.h>
 
 int main(){

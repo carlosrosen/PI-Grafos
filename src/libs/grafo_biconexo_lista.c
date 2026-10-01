@@ -1,4 +1,4 @@
-#include "../../include/grafo_biconexo_lista.h"
+#include "../../include/grafo_biconexo.h"
 #include <stdio.h>
 #include <stdlib.h>
 

@@ -1,6 +1,7 @@
 #include <stdio.h>
-#include "include/grafo_matriz.h"
-#include "include/grafo_biconexo.h"
+
+#include "grafo_matriz.h"
+#include "grafo_biconexo.h"
 
 int main(void) {
     printf("Projeto Malha Metroviaria\n");
