@@ -133,18 +133,22 @@ ListaPontes *encontrar_pontes_matriz(GrafoMatriz *grafo) {
 void imprimir_pontes_lista(GrafoLista *grafo, ListaPontes *pontes) {
     printf("\n=== Pontes encontradas (lista de adjacencia): %d ===\n", pontes->quantidade);
     for (int i = 0; i < pontes->quantidade; i++) {
-        int u = pontes->itens[i].u;
-        int v = pontes->itens[i].v;
-        printf("  %s -- %s\n", grafo->lista[u]->dados->code, grafo->lista[v]->dados->code);
+        int u = pontes->itens[i].u, v = pontes->itens[i].v;
+        DadosEstacao *du = grafo->lista[u]->dados;
+        DadosEstacao *dv = grafo->lista[v]->dados;
+        printf("%d. [%d <-----> %d] (%s) %s <--------> (%s) %s\n",
+               i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
     }
 }
 
 void imprimir_pontes_matriz(GrafoMatriz *grafo, ListaPontes *pontes) {
     printf("\n=== Pontes encontradas (matriz de adjacencia): %d ===\n", pontes->quantidade);
     for (int i = 0; i < pontes->quantidade; i++) {
-        int u = pontes->itens[i].u;
-        int v = pontes->itens[i].v;
-        printf("  %s -- %s\n", grafo->dados_estacao[u]->code, grafo->dados_estacao[v]->code);
+        int u = pontes->itens[i].u, v = pontes->itens[i].v;
+        DadosEstacao *du = grafo->dados_estacao[u];
+        DadosEstacao *dv = grafo->dados_estacao[v];
+        printf("%d. [%d <-----> %d] (%s) %s <--------> (%s) %s\n",
+               i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
     }
 }
 
