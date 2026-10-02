@@ -26,6 +26,9 @@ BICONEXO_MATRIZ_SPEC_MAIN = ./spec/grafo_biconexo_matriz/teste_grafo_biconexo_ma
 BICONEXO_LISTA_SPEC_TARGET = ./spec/grafo_biconexo_lista/bin/run.out
 BICONEXO_LISTA_SPEC_MAIN = ./spec/grafo_biconexo_lista/teste_grafo_biconexo_lista.c
 
+PONTES_SPEC_TARGET = ./spec/pontes/bin/run.out
+PONTES_SPEC_MAIN = ./spec/pontes/teste_pontes.c
+
 # Alvo padrão
 all:
 	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
@@ -58,6 +61,12 @@ compile_testes_biconexo_lista:
 run_testes_biconexo_lista: $(BICONEXO_LISTA_SPEC_TARGET)
 	./$(BICONEXO_LISTA_SPEC_TARGET)
 
+compile_testes_pontes:
+	$(CC) $(CFLAGS) $(LIBS) $(PONTES_SPEC_MAIN) -o $(PONTES_SPEC_TARGET)
+
+run_testes_pontes: $(PONTES_SPEC_TARGET)
+	./$(PONTES_SPEC_TARGET)
+
 compile_debug_lista:
 	$(CC) -g $(CFLAGS) $(LIBS) $(LISTA_SPEC_MAIN) -o $(LISTA_SPEC_TARGET)
 
@@ -72,4 +81,4 @@ compile_debug_biconexo_lista:
 
 # Remove os arquivos executáveis
 clean:
-	rm -f $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET)
+	rm -f $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET)
