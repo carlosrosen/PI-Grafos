@@ -61,3 +61,7 @@ build
 # output files
 output/pontes_lista.txt
 output/pontes_matriz.txt
+output/biconexo_lista.txt
+output/biconexo_matriz.txt
+output/vertice_articulacao_lista.txt
+output/vertice_articulacao_matriz.txt

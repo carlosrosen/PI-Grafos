@@ -10,9 +10,15 @@ int main(){
     }
 
     ResultadoBiconexo* resultado = encontrar_biconexos_lista(grafo);
-    imprimir_resultado_biconexo_lista(grafo, resultado);
+
+    exportar_componentes_biconexos_lista(grafo, resultado, "./output/biconexo_lista.txt");
+    exportar_vertices_articulacao_lista(grafo, resultado, "./output/vertice_articulacao_lista.txt");
+
+    printf("Componentes biconexos (lista): %d\n", resultado->qtd_componentes);
+    printf("Vertices de articulacao (lista): %d\n", resultado->qtd_articulacoes);
+    printf("Saída gerada em output/biconexo_lista.txt e output/vertice_articulacao_lista.txt\n");
 
     liberar_resultado_biconexo_lista(&resultado);
-    Liberar_Grafo(grafo); // <--- Corrigido aqui (sem '&' e com o nome exato do .h)
+    Liberar_Grafo(grafo);
     return 0;
 }

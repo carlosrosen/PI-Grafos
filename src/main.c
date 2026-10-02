@@ -7,29 +7,21 @@ int main(void) {
     printf("Projeto Malha Metroviaria\n");
 
     GrafoMatriz* grafo = inicializar_grafo_matriz("dataset/stations.csv", "dataset/edges.csv");
+    
     if(!grafo){
         printf("Falha ao inicializar o grafo\n");
         return 1;
     }   
 
-    // Relatório de vértices de articulação e componentes biconexos
-ResultadoBiconexo* resultado = encontrar_biconexos(grafo);
+    ResultadoBiconexo* resultado = encontrar_biconexos(grafo);
 
-FILE* arquivo = fopen("resultado_biconexo.txt", "w");
+    exportar_componentes_biconexos_matriz(grafo, resultado, "output/biconexo_matriz.txt");
+    exportar_vertices_articulacao_matriz(grafo, resultado, "output/vertice_articulacao_matriz.txt");
 
-if (!arquivo) {
-    printf("Erro ao criar o arquivo de resultado.\n");
+    printf("Resultado salvo em output/biconexo_matriz.txt\n");
+    printf("Resultado salvo em output/vertice_articulacao_matriz.txt\n");
 
     liberar_resultado_biconexo(&resultado);
     liberar_grafo_matriz(&grafo);
-
-    return 1;
-}
-
-imprimir_resultado_biconexo(grafo, resultado, arquivo);
-
-fclose(arquivo);
-
-printf("Resultado salvo em resultado_biconexo.txt\n");
     return 0;
 }

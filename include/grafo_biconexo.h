@@ -25,7 +25,8 @@ typedef struct ResultadoBiconexo {
 
 ResultadoBiconexo* encontrar_biconexos_lista(GrafoLista* grafo);
 
-void imprimir_resultado_biconexo_lista(GrafoLista* grafo, ResultadoBiconexo* resultado);
+void exportar_componentes_biconexos_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path);
+void exportar_vertices_articulacao_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path);
 
 void liberar_resultado_biconexo_lista(ResultadoBiconexo** resultado);
 
@@ -33,12 +34,8 @@ void liberar_resultado_biconexo_lista(ResultadoBiconexo** resultado);
 // e devolve os vértices de articulação e os componentes biconexos.
 ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo);
 
-// Imprime o resultado em um arquivo, usando o code de cada estação.
-void imprimir_resultado_biconexo(
-    GrafoMatriz* grafo,
-    ResultadoBiconexo* resultado,
-    FILE* arquivo
-);
+void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path);
+void exportar_vertices_articulacao_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path);
 
 // Libera toda a memória do resultado e zera o ponteiro do chamador.
 void liberar_resultado_biconexo(ResultadoBiconexo** resultado);
