@@ -206,8 +206,8 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
         free(verificador[i]);
     }
     free(verificador);
-    return;
     fclose(fp);
+    return;
 }
 
 
@@ -332,21 +332,13 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char *path_edges){
        
         
         int idx_source = -1, idx_target = -1;
-        if(dados_source == NULL || strcmp(dados_source->code, source)){
-            idx_source = get_station_matriz(array_dados_estacao, response->qtd_estacoes, source);
-            if(idx_source == -1){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
-            dados_source = array_dados_estacao[idx_source];
-        }else{
-            idx_source = dados_source->id;
-        }
+        idx_source = get_station_matriz(array_dados_estacao, response->qtd_estacoes, source);
+        if(idx_source == -1){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
+        dados_source = array_dados_estacao[idx_source];
 
-        if(dados_target == NULL || strcmp(dados_target->code, target)){
-            idx_target = get_station_matriz(array_dados_estacao, response->qtd_estacoes, target);
-            if(idx_target == -1){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
-            dados_target = array_dados_estacao[idx_target];
-        }else{
-            idx_target = dados_source->id;
-        }
+        idx_target = get_station_matriz(array_dados_estacao, response->qtd_estacoes, target);
+        if(idx_target == -1){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
+        dados_target = array_dados_estacao[idx_target];
 
 
         if(!has_source){
