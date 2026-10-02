@@ -30,7 +30,11 @@ PONTES_SPEC_TARGET = ./spec/pontes/bin/run.out
 PONTES_SPEC_MAIN = ./spec/pontes/teste_pontes.c
 
 # Alvo padrão
-all:
+all: compile run
+
+testes: compile_testes_lista run_testes_lista compile_testes_matriz run_testes_matriz compile_testes_pontes run_testes_pontes compile_testes_biconexo_lista run_testes_biconexo_lista compile_testes_biconexo_matriz run_testes_biconexo_matriz
+
+compile:
 	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
 
 # Roda o arquivo compilado
@@ -81,4 +85,4 @@ compile_debug_biconexo_lista:
 
 # Remove os arquivos executáveis
 clean:
-	rm -f $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET)
+	rm -f  *.dot $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET)

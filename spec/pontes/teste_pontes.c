@@ -13,6 +13,7 @@ static int contar_componentes_de_uma_aresta(ResultadoBiconexo *resultado) {
 }
 
 int main() {
+    printf("===================================  TESTES PONTES  ===================================\n\n");
     GrafoLista *grafo_lista = inicializar_grafo_lista("./dataset/stations.csv", "./dataset/edges.csv");
     ListaPontes *pontes_lista = encontrar_pontes_lista(grafo_lista);
     exportar_pontes_lista(grafo_lista, pontes_lista, "./output/pontes_lista.txt");
@@ -26,6 +27,8 @@ int main() {
     ResultadoBiconexo *biconexo = encontrar_biconexos_lista(grafo_lista);
     printf("\nComponentes biconexos de 1 aresta (esperado == total de pontes): %d\n",
            contar_componentes_de_uma_aresta(biconexo));
+
+    puts("");
 
     liberar_resultado_biconexo_lista(&biconexo);
     liberar_pontes(pontes_lista);
