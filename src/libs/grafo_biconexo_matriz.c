@@ -1,4 +1,4 @@
-#include "grafo_biconexo_matriz.h"
+#include "grafo_biconexo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -173,24 +173,54 @@ ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
     return resultado;
 }
 
-void imprimir_resultado_biconexo(GrafoMatriz* grafo, ResultadoBiconexo* resultado){
-    if(!resultado) return;
+void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
+    if(!grafo || !resultado || !output_path) return;
 
-    printf("Vértices de articulação:\n");
-    for(int i = 0; i < grafo->qtd_estacoes; i++)
-        if(resultado->articulacoes[i])
-            printf("  %s\n", grafo->dados_estacao[i]->code);
+    FILE* fp = fopen(output_path, "w");
+    if(!fp){
+        perror("Falha ao abrir arquivo de saida dos componentes biconexos (matriz)");
+        return;
+    }
 
-    printf("\nComponentes biconexos (%d):\n", resultado->qtd_componentes);
+    fprintf(fp, "========= Componentes Biconexos (Matriz de adjacencia) ============\n");
+    fprintf(fp, "Componentes biconexos encontrados: %d\n\n", resultado->qtd_componentes);
+
     for(int c = 0; c < resultado->qtd_componentes; c++){
-        printf("  Componente %d:", c + 1);
+        fprintf(fp, "Componente %d:\n", c + 1);
         for(int e = 0; e < resultado->componentes[c].qtd_arestas; e++){
             int u = resultado->componentes[c].arestas[e].u;
             int v = resultado->componentes[c].arestas[e].v;
-            printf(" (%s-%s)", grafo->dados_estacao[u]->code, grafo->dados_estacao[v]->code);
+            DadosEstacao* du = grafo->dados_estacao[u];
+            DadosEstacao* dv = grafo->dados_estacao[v];
+            fprintf(fp, "[%d <-> %d] (%s) %s <-> (%s) %s\n",
+                    u, v, du->code, du->nome, dv->code, dv->nome);
         }
-        printf("\n");
+        fprintf(fp, "\n");
     }
+
+    fclose(fp);
+}
+
+void exportar_vertices_articulacao_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
+    if(!grafo || !resultado || !output_path) return;
+
+    FILE* fp = fopen(output_path, "w");
+    if(!fp){
+        perror("Falha ao abrir arquivo de saida dos vertices de articulacao (matriz)");
+        return;
+    }
+
+    fprintf(fp, "========= Vertices de articulacao (Matriz de adjacencia) ============\n");
+    fprintf(fp, "Vertices de articulacao encontrados: %d\n\n", resultado->qtd_articulacoes);
+
+    for(int i = 0; i < grafo->qtd_estacoes; i++){
+        if(resultado->articulacoes[i]){
+            DadosEstacao* d = grafo->dados_estacao[i];
+            fprintf(fp, "[%d] (%s) %s\n", i, d->code, d->nome);
+        }
+    }
+
+    fclose(fp);
 }
 
 void liberar_resultado_biconexo(ResultadoBiconexo** resultado){

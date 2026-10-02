@@ -1,6 +1,6 @@
 #include "grafo_lista.h"
 #include "grafo_matriz.h"
-#include "grafo_biconexo_lista.h"
+#include "grafo_biconexo.h"
 #include "pontes.h"
 #include <stdio.h>
 

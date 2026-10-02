@@ -1,0 +1,1026 @@
+===== RELATORIO DE BICONEXIDADE =====
+
+Vertices de articulacao:
+  AAT
+  ABE
+  ABH
+  ACH
+  ACN
+  ACY
+  ADN
+  AFV
+  AHS
+  AHT
+  ALM
+  ALN
+  ALV
+  ALX
+  AMB
+  ARD
+  ARG
+  ART
+  ASB
+  ATT
+  AUI
+  AVN
+  AVY
+  AYR
+  AYS
+  BAD
+  BAR
+  BAS
+  BAV
+  BCG
+  BCN
+  BCU
+  BDN
+  BEY
+  BFE
+  BGD
+  BGL
+  BGN
+  BHD
+  BHK
+  BID
+  BIP
+  BKG
+  BKN
+  BLB
+  BLM
+  BLP
+  BNC
+  BNE
+  BNG
+  BNV
+  BOD
+  BOW
+  BPB
+  BPT
+  BRA
+  BRF
+  BRH
+  BRL
+  BRM
+  BRN
+  BRO
+  BRY
+  BSL
+  BSN
+  BSU
+  BTB
+  BTG
+  BTP
+  BTT
+  BUB
+  BUE
+  BUS
+  BUU
+  BUW
+  BWO
+  BXB
+  BXD
+  BYC
+  CBB
+  CBP
+  CCC
+  CCT
+  CDF
+  CDI
+  CDN
+  CDQ
+  CDR
+  CEF
+  CES
+  CFB
+  CFN
+  CGD
+  CHP
+  CHW
+  CKH
+  CKS
+  CKT
+  CKY
+  CLK
+  CLR
+  CMF
+  CMH
+  CMN
+  CMR
+  CNR
+  COH
+  COL
+  CON
+  COO
+  COP
+  CPA
+  CPH
+  CPT
+  CRR
+  CSK
+  CSM
+  CSN
+  CTE
+  CWC
+  CWN
+  CWS
+  DAL
+  DAR
+  DBC
+  DBR
+  DBY
+  DCG
+  DFI
+  DFR
+  DGL
+  DGY
+  DIG
+  DIN
+  DLG
+  DLR
+  DMR
+  DMS
+  DNY
+  DOW
+  DRG
+  DRM
+  DRN
+  DSL
+  DUM
+  DVC
+  DVN
+  DVY
+  DWD
+  DYF
+  EBT
+  EBV
+  EDB
+  EDN
+  EDR
+  EGG
+  EGT
+  EKB
+  ELE
+  ELY
+  ERI
+  EXC
+  EXD
+  EXR
+  FER
+  FGW
+  FLF
+  FMT
+  FNH
+  FNV
+  FRB
+  FRI
+  FRL
+  FRS
+  FTM
+  FTW
+  FZP
+  GAL
+  GBG
+  GCH
+  GCW
+  GDL
+  GFN
+  GGJ
+  GIR
+  GKC
+  GKW
+  GLC
+  GLF
+  GLS
+  GMB
+  GMG
+  GMT
+  GOL
+  GOX
+  GRP
+  GSN
+  GSY
+  GTA
+  GTN
+  GUI
+  GVE
+  GYP
+  HAB
+  HAC
+  HAZ
+  HEC
+  HEI
+  HEV
+  HHL
+  HHY
+  HIP
+  HKH
+  HLF
+  HLL
+  HLU
+  HMS
+  HMY
+  HNC
+  HNG
+  HPQ
+  HRL
+  HUR
+  HVF
+  HWW
+  HXM
+  HXX
+  HYK
+  IGD
+  INP
+  INV
+  JCH
+  JOH
+  KBX
+  KEN
+  KEY
+  KGT
+  KIL
+  KKM
+  KLY
+  KML
+  KND
+  KWN
+  LAD
+  LAM
+  LAN
+  LBG
+  LBR
+  LCC
+  LCL
+  LCS
+  LDN
+  LFD
+  LHA
+  LHE
+  LHM
+  LKE
+  LLA
+  LLC
+  LLE
+  LLJ
+  LLS
+  LLW
+  LNB
+  LND
+  LRG
+  LSK
+  LSW
+  LSY
+  LTH
+  LTM
+  LTP
+  LUX
+  LVT
+  LWR
+  LWS
+  LYM
+  LYT
+  MAI
+  MAL
+  MAY
+  MBR
+  MCN
+  MEO
+  MEV
+  MEW
+  MEY
+  MFA
+  MFF
+  MKT
+  MNN
+  MNR
+  MOO
+  MOS
+  MOT
+  MPK
+  MRB
+  MRD
+  MRR
+  MRT
+  MTA
+  MTB
+  MTO
+  MTP
+  MUB
+  MUI
+  NAR
+  NAY
+  NBC
+  NBE
+  NCO
+  NEG
+  NEL
+  NEW
+  NFA
+  NHL
+  NLR
+  NMN
+  NNT
+  NRD
+  NRW
+  NTA
+  NVN
+  NWA
+  NWN
+  NWT
+  OLD
+  OXN
+  OXT
+  PAR
+  PER
+  PES
+  PGM
+  PHG
+  PKT
+  PLK
+  PLT
+  PLY
+  PMB
+  PMH
+  PNA
+  PNC
+  PNM
+  PPD
+  PRE
+  PRH
+  PRL
+  PST
+  PTB
+  PTG
+  PTM
+  PTT
+  PUR
+  PWW
+  PYE
+  PYG
+  PYN
+  PYP
+  QBR
+  QUI
+  QYD
+  RAN
+  RCA
+  RCC
+  RDA
+  RED
+  RET
+  RHI
+  RHM
+  RMB
+  RML
+  ROC
+  ROG
+  ROR
+  RSG
+  RTN
+  RUS
+  RYB
+  RYD
+  RYH
+  RYP
+  RYR
+  SAN
+  SAR
+  SAS
+  SAU
+  SBJ
+  SBR
+  SBV
+  SCR
+  SDF
+  SEM
+  SER
+  SFI
+  SGN
+  SHD
+  SHH
+  SHI
+  SHR
+  SHY
+  SIA
+  SIT
+  SJS
+  SLH
+  SLO
+  SLR
+  SLT
+  SML
+  SMT
+  SOC
+  SOE
+  SOF
+  SOI
+  SPT
+  SQU
+  SRD
+  SRR
+  STC
+  STF
+  STG
+  STV
+  SUO
+  SUP
+  SUR
+  TAD
+  TAI
+  TAL
+  TAY
+  TBY
+  TDU
+  TEN
+  TGS
+  THB
+  THD
+  TIR
+  TLB
+  TLC
+  TLS
+  TNA
+  TNF
+  TOL
+  TOP
+  TPB
+  TPN
+  TQY
+  TRD
+  TRM
+  TRN
+  TRU
+  TRY
+  TUL
+  TWY
+  TYG
+  TYL
+  TYW
+  ULC
+  UMB
+  UTY
+  WAE
+  WAF
+  WAR
+  WBR
+  WCF
+  WCR
+  WEA
+  WES
+  WFI
+  WFJ
+  WFL
+  WFN
+  WGV
+  WHC
+  WHS
+  WHT
+  WHY
+  WIC
+  WIV
+  WKB
+  WLG
+  WLM
+  WLP
+  WLV
+  WME
+  WMI
+  WNL
+  WNY
+  WRX
+  WSR
+  WST
+  WTG
+  WTL
+  WTM
+  WTS
+  WWI
+  YEO
+  YNW
+  YSM
+
+Componentes biconexos (522):
+  Componente 1: (BHK-ENF)
+  Componente 2: (EDR-BHK)
+  Componente 3: (TLS-CLT)
+  Componente 4: (FRI-WON)
+  Componente 5: (KBX-FRI)
+  Componente 6: (TLS-KBX)
+  Componente 7: (TLS-WIV) (WEE-GRB) (TLS-WEE) (GRB-TLS) (ALR-GRB) (WIV-ALR)
+  Componente 8: (WIV-COL) (HYH-WIV) (HYH-COL) (CET-HYH) (COL-CET)
+  Componente 9: (WTG-KLN)
+  Componente 10: (DOW-WTG)
+  Componente 11: (LTP-DOW)
+  Componente 12: (ELY-LTP)
+  Componente 13: (FZH-SHY) (BDQ-FZH) (SHY-BDQ)
+  Componente 14: (CSN-CSS)
+  Componente 15: (TOL-CSN)
+  Componente 16: (MAL-TOL)
+  Componente 17: (MOT-MAL)
+  Componente 18: (BIP-SEF)
+  Componente 19: (NVH-NVN) (BIP-NVH) (NVN-BIP)
+  Componente 20: (SEE-LWS) (NVN-SEE) (LWS-NVN)
+  Componente 21: (BAD-EPD)
+  Componente 22: (BLM-BAD)
+  Componente 23: (SUO-BLM)
+  Componente 24: (WWI-HYS)
+  Componente 25: (EDN-WWI)
+  Componente 26: (ELE-EDN)
+  Componente 27: (CLK-ELE)
+  Componente 28: (NBC-CLK)
+  Componente 29: (LSY-NBC)
+  Componente 30: (CFB-LSY)
+  Componente 31: (LAD-CFB)
+  Componente 32: (CDI-OKE)
+  Componente 33: (CPN-UMB) (BNP-CPN) (UMB-BNP)
+  Componente 34: (UMB-KGN) (UMB-EGG) (PMA-UMB) (PMA-EGG) (KGN-PMA) (EGG-KGN)
+  Componente 35: (LAP-MRD) (EGG-LAP) (MRD-EGG)
+  Componente 36: (COP-MRD)
+  Componente 37: (YEO-COP)
+  Componente 38: (CDI-YEO)
+  Componente 39: (NTC-EXD) (CDI-NTC) (EXD-CDI)
+  Componente 40: (QUI-NQY)
+  Componente 41: (SCR-QUI)
+  Componente 42: (ROC-SCR)
+  Componente 43: (BGL-ROC)
+  Componente 44: (LUX-BGL)
+  Componente 45: (PAR-LUX)
+  Componente 46: (FMT-FAL)
+  Componente 47: (PNM-FMT)
+  Componente 48: (PYN-PNM)
+  Componente 49: (PYN-TRU) (PRW-PYN) (TRU-PRW)
+  Componente 50: (CBB-SIV)
+  Componente 51: (LEL-SER) (CBB-LEL) (SER-CBB)
+  Componente 52: (SER-RED) (PNZ-RED) (SER-PNZ) (SER-CBN) (HYL-SER) (CBN-HYL) (RED-CBN)
+  Componente 53: (TRU-RED)
+  Componente 54: (SAU-TRU)
+  Componente 55: (SAU-LOS) (SAU-BOD) (PAR-SAU) (PAR-BOD) (LOS-PAR) (BOD-LOS)
+  Componente 56: (LSK-BOD)
+  Componente 57: (SKN-LSK) (LOO-LSK) (SDP-LOO) (CAU-SDP) (SKN-CAU) (COE-SKN) (LSK-COE)
+  Componente 58: (CSK-GSL)
+  Componente 59: (BAS-CSK)
+  Componente 60: (BFE-BAS)
+  Componente 61: (SBV-BFE)
+  Componente 62: (KEY-SBV)
+  Componente 63: (STS-PLY) (LSK-PLY) (SGM-STS) (SGM-LSK) (MEN-SGM) (LSK-MEN) (STS-LSK) (STS-DPT) (SBF-STS) (SBF-PLY) (SBF-DPT) (KEY-SBF) (DOC-KEY) (DPT-DOC) (PLY-DPT)
+  Componente 64: (TQY-PGN)
+  Componente 65: (TRR-NTA) (TQY-TRR) (NTA-TQY)
+  Componente 66: (TOT-PLY) (TOT-NTA) (IVY-TOT) (PLY-IVY) (PLY-EXD) (NTA-PLY) (NTA-EXD) (TGM-NTA) (DWL-TGM) (EXT-EXD) (SCS-EXT) (SCS-DWL) (DWW-SCS) (DWW-EXD) (DWL-DWW) (EXD-DWL)
+  Componente 67: (LYM-EXM)
+  Componente 68: (LYM-TOP) (LYC-LYM) (EXN-LYC) (TOP-EXN)
+  Componente 69: (NCO-TOP)
+  Componente 70: (DIG-NCO)
+  Componente 71: (SJP-EXC) (POL-SJP) (DIG-POL) (EXC-DIG)
+  Componente 72: (AYS-AVP)
+  Componente 73: (ALV-RDC)
+  Componente 74: (BTG-ALV)
+  Componente 75: (BKG-BGV)
+  Componente 76: (BUU-SMN)
+  Componente 77: (ALN-BUU)
+  Componente 78: (NFA-ALN)
+  Componente 79: (SOF-NFA)
+  Componente 80: (BLB-SOF)
+  Componente 81: (WIC-BLB)
+  Componente 82: (PRL-SOV)
+  Componente 83: (SIA-PRL)
+  Componente 84: (TPB-SRY)
+  Componente 85: (SOE-TPB)
+  Componente 86: (SOC-SOE)
+  Componente 87: (WCF-SOC)
+  Componente 88: (CHW-WCF)
+  Componente 89: (OLD-MOG)
+  Componente 90: (EXR-OLD)
+  Componente 91: (HHY-EXR)
+  Componente 92: (SKG-WFL) (HVN-SKG) (WFL-HVN)
+  Componente 93: (WFL-BSN) (TPC-WFL) (BSN-TPC)
+  Componente 94: (SWE-HEC) (HBB-SWE) (HBB-HEC) (BSN-HBB) (HEC-BSN)
+  Componente 95: (SLR-HEC)
+  Componente 96: (RET-GNB)
+  Componente 97: (GAL-TWB)
+  Componente 98: (SOI-GAL)
+  Componente 99: (GBG-SOI)
+  Componente 100: (NEG-GBG)
+  Componente 101: (EKB-NEG)
+  Componente 102: (SFI-EKB)
+  Componente 103: (NEW-SFI)
+  Componente 104: (BSU-NEW)
+  Componente 105: (EDB-BSU)
+  Componente 106: (CGD-HLC)
+  Componente 107: (CDR-CGD)
+  Componente 108: (DLR-CDR)
+  Componente 109: (ALX-BHC)
+  Componente 110: (RTN-ALX)
+  Componente 111: (DLR-RTN)
+  Componente 112: (DBC-DLR)
+  Componente 113: (CON-OBN)
+  Componente 114: (TAY-CON)
+  Componente 115: (TAY-LHA) (FOC-TAY) (LHA-FOC)
+  Componente 116: (DAL-LHA)
+  Componente 117: (TYL-DAL)
+  Componente 118: (CNR-TYL)
+  Componente 119: (MRR-MLG)
+  Componente 120: (ARG-MRR)
+  Componente 121: (BSL-ARG)
+  Componente 122: (LCL-BSL)
+  Componente 123: (GLF-LCL)
+  Componente 124: (LCS-GLF)
+  Componente 125: (LHE-LCS)
+  Componente 126: (CPA-LHE)
+  Componente 127: (BNV-CPA)
+  Componente 128: (FTW-BNV)
+  Componente 129: (SBR-FTW)
+  Componente 130: (RYB-SBR)
+  Componente 131: (TUL-RYB)
+  Componente 132: (CRR-TUL)
+  Componente 133: (RAN-CRR)
+  Componente 134: (BRO-RAN)
+  Componente 135: (UTY-BRO)
+  Componente 136: (CNR-UTY)
+  Componente 137: (AUI-CNR)
+  Componente 138: (ART-AUI)
+  Componente 139: (GCH-ART)
+  Componente 140: (HLU-GCH)
+  Componente 141: (DBC-HLU)
+  Componente 142: (DBE-DMR) (KPT-DMR) (BWG-KPT) (DBE-BWG) (DBC-DBE) (DMR-DBC)
+  Componente 143: (HLF-MLN)
+  Componente 144: (BRN-HLF)
+  Componente 145: (WES-BRN)
+  Componente 146: (BAR-MCM)
+  Componente 147: (LAN-BAR)
+  Componente 148: (WDM-KEN) (SVL-WDM) (BUD-SVL) (KEN-BUD)
+  Componente 149: (OXN-KEN)
+  Componente 150: (RHO-VAL) (TYC-BOR) (RHO-TYC) (HHD-RHO) (HHD-BNG) (VAL-HHD) (VAL-BNG) (LPG-VAL) (LPG-BNG) (BOR-LPG) (BNG-BOR)
+  Componente 151: (CNW-LLJ) (PMW-CNW) (LLF-PMW) (BNG-LLF) (LLJ-BNG)
+  Componente 152: (DGY-LLD)
+  Componente 153: (LLJ-DGY)
+  Componente 154: (RMB-BFF)
+  Componente 155: (DWD-RMB)
+  Componente 156: (PYP-DWD)
+  Componente 157: (BYC-PYP)
+  Componente 158: (LWR-BYC)
+  Componente 159: (NLR-LWR)
+  Componente 160: (DLG-NLR)
+  Componente 161: (TLC-DLG)
+  Componente 162: (GCW-TLC)
+  Componente 163: (LLJ-GCW)
+  Componente 164: (WLG-NBN)
+  Componente 165: (WLV-WLG)
+  Componente 166: (BKN-WLV)
+  Componente 167: (HYK-WKI)
+  Componente 168: (MNR-HYK)
+  Componente 169: (MEO-MNR)
+  Componente 170: (MRT-MEO)
+  Componente 171: (LSW-MRT)
+  Componente 172: (BID-LSW)
+  Componente 173: (WRX-WXC)
+  Componente 174: (DVH-CEF) (BUX-DVH) (CEF-BUX)
+  Componente 175: (WBR-CEF)
+  Componente 176: (FNV-WBR)
+  Componente 177: (NMN-FNV)
+  Componente 178: (DSL-NMN)
+  Componente 179: (MDL-HAZ) (DSL-MDL) (HAZ-DSL)
+  Componente 180: (WSR-HAZ)
+  Componente 181: (DVN-WSR)
+  Componente 182: (SPT-DVN)
+  Componente 183: (RML-RSH)
+  Componente 184: (HTY-GDL) (BDB-HTY) (HDF-GLO) (DTG-HDF) (DTG-GLO) (BDB-DTG) (GLO-BDB) (GDL-GLO)
+  Componente 185: (NWN-GDL)
+  Componente 186: (FLF-NWN)
+  Componente 187: (GUI-FLF)
+  Componente 188: (BPB-BPS)
+  Componente 189: (SQU-BPB)
+  Componente 190: (SAS-SQU)
+  Componente 191: (AFV-SAS)
+  Componente 192: (LTM-AFV)
+  Componente 193: (MOS-LTM)
+  Componente 194: (KKM-MOS)
+  Componente 195: (PFY-PRE) (SLW-PRE) (KKM-SLW) (KKM-PRE) (PFY-KKM) (PFY-BPN) (LAY-PFY) (BPN-LAY) (PRE-BPN)
+  Componente 196: (GGJ-THS)
+  Componente 197: (GGJ-WCK)
+  Componente 198: (GGJ-FRS) (SCT-GGJ) (ABC-SCT) (FRS-ABC)
+  Componente 199: (KBC-KIL) (FRS-KBC) (KIL-FRS)
+  Componente 200: (HMS-KIL)
+  Componente 201: (BRA-HMS)
+  Componente 202: (DNO-GOL) (BRA-DNO) (GOL-BRA)
+  Componente 203: (ROG-GOL)
+  Componente 204: (LRG-ROG)
+  Componente 205: (LRG-ARD) (INH-LRG) (CUA-INH) (ARD-CUA)
+  Componente 206: (TAI-ARD)
+  Componente 207: (TAI-IGD) (FRN-TAI) (IGD-FRN)
+  Componente 208: (IGD-DIN) (ASS-IGD) (DIN-ASS)
+  Componente 209: (DRN-KYL)
+  Componente 210: (PLK-DRN)
+  Componente 211: (DCG-PLK)
+  Componente 212: (STF-DCG)
+  Componente 213: (ATT-STF)
+  Componente 214: (STC-ATT)
+  Componente 215: (ACH-STC)
+  Componente 216: (ACN-ACH)
+  Componente 217: (AAT-ACN)
+  Componente 218: (LCC-AAT)
+  Componente 219: (GVE-LCC)
+  Componente 220: (DIN-GVE)
+  Componente 221: (DIN-MOO) (CBD-DIN) (MOO-CBD)
+  Componente 222: (MOO-INV) (BEL-MOO) (INV-BEL)
+  Componente 223: (STG-ALO)
+  Componente 224: (HMY-EKL)
+  Componente 225: (THT-BUS) (HMY-THT) (BUS-HMY)
+  Componente 226: (CKS-BUS)
+  Componente 227: (GFN-CKS)
+  Componente 228: (THB-GFN)
+  Componente 229: (PWW-THB)
+  Componente 230: (BRL-STR)
+  Componente 231: (GIR-BRL)
+  Componente 232: (MAY-GIR)
+  Componente 233: (AYR-MAY)
+  Componente 234: (PTW-TRN) (PRA-TRN) (PTW-PRA) (PTW-AYR) (NOA-PTW) (AYR-NOA) (TRN-AYR)
+  Componente 235: (FTM-GRK)
+  Componente 236: (GKW-FTM)
+  Componente 237: (GKC-GKW)
+  Componente 238: (GKC-PTG) (CDY-GKC) (BGS-CDY) (PTG-BGS)
+  Componente 239: (INP-WMS)
+  Componente 240: (BCN-INP)
+  Componente 241: (DFR-BCN)
+  Componente 242: (WNL-DFR)
+  Componente 243: (PTG-WNL)
+  Componente 244: (PTG-BPT) (WDL-PTG) (LGB-WDL) (BPT-LGB)
+  Componente 245: (PYJ-PYG) (BPT-PYJ) (PYG-BPT)
+  Componente 246: (ADN-ADS)
+  Componente 247: (ASB-ADN)
+  Componente 248: (FRL-LAR)
+  Componente 249: (WKB-FRL)
+  Componente 250: (ASB-WKB)
+  Componente 251: (SLT-ASB)
+  Componente 252: (STV-SLT)
+  Componente 253: (KWN-STV)
+  Componente 254: (MEY-LRH)
+  Componente 255: (CTE-MEY)
+  Componente 256: (HNC-CTE)
+  Componente 257: (PTT-NEI)
+  Componente 258: (WCR-PTT)
+  Componente 259: (WLM-WCR)
+  Componente 260: (MUI-WLM)
+  Componente 261: (CCT-MUI)
+  Componente 262: (HKH-PCN)
+  Componente 263: (CKT-HKH)
+  Componente 264: (MPK-CKT)
+  Componente 265: (CKH-MPK)
+  Componente 266: (DUM-CKH)
+  Componente 267: (GLC-DUM)
+  Componente 268: (DRM-NBW)
+  Componente 269: (LND-DRM)
+  Componente 270: (PST-LND)
+  Componente 271: (WAF-PST)
+  Componente 272: (MUB-WAF)
+  Componente 273: (ALM-CHT)
+  Componente 274: (RUS-WTB)
+  Componente 275: (SLH-RUS)
+  Componente 276: (GMT-SLH)
+  Componente 277: (EGT-GMT)
+  Componente 278: (GLS-EGT)
+  Componente 279: (LHM-GLS)
+  Componente 280: (DNY-LHM)
+  Componente 281: (CSM-DNY)
+  Componente 282: (KLD-BTT) (COM-KLD) (CSM-COM) (BTT-CSM)
+  Componente 283: (GTA-BTT)
+  Componente 284: (NNT-GTA)
+  Componente 285: (GYP-NNT)
+  Componente 286: (MTO-GYP)
+  Componente 287: (JCH-MTO)
+  Componente 288: (MBR-JCH)
+  Componente 289: (SLB-RCC) (MSK-SLB) (LGK-MSK) (RCE-LGK) (RCC-RCE)
+  Componente 290: (SBK-MBR) (RCC-SBK) (MBR-RCC)
+  Componente 291: (TBY-MBR)
+  Componente 292: (SHD-BIA)
+  Componente 293: (NAY-SHD)
+  Componente 294: (HEI-NAY)
+  Componente 295: (NRD-HEI)
+  Componente 296: (DAR-NRD)
+  Componente 297: (SEM-SCA)
+  Componente 298: (GMD-GMB) (NCE-GMD) (CLE-NCE) (GMB-CLE)
+  Componente 299: (BAV-BAU)
+  Componente 300: (NHL-BAV)
+  Componente 301: (GOX-NHL)
+  Componente 302: (TNA-GOX)
+  Componente 303: (ULC-TNA)
+  Componente 304: (HAB-ULC)
+  Componente 305: (HAB-GMB) (HAB-BTB) (SLL-HAB) (HLI-SLL) (GCT-HLI) (GMB-GCT) (BTB-GMB)
+  Componente 306: (WHS-CAT)
+  Componente 307: (WHY-WHS)
+  Componente 308: (KLY-WHY)
+  Componente 309: (PUR-KLY)
+  Componente 310: (BXD-UCK)
+  Componente 311: (COH-BXD)
+  Componente 312: (ERI-COH)
+  Componente 313: (AHS-ERI)
+  Componente 314: (CWN-AHS)
+  Componente 315: (HEV-CWN)
+  Componente 316: (EBT-HEV)
+  Componente 317: (HUR-EBT)
+  Componente 318: (DMS-EGR)
+  Componente 319: (LFD-DMS)
+  Componente 320: (HUR-LFD)
+  Componente 321: (OXT-HUR)
+  Componente 322: (TAD-TAT)
+  Componente 323: (KND-TAD)
+  Componente 324: (CHP-KND)
+  Componente 325: (WME-CHP)
+  Componente 326: (CDN-WME)
+  Componente 327: (RHM-CDN)
+  Componente 328: (PUR-RHM)
+  Componente 329: (HXX-HAF)
+  Componente 330: (HXX-HWV)
+  Componente 331: (BNE-MLW)
+  Componente 332: (COO-BNE)
+  Componente 333: (FZP-COO)
+  Componente 334: (MAI-FZP)
+  Componente 335: (SHI-HOT)
+  Componente 336: (WGV-SHI)
+  Componente 337: (TWY-WGV)
+  Componente 338: (SLO-WNC)
+  Componente 339: (SGN-GFD)
+  Componente 340: (CBP-SGN)
+  Componente 341: (DRG-CBP)
+  Componente 342: (WEA-DRG)
+  Componente 343: (FGW-FGH)
+  Componente 344: (CLR-FGW)
+  Componente 345: (JOH-MFH)
+  Componente 346: (HVF-JOH)
+  Componente 347: (CLR-HVF)
+  Componente 348: (CUW-WTL) (CLR-CUW) (WTL-CLR)
+  Componente 349: (PMB-PMD)
+  Componente 350: (LAM-PMB)
+  Componente 351: (MRB-LAM)
+  Componente 352: (PNA-MRB)
+  Componente 353: (TEN-PNA)
+  Componente 354: (SDF-TEN)
+  Componente 355: (KGT-SDF)
+  Componente 356: (NAR-KGT)
+  Componente 357: (WTL-NAR)
+  Componente 358: (CMN-WTL)
+  Componente 359: (PBY-LLE) (PBY-FYS) (PBY-CMN) (KWL-PBY) (FYS-KWL) (CMN-FYS) (LLE-CMN)
+  Componente 360: (CMH-ABA)
+  Componente 361: (FER-CMH)
+  Componente 362: (MTA-FER)
+  Componente 363: (PER-MTA)
+  Componente 364: (ACY-PER)
+  Componente 365: (PTB-MER)
+  Componente 366: (TRD-PTB)
+  Componente 367: (MEV-TRD)
+  Componente 368: (QYD-MEV)
+  Componente 369: (ACY-QYD)
+  Componente 370: (PPD-ACY)
+  Componente 371: (YNW-TRB)
+  Componente 372: (TRY-YNW)
+  Componente 373: (TPN-TRY)
+  Componente 374: (TRH-PPD) (POR-TRH) (DMG-POR) (TNP-DMG) (LLY-TNP) (YSR-LLY) (TPN-YSR) (PPD-TPN)
+  Componente 375: (PLT-RHY)
+  Componente 376: (TIR-PLT)
+  Componente 377: (BHD-TIR)
+  Componente 378: (BGD-BHD)
+  Componente 379: (GFF-PGM) (BGD-GFF) (PGM-BGD)
+  Componente 380: (HNG-PGM)
+  Componente 381: (YSM-HNG)
+  Componente 382: (LNB-YSM)
+  Componente 383: (LNB-ABE) (ECP-LNB) (ABE-ECP)
+  Componente 384: (CPH-ABE)
+  Componente 385: (LVT-CPH)
+  Componente 386: (LLS-LVT)
+  Componente 387: (HHL-LLS)
+  Componente 388: (CDQ-HHL)
+  Componente 389: (WHT-COY)
+  Componente 390: (RHI-WHT)
+  Componente 391: (BCG-RHI)
+  Componente 392: (TGS-BCG)
+  Componente 393: (HLL-TGS)
+  Componente 394: (CDQ-HLL)
+  Componente 395: (BRY-BYI)
+  Componente 396: (DGL-PEN)
+  Componente 397: (GTN-DGL)
+  Componente 398: (EBV-EBB)
+  Componente 399: (LTH-EBV)
+  Componente 400: (NBE-LTH)
+  Componente 401: (CKY-NBE)
+  Componente 402: (RCA-CKY)
+  Componente 403: (ROR-RCA)
+  Componente 404: (PYE-ROR)
+  Componente 405: (CDF-PYE)
+  Componente 406: (MEW-MST)
+  Componente 407: (GMG-MEW)
+  Componente 408: (TDU-GMG)
+  Componente 409: (SRR-TDU)
+  Componente 410: (WMI-SRR)
+  Componente 411: (BGN-WMI)
+  Componente 412: (SAR-SVB)
+  Componente 413: (AVN-SAR)
+  Componente 414: (SHH-AVN)
+  Componente 415: (SML-SHH)
+  Componente 416: (CFN-SML)
+  Componente 417: (RDA-CFN)
+  Componente 418: (MTP-RDA)
+  Componente 419: (SRD-MTP)
+  Componente 420: (PKT-SAA)
+  Componente 421: (HWW-PKT)
+  Componente 422: (BWO-HWW)
+  Componente 423: (GSN-BWO)
+  Componente 424: (WFN-GSN)
+  Componente 425: (WFJ-WFN)
+  Componente 426: (BOW-AYW)
+  Componente 427: (BRH-BOW)
+  Componente 428: (DVY-BRH)
+  Componente 429: (ABH-PWL)
+  Componente 430: (PNC-ABH)
+  Componente 431: (CCC-PNC)
+  Componente 432: (PTM-CCC)
+  Componente 433: (MFF-PTM)
+  Componente 434: (PRH-MFF)
+  Componente 435: (LLC-PRH)
+  Componente 436: (TAL-LLC)
+  Componente 437: (TYG-TAL)
+  Componente 438: (HRL-TYG)
+  Componente 439: (LDN-HRL)
+  Componente 440: (PES-LDN)
+  Componente 441: (LBR-PES)
+  Componente 442: (DYF-LBR)
+  Componente 443: (TLB-DYF)
+  Componente 444: (LLA-TLB)
+  Componente 445: (BRM-LLA)
+  Componente 446: (MFA-BRM)
+  Componente 447: (FRB-MFA)
+  Componente 448: (LLW-FRB)
+  Componente 449: (TNF-LLW)
+  Componente 450: (TYW-TNF)
+  Componente 451: (AVY-TYW)
+  Componente 452: (PHG-AVY)
+  Componente 453: (DVY-PHG)
+  Componente 454: (MCN-DVY)
+  Componente 455: (CWS-MCN)
+  Componente 456: (NWT-CWS)
+  Componente 457: (WLP-NWT)
+  Componente 458: (SHR-WLP)
+  Componente 459: (SBJ-SBT)
+  Componente 460: (LYT-LYP)
+  Componente 461: (BCU-LYT)
+  Componente 462: (SUP-BMN)
+  Componente 463: (GRP-SUP)
+  Componente 464: (QBR-SSS)
+  Componente 465: (SWL-KML) (QBR-SWL) (KML-QBR)
+  Componente 466: (SIT-KML)
+  Componente 467: (WAE-CHX)
+  Componente 468: (LBG-WAE)
+  Componente 469: (LKE-SHN)
+  Componente 470: (SAN-LKE)
+  Componente 471: (BDN-SAN)
+  Componente 472: (SAB-RYR) (BDN-SAB) (RYR-BDN)
+  Componente 473: (RYD-RYR)
+  Componente 474: (RYP-RYD)
+  Componente 475: (PMH-RYP)
+  Componente 476: (BTY-FNH) (AON-BTY) (FNH-AON)
+  Componente 477: (AHT-FNH)
+  Componente 478: (THD-HMC)
+  Componente 479: (SUR-THD)
+  Componente 480: (MTB-MAT)
+  Componente 481: (CMF-MTB)
+  Componente 482: (WTS-CMF)
+  Componente 483: (AMB-WTS)
+  Componente 484: (BLP-AMB)
+  Componente 485: (DFI-BLP)
+  Componente 486: (DBY-DFI)
+  Componente 487: (NEL-CNE)
+  Componente 488: (BRF-NEL)
+  Componente 489: (BNC-BRF)
+  Componente 490: (BUB-BNC)
+  Componente 491: (RSG-BUB)
+  Componente 492: (BEY-ILK)
+  Componente 493: (BUW-BEY)
+  Componente 494: (MNN-BUW)
+  Componente 495: (GSY-MNN)
+  Componente 496: (TRM-FLX)
+  Componente 497: (DBR-TRM)
+  Componente 498: (WFI-DBR)
+  Componente 499: (WRN-CMR) (SHM-WRN) (CMR-SHM)
+  Componente 500: (RNR-NWA) (GNT-NWA) (RNR-GNT) (CMR-RNR) (NWA-CMR)
+  Componente 501: (WRT-HXM) (NWA-WRT) (HXM-NWA)
+  Componente 502: (SAH-NRW) (HXM-SAH) (NRW-HXM)
+  Componente 503: (DVC-HWC)
+  Componente 504: (HPQ-DVC)
+  Componente 505: (BUE-SUY)
+  Componente 506: (CWC-BUE)
+  Componente 507: (MKT-CWC)
+  Componente 508: (BTP-BTR)
+  Componente 509: (CES-BTP)
+  Componente 510: (WNY-CES)
+  Componente 511: (WTM-WNY)
+  Componente 512: (HIP-CHI)
+  Componente 513: (WST-HIP)
+  Componente 514: (WHC-WST)
+  Componente 515: (SJS-WHC)
+  Componente 516: (CPT-SJS)
+  Componente 517: (HAC-CPT)
+  Componente 518: (WAR-HFE)
+  Componente 519: (SMT-WAR)
+  Componente 520: (RYH-SMT)
+  Componente 521: (BXB-RYH)
+  Componente 522: (GPK-WIH) (ENC-GPK) (CWH-GDH) (CUF-CWH) (WAS-HFN) (SVG-WAS) (HIT-SVG) (RYS-LET) (RYS-HIT) (CBG-LET) (GRC-AUD) (WLF-GRC) (WLF-CBG) (WLF-AUD) (SED-WLF) (SED-CBG) (BIS-SED) (SAW-HWN) (SAW-BIS) (HWM-SAW) (HWN-HWM) (RYN-HWN) (BXB-RYN) (SMH-SVS) (SKW-SMH) (REC-SKW) (HAC-REC) (LST-SVS) (SST-HWN) (NWE-BIS) (NWE-AUD) (ESM-NWE) (SST-ESM) (SST-BIS) (SST-AUD) (SSD-SST) (SSD-CBG) (SSD-BIS) (SSD-AUD) (LST-SSD) (LST-HAC) (LST-CHN) (COL-LST) (WTM-KEL) (HAP-CHM) (WTM-HAP) (WTM-COL) (WTM-CHM) (MKT-WTM) (MKT-COL) (KEL-MKT) (COL-KEL) (WRB-HPQ) (MIS-WRB) (MIS-IPS) (MNG-MIS) (MNG-IPS) (MNG-COL) (HPQ-MNG) (IPS-HPQ) (OUN-REE) (OUN-NRW) (WFI-IPS) (WDB-WFI) (WDB-IPS) (MES-WDB) (WCM-MES) (SAX-WCM) (DSM-SAX) (HAS-DSM) (BRP-HAS) (BCC-BRP) (OUS-BCC) (LWT-OUS) (OUN-LWT) (SYT-OUN) (HAD-SYT) (REE-HAD) (GYM-REE) (LGD-BDA) (ACL-LGD) (GYM-ACL) (BYA-GYM) (REE-BYA) (CNY-REE) (CNY-NRW) (CNY-BDA) (BUC-CNY) (BDA-BUC) (BGA-NRW) (BDA-BGA) (NRW-BDA) (WMD-NRW) (WMD-ATL) (SPN-WMD) (ATL-SPN) (TTF-NRW) (ELY-TTF) (NMT-IPS) (SMK-NMT) (SMK-IPS) (TRS-BSE) (ESW-TRS) (SMK-ESW) (SMK-DIS) (BSE-SMK) (KNE-SOJ) (DUL-CBG) (NMK-DUL) (NMK-CBG) (NMK-BSE) (KNE-NMK) (BSE-KNE) (SOJ-BSE) (ELY-SOJ) (WLE-MCH) (PBO-WLE) (PBO-TTF) (PBO-SVG) (SDY-BIW) (SNO-SDY) (SNO-HIT) (SNO-BIW) (HUN-SNO) (PBO-HUN) (PBO-HIT) (PBO-ELY) (SBY-SIE) (SBY-GRF) (SBY-DON) (SAM-GBD) (GOO-SAM) (WDS-CFD) (LDS-WDS) (LDS-SBY) (LDS-GRF) (LDS-CRG) (SHY-LDS) (GSY-LDS) (BLD-GSY) (SHY-BLD) (SAE-SHY) (BIY-SAE) (HLD-SKI) (ENT-BMC) (DWN-ENT) (WHE-CLH) (LHO-WHE) (RGW-LHO) (BBN-RGW) (RIS-BBN) (CTW-RIS) (CTW-BBN) (ACR-CTW) (HCT-ACR) (HPN-HCT) (RSG-HPN) (RSG-ACR) (BYM-RSG) (NPD-LDS) (BLE-LDS) (NPD-BLE) (BDI-NPD) (LMR-HFX) (MYT-HBD) (SOW-MYT) (SOW-HFX) (SOW-HBD) (BGH-SOW) (BGH-LDS) (HUD-LDS) (POT-PFM) (FEA-POT) (SHC-FEA) (WKK-SHC) (WKK-PFM) (WKK-NOR) (WKK-LDS) (WKK-DON) (SHF-LDS) (SHF-DON) (DRO-SHF) (CHD-DRO) (NOT-ILN) (NOT-CHD) (EMD-NOT) (DBY-SHF) (DBY-NOT) (SPO-DBY) (LGE-SPO) (LGE-EMD) (LGE-BEE) (LGE-ATB) (DBY-LGE) (DBY-CHD) (MGN-BHM) (THL-COV) (HIA-BHI) (BKW-HIA) (THL-BKW) (THL-BHI) (CNL-THL) (COV-CNL) (CEH-NUN) (CEH-BHM) (WTO-CEH) (WTO-BHM) (WNE-WTO) (WNE-BHM) (TAM-WNE) (EUS-NUN) (EUS-COV) (SOH-EUS) (KBN-SOH) (QPW-KBN) (KNL-QPW) (WIJ-KNL) (NSH-RMD) (MTL-NSH) (BNS-MTL) (SYL-BFD) (ISL-SYL) (HOU-ISL) (SNS-FEL) (RAY-SUR) (WAN-GLD) (ASH-WAN) (HOK-BSK) (WNF-HOK) (FLE-WNF) (FLE-FNB) (BSK-FLE) (OVR-BSK) (WCH-OVR) (ADV-WCH) (ROM-SAL) (PMH-ESL) (PMS-PMH) (PMS-ESL) (FTN-PMS) (PTC-ESL) (PTC-CSA) (FRM-PTC) (RLN-HAV) (PTR-RLN) (LIS-PTR) (LIP-LIS) (HSL-LIP) (WTY-HSL) (MLF-WTY) (MLF-HSL) (GOD-MLF) (GOD-GLD) (FNC-GLD) (GOD-FNC) (HSL-GOD) (PTR-HSL) (HAV-PTR) (HLS-FTN) (HLS-CSA) (HLS-BDH) (HAV-HLS) (HAV-GLD) (HAV-FTN) (HAV-CSA) (HAV-BDH) (CCH-HAV) (WBL-HAV) (EMS-WBL) (EMS-HAV) (EMS-CCH) (SOB-EMS) (SOB-CCH) (SOB-BOH) (NUT-SOB) (BOH-NUT) (FSB-CCH) (BOH-FSB) (CCH-BOH) (CCH-BAA) (BOG-CCH) (BAA-BOG) (FOD-BAA) (LIT-FOD) (LIT-BAA) (LIT-ANG) (WWO-LIT) (WWO-DUR) (WRH-WWO) (WRH-FOD) (LAC-WRH) (SSE-WRH) (HSK-HOV) (HSK-BUG) (HSK-BTN) (PRP-HSK) (PRP-HOV) (PRP-BTN) (HHE-PRP) (HHE-BTN) (TBD-HHE) (GTW-HHE) (LBG-ECR) (WAD-TBW) (ETC-WAD) (SOG-WAD) (ETC-SOG) (RBR-ETC) (BAT-RBR) (WSE-TOK) (RYE-TOK) (STU-CBW) (MSR-STU) (RAM-CBW) (WGA-MAR) (BCH-WGA) (WHI-HNB) (SWO-AYH) (SPH-SWO) (SDW-RAM) (SDW-MSR) (DEA-SDW) (WAM-DEA) (MTM-WAM) (DVP-MTM) (WHA-AFK) (SDG-WHA) (FKW-SDG) (FKW-AFK) (FKC-FKW) (DVP-FKC) (KSN-DVP) (SPH-KSN) (AYH-SPH) (BKS-CBE) (ADM-BKS) (AYH-ADM) (CBE-AYH) (SEG-CBE) (FAV-SEG) (TEY-FAV) (SIT-TEY) (SIT-NGT) (SIT-FAV) (RAI-SIT) (RTR-LBG) (RVB-BEC) (SRT-RVB) (SRT-BMS) (BKJ-SRT) (VIC-GTW) (VIC-BMS) (VIC-BKJ) (CLJ-VIC) (CLJ-SUR) (CLJ-RMD) (WNT-CLJ) (PUT-WNT) (PUT-RMD) (PUT-KWB) (PUT-BNS) (CLJ-PUT) (SPB-WMB) (SPB-WIJ) (KPA-SPB) (WBP-KPA) (IMW-WBP) (CLJ-IMW) (CLJ-ECR) (CLJ-BSK) (WSW-CLJ) (BAL-WSW) (NWD-LBG) (NWD-ECR) (NWX-LBG) (DEP-LBG) (KDB-CTN) (KDB-BKH) (ELW-KDB) (ELW-CTN) (HGR-LBG) (SMY-VIC) (SMY-RTR) (DMK-VIC) (DMK-HNH) (LGJ-HNH) (EPH-LGJ) (EPH-HNH) (EPH-BFR) (DMK-EPH) (WWR-CLJ) (WWR-BAK) (CLP-WWR) (DMK-CLP) (QRP-SQE) (SBM-LBG) (QRP-SBM) (PMR-QRP) (WAL-SUR) (ESH-SUR) (HER-ESH) (WAL-HER) (WYB-WAL) (WYB-BFN) (WYB-ASN) (WOK-WYB) (WPL-GLD) (WOK-WPL) (SWG-SOA) (SDN-SWG) (WLS-SOU) (SHO-WLS) (NTL-SHO) (SNW-SOU) (SNW-SDN) (SNW-NTL) (SNW-FRM) (BUO-SNW) (HME-BUO) (NTL-HME) (WLS-NTL) (BTE-WLS) (SDN-BTE) (SOU-SDN) (SOU-ROM) (SOU-HAV) (SOU-GLD) (SOU-FRM) (BMH-SOU) (POK-SOU) (POK-BMH) (CHR-POK) (SWY-BCU) (NWM-SWY) (NWM-SOU) (NWM-CHR) (NWM-BMH) (NWM-BCU) (HNA-NWM) (CHR-HNA) (BMH-CHR) (WRM-HAM) (WEY-DCH) (UPW-WEY) (PEW-WSB) (THA-NBY) (THE-THA) (RDG-PEW) (RDG-NBY) (RDG-HGD) (RDG-GLD) (WKM-RDG) (SNG-VIR) (LNG-VIR) (SNG-LNG) (ACT-SNG) (FML-AHV) (CAM-FML) (BAG-CAM) (ACT-BAG) (MAO-ACT) (BCE-MAO) (WKM-BCE) (CRN-WKM) (SND-CRN) (BAW-SND) (NCM-GLD) (NCM-BAW) (NCM-ASH) (FNN-NCM) (BAW-FNN) (WKM-BAW) (WNS-WKM) (WNS-RDG) (WTI-WNS) (EAR-WTI) (RDG-EAR) (RDG-CLC) (RDG-BSK) (CNM-BHM) (SIP-KGM) (CBY-SIP) (OXF-CBY) (WRW-LMS) (WRP-WRW) (TLK-HNL) (KID-DTW) (SBJ-KID) (JEQ-BSW) (THW-JEQ) (SGB-THW) (SMR-BHM) (SGB-SMR) (SGB-SBJ) (WVH-SGB) (WVH-SAD) (WVH-BHM) (CSL-WVH) (TFC-WVH) (WLN-TFC) (CRE-NUN) (WTC-SHR) (YRT-SHR) (WEM-YRT) (WEM-WTC) (WEM-SHR) (WEM-CRE) (PRS-WEM) (WTC-PRS) (WTC-NAN) (WRE-WTC) (NAN-WRE) (NAN-SHR) (CRE-NAN) (CRE-EUS) (SOT-NUN) (SOT-MAC) (LTV-TAM) (TAB-WVH) (WSL-TAB) (STA-WVH) (STA-SOT) (SNE-SOT) (STA-SNE) (PKG-WVH) (STA-PKG) (STA-NUN) (MKC-TAM) (MKC-SOT) (MKC-NUN) (MKC-EUS) (MKC-CRE) (MKC-COV) (LBZ-EUS) (TRI-LBZ) (CED-LBZ) (TRI-CED) (BKM-TRI) (WFH-BSH) (WFJ-WFH) (WFJ-STA) (WFJ-MKC) (WFJ-LBZ) (WFJ-HRW) (WFJ-HML) (WFJ-EUS) (WFJ-COV) (WFJ-BSH) (WFJ-APS) (KGL-WFJ) (KGL-HML) (APS-KGL) (HML-APS) (BKM-HML) (LBZ-BKM) (BLY-LBZ) (RID-WOB) (SWR-LID) (KMH-SWR) (BSJ-KMH) (LTN-LUT) (SMD-PBO) (OKM-SMD) (OKM-COR) (MMO-OKM) (LBO-NOT) (LBO-EMD) (LEI-NUN) (LEI-NOT) (SWS-NBR) (SWS-LEI) (HNK-SWS) (HNK-NUN) (NBR-HNK) (LEI-NBR) (LEI-MMO) (PAD-RDG) (SWI-WSB) (SWI-RDG) (LWH-BRI) (SRD-LWH) (FIT-SRD) (PWY-STJ) (FIT-PWY) (NWP-SWI) (NWP-STJ) (LYD-GCR) (LYD-CPW) (NWP-LYD) (NWP-GCR) (NWP-CPW) (NWP-BPW) (HFD-SHR) (WOS-WOP) (WOS-SWI) (PSH-WOP) (PSH-EVE) (WOS-PSH) (WOS-DTW) (WOS-CNM) (WOS-ASC) (WOF-WOS) (WOF-DTW) (MVL-WOF) (GMV-MVL) (CWL-GMV) (LED-CWL) (HFD-LED) (CRV-SHR) (CTT-SHR) (LUD-SHR) (LEO-HFD) (LUD-LEO) (LUD-HFD) (LUD-CRV) (CTT-LUD) (CRV-CTT) (CIM-LLO) (LLV-SUG) (LNR-LLV) (LLG-LNR) (LLL-LLG) (SWA-LLE) (NTH-SWA) (PTA-NTH) (PTA-LLE) (PYL-PTA) (BGN-PYL) (CDF-NWP) (PYC-LLR) (PYC-CDF) (PCD-PYC) (PCD-BGN) (LLR-PCD) (LLR-BGN) (CDF-LLR) (LWM-BGN) (RIA-LWM) (BRY-RIA) (BYD-BRY) (CAD-BYD) (DNS-CAD) (EBK-DNS) (CGN-EBK) (GTN-CGN) (CDF-GTN) (TRF-TAF) (PPD-CYS) (TRF-PPD) (TRE-TRF) (TAF-TRE) (RDR-TAF) (NNP-CDF) (NNP-BGN) (WNG-NNP) (FRW-WNG) (DCT-FRW) (RDR-DCT) (RDR-CDF) (LLN-RDR) (CYS-LLN) (CDQ-CYS) (CDF-CDQ) (BGN-CDF) (PTA-BGN) (BAJ-PTA) (BNF-BAJ) (NTH-BNF) (SKE-NTH) (LAS-SKE) (SWA-LAS) (GWN-SWA) (LLE-GWN) (PTD-PTF) (LLH-PTD) (BYE-LLH) (LLE-BYE) (PTF-LLE) (PTF-FFA) (AMF-PTF) (LLI-AMF) (FFA-LLI) (LLL-FFA) (LLV-LLL) (CYN-LLV) (SUG-CYN) (LNW-SUG) (LNW-CIM) (LLM-LNW) (GTH-LLM) (CIM-GTH) (BHR-CIM) (LLO-BHR) (PNY-LLO) (DOL-PNY) (LLT-DOL) (LGO-LLT) (KNU-LGO) (KNI-KNU) (BUK-KNI) (HPT-BUK) (BME-HPT) (CRV-BME) (HFD-CRV) (AGV-HFD) (PPL-AGV) (CWM-PPL) (CWM-NWP) (AGV-CWM) (NWP-AGV) (FIT-NWP) (FIT-BRI) (FIT-BPW) (STJ-FIT) (CDT-STJ) (CPW-CDT) (GCR-CPW) (GCR-CNM) (YAE-BPW) (CDU-YAE) (GCR-CDU) (GCR-BPW) (GCR-BHM) (SHU-GCR) (STD-SHU) (KEM-STD) (SWI-KEM) (OLF-BTH) (KYN-OLF) (KYN-BRI) (BTH-KYN) (BTH-BRI) (TRO-WSB) (MKM-CPM) (TRO-MKM) (BOA-TRO) (FFD-BTH) (FFD-BOA) (AVF-FFD) (BOA-AVF) (BTH-BOA) (CPM-BTH) (SWI-CPM) (SWI-CNM) (SWI-BPW) (DID-SWI) (DID-RDG) (DID-OXF) (TLH-RDG) (PAN-TLH) (GOR-PAN) (CHO-GOR) (DID-CHO) (RAD-OXF) (RAD-DID) (CUM-RAD) (APF-CUM) (DID-APF) (PAD-DID) (EAL-PAD) (WEA-EAL) (HAN-WEA) (STL-HAN) (STL-EAL) (HAY-STL) (SLO-RDG) (SLO-PAD) (SLO-LNY) (SLO-HAY) (TWY-RDG) (TWY-PAD) (MAI-TWY) (TAP-BNM) (MAI-TAP) (MAI-SLO) (MAI-PAD) (BNM-MAI) (SLO-BNM) (WDT-SLO) (WDT-LNY) (WDT-HAY) (WDT-EAL) (IVR-WDT) (LNY-IVR) (HAY-LNY) (HXX-PAD) (HAY-HXX) (EAL-HAY) (AML-EAL) (PAD-AML) (BDS-PAD) (TCR-BDS) (ZFD-TCR) (ZFD-LST) (CTK-BFR) (ZFD-CTK) (ZFD-BFR) (STP-ZFD) (WEL-LEI) (WEL-KET) (WEL-BDM) (STP-WEL) (SOO-RTR) (SOO-GRV) (SDA-SOO) (NHE-SDA) (AYL-NHE) (MDB-AYL) (MDW-MDB) (DPD-REI) (DPD-GLD) (GOM-GLD) (GOM-DPD) (SFR-GLD) (SFR-DPD) (SFR-DKT) (CHL-SFR) (CHL-GLD) (GOM-CHL) (DKT-GOM) (DPD-DKT) (BTO-DPD) (REI-BTO) (RDH-REI) (RDH-GTW) (RDH-ECR) (PUR-RDH) (OXT-ECR) (WOH-OXT) (UWL-WOH) (RDD-UWL) (SNR-RDD) (SNR-ECR) (SCY-SNR) (SCY-PUR) (SCY-ECR) (PUO-SCY) (PUR-PUO) (ELD-RDH) (SAF-ELD) (HOR-SAF) (HOR-RDH) (HOR-GTW) (PUR-HOR) (PUR-ECR) (CDS-PUR) (MHM-RDH) (CDS-MHM) (CDS-ECR) (RDH-CDS) (NUF-RDH) (GDN-NUF) (EBR-GDN) (PHR-EBR) (LIH-PHR) (TON-LIH) (SEV-TON) (ORP-PET) (ORP-LBG) (ORP-CLD) (SEV-ORP) (SEV-LBG) (KCK-CLD) (DNG-KCK) (SEV-DNG) (SEV-CLD) (SAY-VIC) (SAY-SMY) (SAY-RTR) (SAY-LBG) (LGF-SMY) (SOR-RTR) (MEP-SOR) (MEP-SMY) (MEP-RTR) (LGF-MEP) (LGF-BMS) (FNR-LGF) (SAY-FNR) (SEH-OTF) (EYN-SEH) (SAY-EYN) (SAY-BMS) (OTF-SAY) (MDE-WMA) (LEN-MDE) (CHG-AFK) (LEN-CHG) (HRM-LEN) (HBN-HRM) (BSD-HBN) (MDE-BSD) (BMG-MDE) (EML-BMG) (WMA-EML) (BRG-WMA) (KMS-OTF) (BRG-KMS) (OTF-BRG) (BBL-OTF) (SEV-BBL) (HLB-SEV) (TON-HLB) (TON-HIB) (PDW-TON) (PLC-AFK) (HCN-PLC) (HCN-AFK) (SPU-HCN) (MRN-SPU) (PDW-MRN) (BEG-PDW) (YAL-BEG) (WTR-YAL) (EFL-WTR) (MDW-EFL) (SDA-MDW) (HAI-SDA) (CUX-HAI) (SOO-CUX) (HGM-SOO) (GRV-HGM) (DFD-SGR) (SCG-GNH) (DFD-SCG) (SWM-GNH) (NFL-SWM) (NFL-SGR) (WWD-WWA) (WWD-ELW) (WWD-CTN) (FCN-WWD) (FCN-ELW) (WLI-FCN) (WLI-BXH) (WWA-WLI) (WWA-CTN) (PLU-WWA) (PLU-NWX) (PLU-BXH) (PLU-ABW) (NFL-PLU) (NFL-GRV) (DFD-NFL) (DFD-CRY) (DFD-BNH) (GNH-DFD) (GRV-GNH) (EBD-GRV) (EBD-AFK) (SFA-EBD) (SFA-AFK) (STP-SFA) (STP-LUT) (STP-LTN) (STP-LEI) (WHP-STP) (MIL-WHP) (SAC-WHP) (SAC-STP) (SAC-LUT) (SAC-HPD) (SAC-ELS) (RDT-SAC) (ELS-RDT) (MIL-ELS) (HEN-MIL) (CRI-HEN) (WHP-CRI) (KTN-WHP) (STP-KTN) (STP-KET) (FPK-SVG) (WKF-WKK) (SNA-FZW) (WKF-SNA) (WKF-SHF) (OUT-LDS) (WKF-OUT) (WKF-LDS) (WKF-DON) (KGX-WKF) (KGX-SVG) (KGX-PBO) (KGX-LET) (KGX-LDS) (WMG-HAT) (BPK-WMG) (WLW-KGX) (KBW-SVG) (FXN-CBG) (STH-FXN) (MEL-STH) (MEL-RYS) (KBW-MEL) (KBW-LET) (WLW-KBW) (WGC-WLW) (WGC-SVG) (WGC-HAT) (WGC-FPK) (PBR-WGC) (NBA-PBR) (NSG-FPK) (NSG-AAP) (OKL-NSG) (NBA-OKL) (HDW-NBA) (PBR-HDW) (PBR-HAT) (PBR-FPK) (BPK-PBR) (HAT-BPK) (KGX-HAT) (GRA-SVG) (GRA-PBO) (GRA-NOT) (GRA-DON) (SPA-PBO) (SLR-SPA) (SCU-DON) (TNN-GOO) (TNN-DON) (HFS-TNN) (KKS-DON) (HFS-KKS) (TNS-HFS) (CWE-TNS) (ALP-CWE) (SCU-ALP) (BTB-SCU) (MKR-BTB) (LCN-MKR) (ULL-MIK) (ULL-GRF) (ULL-CHF) (YRK-ULL) (YRK-SVG) (YRK-SBY) (HGT-LDS) (HRS-LDS) (HRS-HGT) (BUY-LDS) (HDY-BUY) (HRS-HDY) (WET-HRS) (PNL-WET) (HBP-PNL) (HGT-HBP) (SBE-HGT) (KNA-SBE) (CTL-KNA) (HMM-CTL) (POP-HMM) (YRK-POP) (YRK-PBO) (NFN-BDT) (DRF-NFN) (FRY-BUH) (HES-FRY) (HUL-HES) (HUL-BUH) (CGM-HUL) (BEV-CGM) (HUT-DRF) (HUT-BEV) (ARR-HUT) (BEV-ARR) (DRF-BEV) (BDT-DRF) (BEM-BDT) (HUB-BEM) (FIL-HUB) (SEM-FIL) (MLT-SEM) (YRK-MLT) (YRK-MIK) (YRK-LDS) (YRK-KGX) (YRK-GRF) (YRK-GRA) (YRK-DON) (DHM-YRK) (NCL-YRK) (NCL-SVG) (NCL-KGX) (SUN-NCL) (SEA-SUN) (HRE-SEA) (HPL-HRE) (TBY-YRK) (TBY-EAG) (STK-TBY) (STK-EAG) (BIL-STK) (SEC-HPL) (BIL-SEC) (TBY-BIL) (YRM-TBY) (NTR-YRM) (NTR-YRK) (THI-YRK) (NTR-THI) (NTR-DAR) (EAG-NTR) (DND-DAR) (ALW-DND) (EAG-ALW) (HPL-EAG) (SUN-HPL) (HEW-SUN) (NCL-HEW) (NCL-DHM) (NCL-DAR) (MPT-NCL) (CRM-NCL) (MAS-NCL) (CRM-MAS) (MPT-CRM) (BWK-NCL) (RSN-BWK) (DUN-RSN) (DUN-NCL) (DUN-MPT) (EDB-NCL) (MUB-DUN) (EDB-MUB) (EDB-MPT) (GLC-EXG) (BDG-GLC) (PLW-GLC) (MAX-PLW) (SHL-MAX) (PWE-SHL) (LGS-PWE) (MFL-KGP) (PLE-GLC) (QPK-PLE) (COI-QPK) (MFL-COI) (CCT-MFL) (LGS-CCT) (KGP-LGS) (CFF-KGP) (BUI-CFF) (KKH-BUI) (NTN-KKH) (MTH-GLC) (UDD-RUT) (UDD-MTH) (UDD-GLC) (UDD-CBL) (BLH-UDD) (SHS-HLY) (SDM-MTH) (WSH-SDM) (WSH-HLY) (WSH-BLH) (CLU-WSH) (LNK-CRS) (CLU-LNK) (CRS-CLU) (FLD-CRS) (WCL-SHS) (HYM-GLC) (HYM-EDB) (SLA-HYM) (KGE-SLA) (WTA-KGE) (CUH-WTA) (KKN-LVG) (KKN-BLH) (CUH-KKN) (HYM-CUH) (CAR-MTH) (LOC-MTH) (LOC-HYM) (LOC-GLC) (LOC-EDB) (CAR-LOC) (WRL-HWH) (WRL-CAR) (BMP-WRL) (HWH-BMP) (HDB-HWH) (HEX-HWH) (MCE-NCL) (DOT-NCL) (MCE-DOT) (WYM-PRU) (WYM-MCE) (BLO-WYM) (MCE-BLO) (PRU-MCE) (PRU-HEX) (SKS-PRU) (RDM-SKS) (CRB-RDM) (HEX-CRB) (HDB-HEX) (BLL-HDB) (HWH-BLL) (CAR-HWH) (CAR-GLC) (IRV-TRN) (KWN-GLC) (GLG-KWN) (LHW-KWN) (LHW-GLG) (HOZ-LHW) (PYG-KWN) (PYG-IRV) (HLW-PYG) (HLW-GLC) (HLE-HLW) (HLE-GLC) (CDO-GLC) (HLE-CDO) (PYG-HLE) (PYG-GLC) (JHN-PYG) (MIN-KWN) (MIN-HOZ) (MIN-GLG) (JHN-MIN) (JHN-KWN) (JHN-GLG) (JHN-DLY) (HOZ-JHN) (GLG-HOZ) (DLY-GLG) (KWN-DLY) (IRV-KWN) (BSS-IRV) (TRN-BSS) (KMK-TRN) (PWW-GLC) (CMY-GLC) (PWW-CMY) (KNS-PWW) (PTL-KNS) (NIT-PTL) (BRR-NIT) (BRR-GLC) (DNL-BRR) (STT-DNL) (KLM-STT) (KMK-KLM) (AUK-KMK) (NCK-AUK) (KRK-NCK) (SQH-KRK) (DMF-SQH) (ANN-DMF) (GEA-ANN) (CAR-GEA) (AWT-CAR) (LZB-AWT) (LGW-LZB) (APP-LGW) (SET-SKI) (LPR-HLD) (ROO-DLT) (BIF-ROO) (SEL-RAV) (SBS-SEL) (WKG-PRN) (MRY-WKG) (DLS-CAR) (WGT-DLS) (WGT-CAR) (ASP-WGT) (MRY-ASP) (FLM-MRY) (WKG-FLM) (HRR-WKG) (PRN-HRR) (WTH-PRN) (CKL-WTH) (SBS-CKL) (NRT-SBS) (BYS-NRT) (SEL-BYS) (SSC-SEL) (SSC-RAV) (DRI-SSC) (RAV-DRI) (SIC-MLM) (BOC-SIC) (RAV-BOC) (MLM-RAV) (MLM-FOX) (MLM-ASK) (GNR-MLM) (FOX-GNR) (KBF-FOX) (ASK-KBF) (BIF-ASK) (DLT-BIF) (ULV-DLT) (CAK-ULV) (KBK-GOS) (CAK-KBK) (GOS-CAK) (ARN-GOS) (SVR-ARN) (CNF-SVR) (PLS-BMB) (CYT-PLS) (MLH-CYT) (MLH-BBN) (BMB-MLH) (BMB-BBN) (LOH-BMB) (PRE-LOH) (PRE-LAN) (KTR-INR) (DYC-KTR) (SPF-LDY) (CUP-SPF) (KDY-HYM) (MNC-LDY) (MNC-KDY) (MNC-CUP) (GLT-MNC) (INK-KDY) (INK-HYM) (SGL-HYM) (EGY-SGL) (EGY-HYM) (NQU-INK) (DAM-NQU) (DAM-HYM) (EGY-DAM) (INK-EGY) (KGH-KDY) (BTS-KGH) (AUR-BTS) (DAG-AUR) (INK-DAG) (ROS-INK) (DFE-ROS) (DFL-DFE) (COW-DFL) (LCG-COW) (CDD-LCG) (GLT-CDD) (KDY-GLT) (LEU-KDY) (LEU-HYM) (LEU-DEE) (CUP-LEU) (CUP-HYM) (LDY-CUP) (PTH-LDY) (PIT-PTH) (PIT-KIN) (BLA-KIN) (DLW-PIT) (NWR-KIN) (DLW-NWR) (BLA-DLW) (PIT-BLA) (DKD-PIT) (PTH-DKD) (PTH-DEE) (STG-PTH) (STG-HYM) (STG-GLQ) (GLE-PTH) (GLE-DBL) (STG-GLE) (FKG-HYM) (SPR-GLQ) (BNL-SPR) (AXP-BNL) (DST-AXP) (BLG-DST) (GAR-SLS) (HST-SLS) (HST-GLQ) (HST-BLG) (GAR-HST) (EST-GAR) (BAI-EST) (CBS-SLS) (LIN-HYM) (PMT-LIN) (PMT-FKG) (FKK-PMT) (FKK-HYM) (LBT-STG) (LNZ-GLQ) (LNZ-FKK) (LNZ-CRO) (BBG-GLQ) (LNZ-BBG) (LBT-LNZ) (LBT-GLQ) (LBT-CMO) (CRO-LBT) (CRO-GLQ) (FKK-CRO) (LIN-FKK) (LIN-EDB) (EDP-LIN) (EDP-HYM) (UHA-EDP) (LSN-UHA) (BHG-LSN) (CAC-DRU) (BKR-CAC) (ARM-BKR) (BHG-ARM) (DRU-BHG) (ADR-DRU) (COA-CBS) (ADR-COA) (CBS-ADR) (BAI-CBS) (SLS-BAI) (CAY-SLS) (BLG-CAY) (SPR-BLG) (RRN-SPR) (SPS-RRN) (GRH-SPS) (GRL-GRH) (WFF-MTH) (CML-RUT) (MTV-CML) (BIO-MTV) (BGI-BIO) (KWD-BGI) (WFF-KWD) (CBC-WFF) (GRL-CBC) (CUB-GRL) (CMO-CUB) (FKG-CMO) (STG-FKG) (STG-DBL) (BEA-STG) (DBL-BEA) (PTH-DBL) (ING-PTH) (DEE-ING) (DEE-HYM) (PLN-ABD) (STN-PLN) (STN-MTS) (STN-ARB) (STN-ABD) (LAU-STN) (MTS-LAU) (MTS-ABD) (ARB-MTS) (BYF-DEE) (CAN-MON) (CAN-DEE) (CAN-BYF) (CAN-ARB) (GOF-CAN) (BYL-GOF) (MON-BYL) (MON-BYF) (BSI-MON) (BYF-BSI) (ARB-BYF) (DEE-ARB) (ABD-DEE) (DYC-ABD) (INR-DYC) (INS-INR) (HNT-INS) (KEH-HNT) (ELG-KEH) (FOR-ELG) (NRN-FOR) (IVA-NRN) (INV-IVA) (INV-AVM) (CAG-INV) (AVM-CAG) (KIN-AVM) (PRE-KIN) (PRE-CRE) (HID-BMC) (BON-HID) (CRL-PRE) (LEY-PRE) (WGN-PRE) (SNH-WGN) (THH-SNH) (ECL-THH) (PSC-ECL) (HUY-PSC) (LIV-SNH) (LIV-HUY) (ROB-HUY) (ROB-BGE) (WAV-ROB) (WAV-LIV) (WAV-BGE) (EDG-WAV) (MSH-LIV) (MSH-EDG) (WSA-MSH) (LPY-WSA) (LPY-LIV) (RFY-BKC) (BOM-SPI) (RUN-LPY) (RUN-LIV) (RUN-CRE) (WSF-CRE) (HTF-WSF) (ACB-HTF) (RUN-ACB) (FRD-RUN) (WBQ-WGN) (RUG-SOT) (RUG-NUN) (RUG-MKC) (WOL-MKC) (NMP-WOL) (NMP-RUG) (NMP-MKC) (LBK-NMP) (RUG-LBK) (RUG-CRE) (RUG-COV) (WBQ-RUG) (WBQ-NUN) (WBQ-MKC) (WBQ-EUS) (ERL-WGN) (NLW-WGN) (NLW-LIV) (ECC-WGN) (PAT-NLW) (ECC-PAT) (DGT-PRE) (MCO-WBQ) (MCO-PRE) (MCO-NLW) (MAN-SHF) (MAN-NUN) (MAN-NLW) (MAN-LIV) (SHJ-NLW) (SHJ-ERL) (LEG-SHJ) (WHN-HUY) (RNH-WHN) (RNH-HUY) (LEG-RNH) (LEG-NLW) (MCV-NLW) (WKD-SNN) (WHG-WGN) (WGW-WHG) (MRF-LVJ) (MRF-LVC) (MRF-LIV) (SDL-MRF) (CSO-PRE) (RUF-CSO) (BCJ-RUF) (OMS-BCJ) (AUG-OMS) (TWN-AUG) (MNS-TWN) (MAG-MNS) (ORN-MAG) (AIN-ORN) (OPK-AIN) (WAO-OPK) (KKD-WAO) (PEM-WGW) (ORR-PEM) (UPL-ORR) (RNF-UPL) (KIR-RNF) (FAZ-KIR) (RIL-FAZ) (KKD-RIL) (SDL-KKD) (BAH-SDL) (BOT-BAH) (BNW-BOT) (SFL-BNW) (WLO-SFL) (BLN-WLO) (HLR-BLN) (HTO-HLR) (FBY-HTO) (FRE-FBY) (ANS-FRE) (HIL-ANS) (BDL-HIL) (SOP-BDL) (MEC-SOP) (NLN-BCB) (BES-NLN) (MEC-BES) (BCB-MEC) (HSC-PBL) (BCB-HSC) (PBL-BCB) (APB-PBL) (GST-APB) (WGW-GST) (WGW-DSY) (INC-WGW) (INC-WGN) (INC-DSY) (WHG-INC) (WHG-DSY) (WHG-BON) (HIN-WHG) (DSY-HIN) (HGF-ATN) (DSY-HGF) (ATN-DSY) (WKD-ATN) (MSD-WKD) (SNN-MSD) (SLD-SNN) (SLD-MCV) (SLD-DGT) (KSL-SLD) (FNW-SLD) (MSS-KSL) (MSS-BON) (FNW-MSS) (FNW-BON) (KSL-FNW) (CLI-KSL) (SLD-CLI) (SLD-BON) (MSO-SLD) (RCD-MCV) (WDN-LTL) (TOD-WDN) (TOD-RCD) (TOD-HBD) (TOD-BYM) (LTL-TOD) (SMB-RCD) (LTL-SMB) (RCD-LTL) (CAS-RCD) (MIH-CAS) (MSO-MIH) (MCV-MSO) (MCV-MCO) (MCV-MAN) (MCV-LIV) (MCV-HUD) (MCV-ECC) (MCV-BGH) (SYB-MCV) (SYB-MAN) (SYB-HUD) (SWT-HUD) (MSN-SWT) (GNF-MSN) (MSL-SYB) (MSL-HUD) (GNF-MSL) (SYB-GNF) (AHN-SYB) (MCV-AHN) (LEG-MCV) (LEG-LIV) (MAN-LEG) (MAN-LDS) (MAN-HUD) (GTY-MAN) (SYA-WML) (MIA-SYA) (MIA-MAN) (MIA-GTY) (MIA-EDY) (HDG-MIA) (HDG-MAN) (HDG-EDY) (GTY-HDG) (EDY-GTY) (MAU-MAN) (BNA-MAU) (EDY-BNA) (MAN-EDY) (RDN-MAN) (HYT-HYC) (GUI-HYT) (GTO-MAN) (GTO-GUI) (GTO-ABY) (FRF-GTO) (GUI-FRF) (GUI-ABY) (HYC-GUI) (WLY-HYC) (RML-WLY) (SRN-MPL) (NMC-SRN) (SPT-WML) (SPT-STA) (SPT-SOT) (SPT-SHF) (MLD-GBK) (MLD-CTR) (DLM-MLD) (CUD-DLM) (GBK-CUD) (NWI-GBK) (LTG-NWI) (PLM-LTG) (KNF-PLM) (MOB-KNF) (ASY-MOB) (HAL-ASY) (ALT-HAL) (NVR-ALT) (SPT-NVR) (SPT-MAN) (SPT-MAC) (LVM-SPT) (LVM-MAN) (HTC-LVM) (SPT-HTC) (SPT-CLY) (SPT-CHU) (DOR-SPT) (DOR-SHF) (EDL-CLY) (HOP-EDL) (BAM-HOP) (HSG-BAM) (GRN-HSG) (DOR-GRN) (CLY-DOR) (NMC-CLY) (MPL-NMC) (RML-MPL) (BDY-RML) (BNT-BDY) (RDN-BNT) (RDN-ABY) (RRB-RDN) (BLV-RRB) (ABY-BLV) (ADK-MAN) (ABY-ADK) (MAN-ABY) (MCO-MAN) (WAW-WAC) (WAW-LPY) (HGN-LPY) (WID-WAW) (WID-WAC) (WID-SNK) (WID-LPY) (WID-HGN) (HNX-WID) (HNX-LPY) (HED-HNX) (HGN-HED) (WAW-HGN) (SNK-WAW) (WAC-SNK) (WAC-MCO) (WAC-LPY) (WAC-BWD) (PDG-WAC) (BWD-PDG) (IRL-MCO) (URM-MCO) (URM-IRL) (TRA-URM) (TRA-MCO) (TRA-DGT) (HUP-TRA) (URM-HUP) (URM-FLI) (URM-DGT) (CSR-URM) (FLI-CSR) (IRL-FLI) (IRL-BWD) (GLZ-IRL) (BWD-GLZ) (MCO-BWD) (MCO-BON) (DGT-MCO) (DGT-BON) (ECC-DGT) (NLW-ECC) (ERL-NLW) (WBQ-ERL) (WBQ-CTR) (WBQ-CRE) (RUE-WBQ) (RUE-FRD) (HSB-RUE) (LTT-HOO) (OVE-LTT) (ELP-OVE) (INE-ELP) (HSB-INE) (HSB-CTR) (FRD-HSB) (CTR-FRD) (WRX-SHR) (GOB-SHR) (CRK-GOB) (RUA-CRK) (WRX-RUA) (WRX-CTR) (GWE-WRX) (CYB-GWE) (CGW-CYB) (HPE-CGW) (PNF-HPE) (BCK-PNF) (HWD-BCK) (SHT-HWD) (NES-SHT) (CNP-BKQ) (BKP-CNP) (BKN-BKP) (BID-BKN) (UPT-BID) (HSW-UPT) (NES-HSW) (HWB-NES) (SHT-HWB) (SHT-CTR) (FLN-SHT) (RHL-FLN) (CWB-RHL) (LLJ-CTR) (CWB-LLJ) (AGL-CWB) (RHL-AGL) (PRT-RHL) (PRT-CTR) (FLN-PRT) (CTR-FLN) (CTR-CRE) (BAC-CTR) (CPU-HOO) (BAC-CPU) (HOO-BAC) (ERA-HOO) (BOM-ERA) (BMR-BOM) (SPI-BMR) (PSL-SPI) (BEB-PSL) (RFY-BEB) (GNL-RFY) (BKC-GNL) (BKQ-BKC) (LVJ-BKQ) (LVC-LVJ) (LVC-LIV) (BRW-LVC) (STM-BRW) (AIG-STM) (CSG-AIG) (LPY-CSG) (EDG-LPY) (LIV-EDG) (BGE-LIV) (HUY-BGE) (SNH-HUY) (GSW-SNH) (BYN-GSW) (WGN-BYN) (EBA-WGN) (LEY-EBA) (BSV-LEY) (CRL-BSV) (LOT-BON) (HWI-LOT) (HWI-CRL) (HWI-BON) (BLK-HWI) (BLK-CRL) (ADL-BLK) (CRL-ADL) (BON-CRL) (PRE-BON) (PRE-BBN) (OXN-PRE) (PNR-LAN) (PNR-CAR) (OXN-PNR) (OXN-CAR) (LAN-OXN) (LAN-CAR) (CNF-LAN) (WNN-CNF) (BEN-WNN) (CPY-BEN) (GIG-CPY) (LPR-GIG) (SET-LPR) (SET-KSW) (SET-HLD) (SET-GSD) (HIR-SET) (RHD-HIR) (DNT-RHD) (GSD-DNT) (KSW-GSD) (APP-KSW) (CAR-APP) (HYM-CAR) (LVG-HYM) (WCL-LVG) (ADW-WCL) (BRC-FLD) (ADW-BRC) (FLD-ADW) (SHS-FLD) (SHS-BLH) (HTW-SHS) (CEA-HTW) (CRF-CEA) (HLY-CRF) (BLH-HLY) (BLH-GLC) (MTH-BLH) (AIR-MTH) (HNC-AIR) (HNW-HNC) (BLT-HNW) (NTN-BLT) (CBL-NTN) (CBL-GLC) (RUT-CBL) (RUT-BDG) (RUT-AGS) (DAK-RUT) (BDG-DAK) (AGS-BDG) (GLC-AGS) (AND-GLC) (EXG-AND) (PTK-EXG) (CHC-GLQ) (PTK-CHC) (HYN-PTK) (WES-ANL) (DMC-WES) (DMY-DMC) (SIN-DMY) (DMR-SIN) (DMR-GLQ) (JOR-HYN) (SCH-JOR) (GRS-SCH) (GRS-HYN) (YOK-GRS) (CYK-YOK) (DMR-CYK) (HYN-DMR) (ANL-HYN) (KVD-ANL) (MYH-KVD) (SUM-MYH) (GSC-SUM) (PPK-GSC) (ASF-PPK) (GLQ-ASF) (EDB-GLQ) (EDB-EUS) (EDB-BWK) (EDB-ALM) (DUN-EDB) (DUN-ALM) (BWK-DUN) (BWK-ALM) (MPT-BWK) (MPT-ALM) (PEG-MPT) (WDD-PEG) (ACK-WDD) (ALM-ACK) (NCL-ALM) (CLS-NCL) (DHM-CLS) (DAR-DHM) (YRK-DAR) (YRK-CRG) (YRK-CHF) (RET-YRK) (SRO-WRK) (KVP-SRO) (DAN-SHF) (WDH-DAN) (KIV-WDH) (KIV-SHF) (KVP-KIV) (WRK-KVP) (WWL-WRK) (CWD-WWL) (NSD-KKB) (HKN-NSD) (HKN-NOT) (BLW-NOT) (HKN-BLW) (KKB-HKN) (SPK-KKB) (MFT-SPK) (MSW-MFT) (SHB-MSW) (SHB-CWD) (LAG-SHB) (CWD-LAG) (WRK-CWD) (RET-WRK) (RET-PBO) (RET-KGX) (RET-GRA) (SXY-LCN) (GBL-SXY) (GBL-DON) (RET-GBL) (RET-DON) (NNG-RET) (NNG-PBO) (NNG-LCN) (NNG-KGX) (NNG-GRA) (NNG-DON) (CLM-NNG) (NCT-NOT) (BSB-NOT) (ROL-NCT) (FSK-ROL) (FSK-NOT) (FSK-NCT) (THU-BSB) (LOW-THU) (LOW-NOT) (LOW-NCT) (BUJ-NOT) (CTO-NOT) (CTO-LOW) (BUJ-CTO) (LOW-BUJ) (LOW-BSB) (FSK-LOW) (BSB-FSK) (NCT-BSB) (CLM-NCT) (SWD-CLM) (HKM-SWD) (HKM-LCN) (CLM-HKM) (LCN-CLM) (MGM-LCN) (RKT-MGM) (SLR-RKT) (SLR-GRA) (RAU-SLR) (ANC-RAU) (ANC-GRA) (SLR-ANC) (BIN-SLR) (BIN-NOT) (RDF-NOT) (RDF-BIN) (NET-RDF) (NET-NOT) (BIN-NET) (BIN-GRA) (BTF-GRA) (ELO-ALK) (BTF-ELO) (BTF-ALK) (BIN-BTF) (ALK-BIN) (GRA-ALK) (KGX-GRA) (KGX-DON) (KGX-CBG) (KGX-BIW) (FPK-KGX) (HRN-AAP) (HGY-HRN) (FPK-HGY) (UPM-RNM) (UPM-PFL) (UPM-LAI) (UPM-GRY) (TIL-UPM) (TIL-GRY) (ETL-TIL) (PSE-LAI) (LES-PSE) (LES-BEF) (CHW-LES) (PSE-CHW) (PSE-BSO) (PSE-BEF) (SFO-PSE) (ETL-SFO) (UPM-ETL) (SVK-RMF) (WHR-UPM) (WHR-OCK) (WHR-LAI) (WEH-WHR) (WEH-UPM) (WEH-LAI) (FST-LST) (LHS-WEH) (LHS-BKG) (FST-LHS) (WEH-FST) (WEH-BKG) (SRA-WEH) (SRA-SVK) (SRA-RMF) (SRA-LST) (TOM-LST) (TOM-HWN) (TOM-HAC) (TOM-CHN) (TOM-BXB) (ENL-TOM) (PON-TOM) (PON-BMD) (ENL-PON) (WLC-TOM) (WLC-MRW) (WLC-ENL) (WLC-CHN) (WLC-BXB) (NUM-WLC) (NUM-TOM) (NUM-ENL) (MRW-NUM) (MRW-CHN) (ENL-MRW) (ENL-CHN) (BMD-ENL) (TOM-BMD) (TOM-BIS) (TOM-AUD) (LEB-TOM) (SRA-LEB) (CNN-HHY) (ZLW-SRA) (ZCW-SQE) (ROE-ZCW) (WPE-ROE) (SDE-WPE) (ZLW-SDE) (ZLW-LST) (WWC-ABW) (CUS-WWC) (CWX-CUS) (ZLW-CWX) (SDC-ZLW) (HOX-SDC) (HGG-HOX) (DLJ-HGG) (CNN-DLJ) (DLK-CNN) (HKC-DLK) (HMN-HKC) (HKW-HMN) (SRA-HKW) (SRA-COL) (SRA-CHM) (SRA-BKG) (SIA-LST) (RFD-SIA) (HOC-RFD) (RLG-HOC) (WIC-RLG) (BIC-WIC) (SNF-SRA) (SNF-RMF) (SNF-LST) (INT-SRA) (INT-CHM) (SNF-INT) (SNF-CHM) (GDP-RMF) (HRO-GDP) (BRE-HRO) (SNF-BRE) (BIC-SNF) (SRA-BIC) (MYL-SRA) (FOG-MYL) (MNP-FOG) (IFD-MNP) (SVK-IFD) (GMY-SVK) (CTH-GMY) (RMF-CTH) (EMP-RMF) (UPM-EMP) (UPM-BSO) (UPM-BKG) (OCK-UPM) (CFH-OCK) (CFH-GRY) (LAI-CFH) (LAI-BSO) (LAI-BKG) (BEF-LAI) (BSO-BEF) (GRY-BSO) (PFL-GRY) (RNM-PFL) (DDK-RNM) (BKG-DDK) (WGR-BKG) (WNP-WGR) (LER-WNP) (LEM-LER) (WMW-LEM) (BHO-WMW) (STO-BHO) (HRY-STO) (CRH-HRY) (UHL-CRH) (GPO-UHL) (KNR-WIJ) (BSP-KNR) (BSY-BSP) (WHD-BSY) (FNY-WHD) (HDH-FNY) (GPO-HDH) (KTW-GPO) (CMD-KTW) (CMD-HHY) (CIR-CMD) (HHY-CIR) (DYP-HHY) (FPK-DYP) (FPK-AAP) (STP-FPK) (STP-BFR) (STP-BDM) (MHR-STP) (MHR-KET) (LEI-MHR) (LEI-LUT) (LEI-LBO) (LEI-KET) (LEI-EMD) (LEI-DBY) (SYS-LEI) (SIL-SYS) (BWS-SIL) (LBO-BWS) (MMO-LBO) (COR-MMO) (KET-COR) (KET-BDM) (LTN-KET) (LTN-BDM) (HPD-LTN) (LUT-HPD) (LUT-FLT) (LUT-BDM) (LEA-LUT) (LEA-BDM) (HLN-LEA) (FLT-HLN) (BDM-FLT) (BSJ-BDM) (SWR-BSJ) (MLB-SWR) (LID-MLB) (RID-LID) (APG-RID) (WOB-APG) (BWB-WOB) (FEN-BLY) (BWB-FEN) (BLY-BWB) (MKC-BLY) (STA-MKC) (STA-LTV) (STA-EUS) (STA-CRE) (RGL-STA) (RGL-LTV) (RGT-RGL) (HNF-RGT) (CAO-HNF) (LAW-CAO) (BWN-LAW) (BLX-BWN) (WSL-BLX) (BSC-WSL) (TAB-BSC) (TAB-BHM) (HSD-TAB) (PRY-HSD) (WTT-PRY) (AST-WTT) (DUD-BHM) (AST-DUD) (AST-BHM) (GVH-AST) (ERD-GVH) (CRD-ERD) (WYL-CRD) (SUT-WYL) (FOK-SUT) (BUL-FOK) (BKT-BUL) (SEN-BKT) (LIC-SEN) (LTV-LIC) (SOT-LTV) (PEA-DBY) (TUT-PEA) (TUT-DBY) (UTT-TUT) (BYB-UTT) (LGN-BYB) (SOT-LGN) (SOT-KDG) (SOT-DBY) (SOT-CRE) (SOT-CNG) (LPT-SOT) (KDG-LPT) (ASG-CRE) (KDG-ASG) (CNG-KDG) (MAC-CNG) (PRB-MAC) (ADC-PRB) (PYT-ADC) (BML-PYT) (CHU-BML) (HTH-CHU) (WML-HTH) (WML-CRE) (ALD-WML) (SDB-CRE) (HCH-SDB) (HCH-ALD) (GTR-HCH) (CEL-GTR) (ALD-CEL) (CRE-ALD) (SHR-CRE) (WLN-SHR) (OKN-WLN) (TFC-OKN) (SFN-TFC) (SFN-CSL) (COS-SFN) (ALB-COS) (CSL-ALB) (BBK-CSL) (WVH-BBK) (CSY-WVH) (TIP-CSY) (DDP-TIP) (SAD-DDP) (SAD-BHM) (SGB-SAD) (SGB-ROW) (SGB-BSW) (SGB-BHM) (LGG-SGB) (ROW-LGG) (ROW-CRA) (OHL-ROW) (CRA-OHL) (LYE-SBJ) (CRA-LYE) (SBJ-CRA) (SBJ-BSW) (HAG-SBJ) (HAG-KID) (BKD-HAG) (KID-BKD) (HBY-KID) (DTW-HBY) (UNI-WOP) (FWY-BHM) (UNI-FWY) (UNI-BMV) (UNI-BHM) (SLY-UNI) (BRV-SLY) (KNN-BRV) (NFD-KNN) (LOB-NFD) (LOB-BMV) (BTG-LOB) (BMV-BTG) (DTW-BMV) (DTW-BHM) (BSW-DTW) (BMO-BSW) (TYS-SRI) (SMA-BMO) (TYS-SMA) (TYS-BMO) (ACG-TYS) (SOL-WRP) (WMR-DDG) (SOL-WMR) (SOL-DDG) (SOL-BMO) (OLT-SOL) (ACG-OLT) (BMO-ACG) (SRI-BMO) (HLG-SRI) (YRD-HLG) (SRL-YRD) (WTE-SRL) (WYT-WTE) (WYT-TLK) (EWD-WYT) (TLK-EWD) (WDE-TLK) (DZY-WDE) (HNL-DZY) (WWW-HNL) (WMC-WWW) (WMC-DDG) (WMC-BER) (STY-WMC) (SAV-STY) (LPW-SAV) (HTN-WRP) (HTN-DDG) (LPW-HTN) (LPW-DDG) (LPW-CLV) (STY-LPW) (STY-DDG) (BER-STY) (CLV-BER) (DDG-CLV) (WRP-DDG) (LMS-WRP) (KNW-COV) (LMS-KNW) (LMS-COV) (LMS-BHM) (BAN-LMS) (TAC-OXF) (HYD-TAC) (KGS-HYD) (KGS-BAN) (BCS-KGS) (OXP-OXF) (OXP-BIT) (ISP-OXP) (BIT-ISP) (HWY-HDM) (HWY-BCS) (DNM-HWY) (DNM-HDM) (SRG-GER) (SRG-BCF) (MYB-SRG) (WCX-MYB) (WCX-GER) (WCX-DNM) (WRU-WCX) (WRU-MYB) (WRU-HWY) (WRU-GER) (WRU-DNM) (SRU-WRU) (NLT-SRU) (MYB-NLT) (MYB-HWY) (SDR-HWY) (PRR-SDR) (PRR-MYB) (PRR-HWY) (PRR-HDM) (PRR-BIT) (PRR-BCS) (PRR-AYS) (MRS-PRR) (LTK-MRS) (AYS-LTK) (SKM-AYS) (WND-SKM) (GMN-WND) (AMR-GMN) (CFO-AMR) (CLW-CFO) (RIC-CLW) (HOH-RIC) (MYB-HOH) (MYB-HDM) (MYB-DNM) (MYB-BIT) (MYB-BCS) (MYB-BCF) (MYB-BAN) (GER-MYB) (GER-HWY) (GER-DNM) (GER-BCF) (DGC-GER) (DNM-DGC) (BCF-DNM) (HWY-BCF) (BIT-HWY) (HDM-BIT) (BCS-HDM) (BAN-BCS) (OXF-BAN) (HND-OXF) (CBY-HND) (KGM-CBY) (MIM-KGM) (MIM-EVE) (HYB-MIM) (EVE-HYB) (WOP-EVE) (WOP-CNM) (WOP-BHM) (ASC-WOP) (CNM-ASC) (BPW-CNM) (BRI-BPW) (WSM-YAT) (WOR-YAT) (WOR-WSM) (WNM-WOR) (WSM-WNM) (TAU-WSB) (TAU-RDG) (TAU-PEW) (TAU-NBY) (TVP-TAU) (EXD-TVP) (EXD-RDG) (PIN-EXD) (PIN-EXC) (CBK-PIN) (WHM-HON) (WHM-CBK) (FNT-WHM) (FNT-HON) (CBK-FNT) (HON-CBK) (YVJ-YVP) (TIS-SAL) (GIL-TIS) (TMC-GIL) (SHE-TMC) (YVJ-SHE) (YVJ-SAL) (CKN-YVJ) (AXM-CKN) (HON-AXM) (EXC-HON) (EXD-EXC) (TAU-EXD) (TAU-CLC) (TAU-BWT) (TAU-BRI) (WSM-TAU) (WSM-BWT) (WSM-BRI) (HIG-WSM) (BWT-HIG) (BWT-BRI) (YAT-BWT) (YAT-BRI) (NLS-YAT) (NLS-BRI) (PSN-NLS) (BMT-PSN) (BRI-BMT) (RDG-BRI) (RDW-THE) (RDW-RDG) (MOR-RDW) (MOR-RDG) (BMY-MOR) (BMY-BSK) (RDG-BMY) (THE-RDG) (AMT-THE) (MDG-THA) (AMT-MDG) (THA-AMT) (NRC-THA) (NRC-NBY) (KIT-NRC) (KIT-HGD) (NBY-KIT) (NBY-HGD) (PEW-NBY) (PEW-HGD) (BDW-PEW) (HGD-BDW) (WSB-HGD) (WMN-WSB) (WMN-SAL) (DMH-WMN) (WSB-DMH) (WSB-CLC) (FRO-WSB) (BRU-FRO) (CLC-BRU) (YVP-CLC) (THO-YVP) (YET-THO) (CNO-YET) (MDN-CNO) (DCW-MDN) (UPW-DCW) (DCH-UPW) (WOO-WRM) (WOO-DCH) (MTN-WOO) (DCH-MTN) (WRM-DCH) (HOL-WRM) (HAM-HOL) (POO-HAM) (POO-BMH) (PKS-POO) (PKS-BMH) (BSM-PKS) (BMH-BSM) (BCU-BMH) (TTN-SOU) (RDB-SOU) (RDB-ROM) (MBK-SOU) (RDB-MBK) (TTN-RDB) (TTN-BCU) (ANF-TTN) (BEU-BCU) (ANF-BEU) (BCU-ANF) (SOU-BCU) (SOA-SOU) (SOA-ESL) (WIN-SOA) (SHW-ESL) (WIN-SHW) (MIC-BSK) (WIN-MIC) (WIN-ESL) (WIN-BSK) (WOK-WIN) (WOK-WBY) (QRB-CLJ) (VXH-QRB) (VXH-CLJ) (WAT-VXH) (WAT-SUR) (WAT-GLD) (WAT-CLJ) (WAT-BSK) (WOK-WAT) (WOK-SUR) (WOK-GLD) (WOK-FNB) (WOK-CLJ) (WOK-BSK) (WOK-BKO) (WOK-AHV) (WOK-AHT) (WIM-WOK) (WIM-WCP) (WSU-SUO) (SUC-WSU) (SIH-SUC) (MDS-SIH) (SMO-MDS) (WBO-SMO) (WIM-WBO) (WIM-SUR) (WIM-RAY) (EAD-CLJ) (WIM-EAD) (WIM-CLJ) (HYR-WIM) (TOO-HYR) (STE-TOO) (SRS-WCY) (SRS-NWD) (SRS-ECR) (SRS-CLJ) (TTH-SRS) (NRB-TTH) (SRC-NRB) (SRC-BAL) (STE-SRC) (STE-MTC) (TUH-STE) (TUH-HNH) (NDL-TUH) (EDW-NDL) (PMR-EDW) (PMR-DMK) (PMR-CFT) (NHD-PMR) (SAJ-NWX) (SAJ-HGR) (LEW-SAJ) (LEW-LBG) (LAD-LBG) (LEW-LAD) (LEW-HGR) (LEW-BKH) (NHD-LEW) (CFT-NHD) (CTF-BGM) (CFT-CTF) (CFT-BGM) (DMK-CFT) (DMK-BMS) (SMY-DMK) (SMY-BMS) (BKL-SMY) (BKL-BMS) (PET-BKL) (CIT-PET) (ESD-CIT) (GRP-ESD) (HGR-GRP) (LEE-HGR) (MTG-LEE) (NEH-MTG) (SID-NEH) (SID-BXY) (AYP-SID) (BXY-AYP) (CRY-BXY) (SGR-CRY) (SGR-BNH) (SGR-ABW) (ERH-SGR) (BVD-ERH) (ABW-BVD) (BNH-ABW) (BXH-BNH) (ELW-BXH) (BKH-ELW) (CTN-BKH) (WCB-CTN) (MZH-WCB) (MZH-NWX) (GNW-MZH) (DEP-GNW) (NWX-DEP) (SQE-NWX) (NXG-SQE) (NXG-LBG) (BCY-NXG) (HPA-BCY) (FOH-HPA) (SYD-FOH) (SYD-CYP) (PNW-SYD) (PNW-ANZ) (CYP-PNW) (SRH-BAL) (WNW-SRH) (GIP-WNW) (CYP-GIP) (ANZ-CYP) (NWD-ANZ) (WCY-NWD) (WDO-WCY) (WLT-WDO) (CSB-WLT) (SUO-CSB) (EWE-EPS) (CHE-EWE) (CHE-EPS) (SUO-CHE) (CSH-SUO) (HCB-CSH) (MIJ-HCB) (MTC-MIJ) (MTC-CLJ) (BAL-MTC) (CLJ-BAL) (BAK-CLJ) (VIC-BAK) (BRX-VIC) (HNH-BRX) (WDU-HNH) (SYH-WDU) (PNE-SYH) (KTH-PNE) (BKJ-KTH) (BEC-BKJ) (BGM-BEC) (BMS-BGM) (RTR-BMS) (CTM-RTR) (GLM-CTM) (RAI-GLM) (NGT-RAI) (FAV-NGT) (WHI-FAV) (CSW-WHI) (HNB-CSW) (BCH-HNB) (MAR-BCH) (BSR-MAR) (DMP-RAM) (BSR-DMP) (RAM-BSR) (MSR-RAM) (CBW-MSR) (WYE-AFK) (CIL-WYE) (CRT-CIL) (CBW-CRT) (AFK-CBW) (HMT-AFK) (APD-HMT) (RYE-APD) (WSE-RYE) (WSE-ORE) (DLH-WSE) (TOK-DLH) (ORE-TOK) (HGS-ORE) (SLQ-HGS) (PEV-NSB) (PLG-EBN) (GLY-PLG) (LWS-PLG) (LRB-BTN) (MCB-LRB) (MCB-BTN) (FMR-MCB) (FMR-BTN) (LWS-FMR) (WVF-HHE) (WVF-CBR) (WVF-BUG) (PMP-WVF) (PMP-LWS) (PMP-HHE) (CBR-PMP) (LWS-CBR) (LWS-BRK) (GLY-LWS) (BRK-GLY) (PLG-BRK) (HMD-PLG) (HMD-PEV) (HMD-BEX) (EBN-HMD) (EBN-CLL) (EBN-BEX) (PEV-EBN) (PEV-COB) (PEB-PEV) (PEB-COB) (NSB-PEB) (COB-NSB) (CLL-COB) (BEX-CLL) (SLQ-BEX) (SLQ-BAT) (WLD-SLQ) (WLD-BAT) (CWU-WLD) (BAT-CWU) (WAD-BAT) (FRT-WAD) (TBW-FRT) (HIB-TBW) (CLD-HIB) (LBG-CLD) (LBG-BFR) (CST-LBG) (BFR-CST) (ECR-BFR) (GTW-ECR) (TBD-GTW) (TBD-FOD) (DKG-LHD) (BXW-LHD) (DKG-BXW) (HLM-DKG) (OLY-HLM) (WNH-OLY) (HRH-WNH) (IFI-LVN) (IFI-CRW) (FGT-IFI) (LVN-FGT) (LVN-CRW) (HRH-LVN) (PUL-HRH) (PUL-AMY) (BIG-PUL) (CHH-BIG) (CHH-AMY) (HRH-CHH) (HRH-BAA) (CRW-HRH) (TBD-CRW) (BAB-TBD) (HHE-BAB) (BUG-HHE) (BTN-BUG) (HOV-BTN) (PLD-SSE) (PLD-HOV) (SWK-SSE) (SWK-PLD) (FSG-SWK) (PLD-FSG) (AGT-PLD) (HOV-AGT) (SSE-HOV) (LAC-SSE) (EWR-LAC) (WRH-EWR) (WRH-ANG) (DUR-WRH) (GBS-DUR) (ANG-GBS) (ANG-BAA) (FOD-ANG) (ARU-FOD) (AMY-ARU) (BAA-AMY) (HAV-BAA) (FRM-HAV) (FRM-CSA) (HDE-ESL) (BOE-HDE) (FRM-BOE) (FTN-FRM) (FTN-CSA) (BDH-FTN) (CSA-BDH) (ESL-CSA) (CFR-ESL) (ROM-CFR) (DBG-ROM) (DEN-DBG) (SAL-DEN) (SAL-ADV) (GRT-SAL) (ADV-GRT) (BSK-ADV) (FNB-BSK) (BKO-FNB) (AHV-BKO) (AHT-AHV) (ASH-AHT) (GLD-ASH) (LRD-GLD) (CLA-LRD) (HSY-CLA) (EFF-HSY) (HYW-SUR) (CLG-HYW) (OXS-CLG) (CSD-OXS) (EFF-CSD) (BKA-EFF) (LHD-BKA) (AHD-LHD) (EPS-AHD) (EWW-EPS) (SNL-EWW) (WCP-SNL) (MOT-WCP) (RAY-MOT) (NEM-RAY) (WTN-HOU) (WTN-FEL) (TWI-WTN) (STW-TED) (STW-FLW) (TWI-STW) (SMG-RMD) (TWI-SMG) (TWI-RMD) (TWI-HOU) (TWI-FEL) (SHP-TWI) (SHP-TED) (UPH-SHP) (SUU-UPH) (SUU-HMP) (KMP-SUU) (HMP-KMP) (FLW-HMP) (TED-FLW) (HMW-TED) (KNG-HMW) (NBT-KNG) (NEM-NBT) (BRS-NEM) (SUR-BRS) (WBY-SUR) (BFN-WBY) (ASN-BFN) (CHY-ASN) (VIR-CHY) (EGH-VIR) (SNS-EGH) (WNR-KWB) (WNR-HOU) (DAT-WNR) (WRY-SNS) (SNY-WRY) (DAT-SNY) (SNS-DAT) (AFS-SNS) (FEL-AFS) (HOU-FEL) (HOU-BNS) (BFD-HOU) (KWB-BFD) (CHK-KWB) (BNI-CHK) (BNS-BNI) (RMD-BNS) (KWG-RMD) (GUN-KWG) (SAT-GUN) (ACC-SAT) (WIJ-ACC) (HDN-WIJ) (SBP-HDN) (WMB-SBP) (WMB-HRW) (NWB-WMB) (SOK-NWB) (KNT-SOK) (HRW-KNT) (HRW-EUS) (HRW-BSH) (HDL-HRW) (HTE-HDL) (CPK-HTE) (BSH-CPK) (EUS-BSH) (TAM-EUS) (TAM-DBY) (WIL-DBY) (BUT-WIL) (BUT-DBY) (BUT-BHM) (TAM-BUT) (TAM-BHM) (ATH-TAM) (NUN-ATH) (BEP-NUN) (BEH-BEP) (CAA-BEH) (COV-CAA) (BHI-COV) (BHI-BHM) (MGN-BHI) (LEH-MGN) (SCF-LEH) (SCF-BHM) (ADD-SCF) (BHM-ADD) (DBY-BHM) (DBY-BEE) (EMD-DBY) (EMD-BEE) (ATB-EMD) (BEE-ATB) (NOT-BEE) (NOT-ALF) (LGM-NOT) (LGM-ALF) (ILN-LGM) (ALF-ILN) (CHD-ALF) (SHF-CHD) (MHS-SHF) (SWN-MRP) (CNS-DON) (MEX-CNS) (SWN-MEX) (THC-MRP) (GOE-THC) (BTD-GOE) (SWN-BTD) (RMC-SWN) (MHS-RMC) (MHS-DON) (WOM-BNY) (ELR-WOM) (CLN-ELR) (MHS-CLN) (BNY-MHS) (DRT-WKK) (BNY-DRT) (LCK-HUD) (BBW-LCK) (HOY-BBW) (BHS-HOY) (SSM-BHS) (SPY-SSM) (DBD-SPY) (PNS-DBD) (SLK-PNS) (DOD-SLK) (BNY-DOD) (WKK-BNY) (MIR-WKK) (RVN-DEW) (MIR-RVN) (MIR-LDS) (DHN-HUD) (MIR-DHN) (MIR-BGH) (DEW-MIR) (DEW-LDS) (MLY-LDS) (COT-LDS) (MLY-COT) (BTL-MLY) (DEW-BTL) (HUD-DEW) (BGH-HUD) (BGH-HFX) (LMR-BGH) (BDI-LMR) (HFX-BDI) (HBD-HFX) (BYM-HBD) (ACR-BYM) (BBN-ACR) (DWN-BBN) (BMC-DWN) (CLH-BMC) (HLD-CLH) (GGV-HLD) (SKI-GGV) (SON-SKI) (SON-KEI) (CEY-SON) (SKI-CEY) (KEI-SKI) (KEI-SHY) (KEI-LDS) (KEI-BIY) (CFL-KEI) (BIY-CFL) (SHY-BIY) (SHY-APY) (KLF-SHY) (KLF-LDS) (APY-KLF) (LDS-APY) (NOR-LDS) (CFD-NOR) (GLH-CFD) (PFM-GLH) (PFM-DON) (KNO-PFM) (WBD-KNO) (HEL-WBD) (SNI-HEL) (RWC-SNI) (GOO-RWC) (GOO-DON) (GOO-BUH) (GBD-GOO) (WRS-SBY) (HOW-WRS) (HOW-SBY) (HOW-GBD) (HOW-BUH) (EGN-HOW) (GBD-EGN) (GBD-BUH) (BMF-GBD) (BUH-BMF) (SBY-BUH) (SOM-SBY) (SOM-GRF) (MIK-SOM) (MIK-GRF) (MIK-CHF) (EGF-MIK) (GRF-EGF) (GRF-CHF) (CRG-GRF) (CHF-CRG) (SIE-CHF) (PFR-SIE) (MRP-PFR) (FZW-MRP) (SES-FZW) (AWK-SES) (BYK-AWK) (DON-BYK) (PBO-DON) (MCH-PBO) (MNE-ELY) (MCH-MNE) (ELY-MCH) (LAK-BND) (ELY-LAK) (WBC-ELY) (WBC-CBG) (CMB-WBC) (CMB-CBG) (ELY-CMB) (ELY-CBG) (BND-ELY) (TTF-BND) (TTF-ATL) (HRD-TTF) (ECS-HRD) (ATL-ECS) (NRW-ATL) (DIS-NRW) (IPS-DIS) (COL-IPS) (CHM-COL) (LST-CHM) (LST-CBH) (LST-BET) (LOF-LST) (LOF-HAC) (CBH-LOF) (BET-CBH) (HAC-BET) (SVS-HAC) (SVS-EDR) (SVS-CHN) (BCV-SVS) (WHL-BCV) (SLV-WHL) (EDR-SLV) (TEO-CHN) (TUR-TEO) (SBU-TUR) (EDR-SBU) (CHN-EDR) (BXB-CHN) (HWN-BXB) (BIS-HWN) (AUD-BIS) (CBG-AUD) (RYS-CBG) (RYS-AWM) (BDK-RYS) (BDK-LET) (AWM-BDK) (LET-AWM) (HIT-LET) (HIT-BIW) (ARL-HIT) (BIW-ARL) (SVG-BIW) (HFN-SVG) (HFN-CUF) (BAY-HFN) (CUF-BAY) (GDH-CUF) (ENC-GDH) (WIH-ENC) (PAL-WIH) (PAL-AAP) (BOP-PAL) (AAP-BOP)
+
+===== FIM DO RELATORIO =====

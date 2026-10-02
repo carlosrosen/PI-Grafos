@@ -1,4 +1,4 @@
-#include "../../include/grafo_biconexo_lista.h"
+#include "../../include/grafo_biconexo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -173,26 +173,55 @@ ResultadoBiconexo* encontrar_biconexos_lista(GrafoLista* grafo){
     return resultado;
 }
 
-void imprimir_resultado_biconexo_lista(GrafoLista* grafo, ResultadoBiconexo* resultado){
-    if(!resultado || !grafo) return;
+void exportar_componentes_biconexos_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path){
+    if(!grafo || !resultado || !output_path) return;
 
-    printf("Vértices de articulação:\n");
-    for(unsigned int i = 0; i < grafo->qtd_no; i++)
-        if(resultado->articulacoes[i])
-            // Acessa o código da estação presente no nó de origem da lista do nó i
-            printf("  %s\n", grafo->lista[i]->dados->code);
+    FILE* fp = fopen(output_path, "w");
+    
+    if(!fp){
+        perror("Falha ao abrir arquivo de saida dos componentes biconexos (lista)");
+        return;
+    }
 
-    printf("\nComponentes biconexos (%d):\n", resultado->qtd_componentes);
+    fprintf(fp, "========= Componentes Biconexos (Lista de adjacencia) ============\n");
+    fprintf(fp, "Componentes biconexos encontrados: %d\n\n", resultado->qtd_componentes);
+
     for(int c = 0; c < resultado->qtd_componentes; c++){
-        printf("  Componente %d:", c + 1);
+        fprintf(fp, "Componente %d:\n", c + 1);
         for(int e = 0; e < resultado->componentes[c].qtd_arestas; e++){
             int u = resultado->componentes[c].arestas[e].u;
             int v = resultado->componentes[c].arestas[e].v;
-            // Acessa o código das estações conectadas a partir do nó inicial de cada lista
-            printf(" (%s-%s)", grafo->lista[u]->dados->code, grafo->lista[v]->dados->code);
+            DadosEstacao* du = grafo->lista[u]->dados;
+            DadosEstacao* dv = grafo->lista[v]->dados;
+            fprintf(fp, "[%d <-> %d] (%s) %s <-> (%s) %s\n",u, v, du->code, du->nome, dv->code, dv->nome);
         }
-        printf("\n");
+        fprintf(fp, "\n");
     }
+
+    fclose(fp);
+}
+
+void exportar_vertices_articulacao_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path){
+    if(!grafo || !resultado || !output_path) return;
+
+    FILE* fp = fopen(output_path, "w");
+
+    if(!fp){
+        perror("Falha ao abrir arquivo de saida dos vertices de articulacao (lista)");
+        return;
+    }
+
+    fprintf(fp, "========= Vertices de articulacao (Lista de adjacencia) ============\n");
+    fprintf(fp, "Vertices de articulacao encontrados: %d\n\n", resultado->qtd_articulacoes);
+
+    for(unsigned int i = 0; i < grafo->qtd_no; i++){
+        if(resultado->articulacoes[i]){
+            DadosEstacao* d = grafo->lista[i]->dados;
+            fprintf(fp, "[%d] (%s) %s\n", i, d->code, d->nome);
+        }
+    }
+
+    fclose(fp);
 }
 
 void liberar_resultado_biconexo_lista(ResultadoBiconexo** resultado){
