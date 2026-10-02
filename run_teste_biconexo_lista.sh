@@ -1,5 +1,0 @@
-make clean
-
-make compile_testes_biconexo_lista
-
-make run_testes_biconexo_lista

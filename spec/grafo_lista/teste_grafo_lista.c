@@ -2,11 +2,15 @@
 #include <stdio.h>
 
 int main(){
+    printf("===================================  TESTES GRAFO LISTA  ===================================\n\n");
     GrafoLista * grafo = inicializar_grafo_lista("./dataset/stations.csv", "./dataset/edges.csv");
 
     // exibir_lista(grafo);
     imprimir_lista(grafo, "output/lista.txt");
     imprimir_lista_dot(grafo,"output/grafo_com_arestas_duplicadas.dot");
+
+    puts("");
+
     Liberar_Grafo(grafo);
     return 0;
 }

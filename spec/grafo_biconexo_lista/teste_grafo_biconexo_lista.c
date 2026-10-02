@@ -3,6 +3,7 @@
 #include <stdio.h>
 
 int main(){
+    printf("===================================  TESTES GRAFO BICONEXO LISTA  ===================================\n\n");
     GrafoLista* grafo = inicializar_grafo_lista("./dataset/stations.csv", "./dataset/edges.csv");
     if(!grafo){
         printf("Falha ao inicializar o grafo\n");
@@ -18,6 +19,7 @@ int main(){
     printf("Vertices de articulacao (lista): %d\n", resultado->qtd_articulacoes);
     printf("Saída gerada em output/biconexo_lista.txt e output/vertice_articulacao_lista.txt\n");
 
+    puts("");
     liberar_resultado_biconexo_lista(&resultado);
     Liberar_Grafo(grafo);
     return 0;

@@ -1,3 +1,0 @@
-make clean
-make compile_testes_matriz
-make run_testes_matriz
