@@ -135,6 +135,9 @@ void imprimir_matriz(GrafoMatriz* grafo, char* output_path){
         fprintf(stderr, "Erro ao abrir o arquivo %s", output_path);
         return;
     }
+
+    fprintf(fp, "Quantidade de estações: %d | Quantidade de arestas: %d\n\n", grafo->qtd_estacoes, grafo->qtd_arestas);
+
     // for(int row = 0; row < grafo->qtd_estacoes; row++){
     //     fprintf(fp,"\t%s ", grafo->dados_estacao[row]->code);
     // }
@@ -236,11 +239,8 @@ int get_station_matriz(DadosEstacao** dados, int tamanho, char* search){
 }
 
 // lê os arquivos e retorna o tamanho das estações criar o grafo matriz
-InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
-    if(path_stations == NULL || strlen(path_stations) == 0){
-        printf("Grafo Matriz não foi inicializado pois o caminho não foi identificado\n");
-        return NULL;
-    }
+InitMatrizResponse* inicializar_matriz(char* path_stations, char *path_edges){
+
     FILE* stations = open_file_read_mode(path_stations);
     
     size_t array_dados_length = 1000;
@@ -299,11 +299,13 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
 
 
     count_lines = 0;
+    size_t qtd_arestas = 0;
     FILE* edges = open_file_read_mode(path_edges);
 
     size_t array_dados_aresta_length = 1000;    
     DadosAresta **array_dados_aresta = (DadosAresta**)calloc(array_dados_aresta_length,sizeof(DadosAresta*));
 
+    DadosEstacao *dados_source = NULL, *dados_target = NULL;
     while(fgets(buffer,BUFFER_SIZE,edges) != NULL){
         count_lines++;
         if(count_lines == 1)continue;
@@ -315,41 +317,90 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char* path_edges){
         
         sscanf(buffer,"%[^,],%[^,],%lf,%lf\n",source,target, &distance, &travel_time);
 
-        DadosEstacao *dados_source = NULL, *dados_target = NULL;
-        DadosAresta *dados = (DadosAresta*)calloc(1,sizeof(DadosAresta));
-        if(dados == NULL){perror("Erro ao alocar memória para {dados} dos edges"); exit(EXIT_FAILURE);}
-        
-        if(dados_source == NULL || strcmp(dados_source->code, source)){
-            int idx = get_station_matriz(array_dados_estacao, response->qtd_estacoes, source);
-            if(idx == -1){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
-            dados_source = array_dados_estacao[idx];
-            dados->id_source = idx;
-        }
-        dados->source = dados_source->code;
-        
-        if(dados_target == NULL || strcmp(dados_target->code, target)){
-            int idx = get_station_matriz(array_dados_estacao, response->qtd_estacoes, target);
-            if(idx == -1){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
-            dados_target = array_dados_estacao[idx];
-            dados->id_target = idx;
-        }
-        dados->target = dados_target->code;
-        dados->distancia = distance;
-        dados->tempo_viagem = travel_time;
-
-        if(count_lines >= array_dados_aresta_length -1){
-            array_dados_aresta_length *= 2;
-            array_dados_aresta = (DadosAresta**)realloc(array_dados_aresta,sizeof(DadosAresta*) * array_dados_aresta_length);
-            if(array_dados_aresta == NULL){
-                perror("Erro ao realocar mais memória para {array_arestas}");
-                exit(EXIT_FAILURE);
+        int has_source = 0, has_target = 0;
+        for(size_t i = 0; i < qtd_arestas; i++){
+            if(!strcmp(source,array_dados_aresta[i]->source) && !strcmp(target, array_dados_aresta[i]->target)){
+                has_source = 1;
+            }
+            if(!strcmp(target,array_dados_aresta[i]->source) && !strcmp(source, array_dados_aresta[i]->target)){
+                has_target = 1;
             }
         }
-        array_dados_aresta[count_lines - 2] = dados;
+
+
+        if(has_source && has_target)continue;
+       
+        
+        int idx_source = -1, idx_target = -1;
+        if(dados_source == NULL || strcmp(dados_source->code, source)){
+            idx_source = get_station_matriz(array_dados_estacao, response->qtd_estacoes, source);
+            if(idx_source == -1){printf("\nFalha ao encontrar a estação de código: %s\n",source); exit(EXIT_FAILURE);}
+            dados_source = array_dados_estacao[idx_source];
+        }else{
+            idx_source = dados_source->id;
+        }
+
+        if(dados_target == NULL || strcmp(dados_target->code, target)){
+            idx_target = get_station_matriz(array_dados_estacao, response->qtd_estacoes, target);
+            if(idx_target == -1){printf("\nFalha ao encontrar a estação de codigo: %s\n",target); exit(EXIT_FAILURE);}
+            dados_target = array_dados_estacao[idx_target];
+        }else{
+            idx_target = dados_source->id;
+        }
+
+
+        if(!has_source){
+            DadosAresta *dados = (DadosAresta*)calloc(1,sizeof(DadosAresta));
+            if(dados == NULL){perror("Erro ao alocar memória para {dados} dos edges"); exit(EXIT_FAILURE);}
+            
+            dados->id_source = idx_source;
+            dados->source = dados_source->code;
+            
+            dados->id_target = idx_target;
+            dados->target = dados_target->code;
+            dados->distancia = distance;
+            dados->tempo_viagem = travel_time;
+            
+            if(qtd_arestas >= array_dados_aresta_length -1){
+                array_dados_aresta_length *= 2;
+                array_dados_aresta = (DadosAresta**)realloc(array_dados_aresta,sizeof(DadosAresta*) * array_dados_aresta_length);
+                if(array_dados_aresta == NULL){
+                    perror("Erro ao realocar mais memória para {array_arestas}");
+                    exit(EXIT_FAILURE);
+                }
+            }
+            array_dados_aresta[qtd_arestas++] = dados;
+        }
+        
+        
+        
+        if(!has_target){
+            DadosAresta *dados = (DadosAresta*)calloc(1,sizeof(DadosAresta));
+            dados->distancia = distance;
+            dados->id_source = idx_target;
+            dados->id_target = idx_source;
+            dados->tempo_viagem = travel_time;
+            dados->source = (char*)calloc(4,sizeof(char));
+            strcpy(dados->source,target);
+            dados->target = (char*)calloc(4,sizeof(char));
+            strcpy(dados->target, source);
+            
+            if(qtd_arestas >= array_dados_aresta_length -1){
+                array_dados_aresta_length *= 2;
+                array_dados_aresta = (DadosAresta**)realloc(array_dados_aresta,sizeof(DadosAresta*) * array_dados_aresta_length);
+                if(array_dados_aresta == NULL){
+                    perror("Erro ao realocar mais memória para {array_arestas}");
+                    exit(EXIT_FAILURE);
+                }
+            }
+
+            array_dados_aresta[qtd_arestas++] = dados;
+            
+        }
     }
     fclose(edges);
-
+    
     response->dados_aresta = array_dados_aresta;
-    response->qtd_arestas = count_lines -1;
+    response->qtd_arestas = qtd_arestas;
     return response;
 }
