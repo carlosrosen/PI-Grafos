@@ -1,4 +1,5 @@
 #include "grafo_biconexo.h"
+#include "acesso_grafo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -13,26 +14,6 @@ typedef struct EstadoDFS{
     ComponenteBiconexo *componentes;
     int qtd_componentes, capacidade_componentes;
 } EstadoDFS;
-
-// Estado de iteracao dos vizinhos de um vertice. Cada representacao usa o
-// campo que lhe interessa: a lista avanca pela cadeia de nos e a matriz
-// avanca pelas colunas da linha.
-typedef struct CursorVizinhos{
-    No *no;      // lista: proximo no da cadeia de adjacencia
-    int coluna;  // matriz: proxima coluna a examinar
-} CursorVizinhos;
-
-// Interface comum que abstrai a representacao do grafo. O nucleo do
-// algoritmo so conhece estes campos, preenchidos pelos adaptadores.
-typedef struct AcessoGrafo{
-    void *grafo;
-    int qtd_vertices;
-    const char *descricao;  // usada nos cabecalhos dos arquivos de saida
-
-    DadosEstacao* (*obter_dados_estacao)(void *grafo, int indice);
-    int (*iniciar_vizinhos)(void *grafo, int u, CursorVizinhos *cursor);
-    int (*proximo_vizinho)(void *grafo, int u, CursorVizinhos *cursor);
-} AcessoGrafo;
 
 
 // ============================ Nucleo do algoritmo ============================
@@ -192,88 +173,6 @@ static ResultadoBiconexo* executar_biconexos(const AcessoGrafo* acesso){
 }
 
 
-// ====================== Adaptadores: lista de adjacencia ======================
-
-
-static DadosEstacao* obter_dados_estacao_lista(void* grafo_generico, int indice){
-    GrafoLista* grafo = (GrafoLista*)grafo_generico;
-    return grafo->lista[indice]->dados;
-}
-
-static int proximo_vizinho_lista(void* grafo_generico, int u, CursorVizinhos* cursor){
-    (void)grafo_generico;
-    (void)u;
-
-    if(cursor->no == NULL) return -1;
-
-    // Converte o identificador base-1 do nó para índice base-0
-    int v = cursor->no->vertice - 1;
-    cursor->no = cursor->no->proximo;
-    return v;
-}
-
-static int iniciar_vizinhos_lista(void* grafo_generico, int u, CursorVizinhos* cursor){
-    GrafoLista* grafo = (GrafoLista*)grafo_generico;
-
-    // O nó cabeça representa a própria estação; a adjacência começa no próximo
-    cursor->no = grafo->lista[u] != NULL ? grafo->lista[u]->proximo : NULL;
-    return proximo_vizinho_lista(grafo_generico, u, cursor);
-}
-
-static AcessoGrafo criar_acesso_lista(GrafoLista* grafo){
-    AcessoGrafo acesso = {
-        .grafo = grafo,
-        .qtd_vertices = grafo != NULL ? (int)grafo->qtd_no : 0,
-        .descricao = "Lista de adjacencia",
-        .obter_dados_estacao = obter_dados_estacao_lista,
-        .iniciar_vizinhos = iniciar_vizinhos_lista,
-        .proximo_vizinho = proximo_vizinho_lista,
-    };
-    return acesso;
-}
-
-
-// ====================== Adaptadores: matriz de adjacencia ======================
-
-
-// Existe ligação entre i e j em qualquer sentido? (grafo tratado como não dirigido)
-static int existe_aresta(GrafoMatriz* grafo, int i, int j){
-    return grafo->matriz[i][j] || grafo->matriz[j][i];
-}
-
-static DadosEstacao* obter_dados_estacao_matriz(void* grafo_generico, int indice){
-    GrafoMatriz* grafo = (GrafoMatriz*)grafo_generico;
-    return grafo->dados_estacao[indice];
-}
-
-static int proximo_vizinho_matriz(void* grafo_generico, int u, CursorVizinhos* cursor){
-    GrafoMatriz* grafo = (GrafoMatriz*)grafo_generico;
-
-    while(cursor->coluna < grafo->qtd_estacoes){
-        int v = cursor->coluna++;
-        if(existe_aresta(grafo, u, v)) return v;
-    }
-    return -1;
-}
-
-static int iniciar_vizinhos_matriz(void* grafo_generico, int u, CursorVizinhos* cursor){
-    cursor->coluna = 0;
-    return proximo_vizinho_matriz(grafo_generico, u, cursor);
-}
-
-static AcessoGrafo criar_acesso_matriz(GrafoMatriz* grafo){
-    AcessoGrafo acesso = {
-        .grafo = grafo,
-        .qtd_vertices = grafo != NULL ? grafo->qtd_estacoes : 0,
-        .descricao = "Matriz de adjacencia",
-        .obter_dados_estacao = obter_dados_estacao_matriz,
-        .iniciar_vizinhos = iniciar_vizinhos_matriz,
-        .proximo_vizinho = proximo_vizinho_matriz,
-    };
-    return acesso;
-}
-
-
 // ============================ Entradas públicas ============================
 
 
@@ -293,7 +192,7 @@ ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
 // ============================== Exportação ==============================
 
 
-static void exportar_componentes_biconexos(const AcessoGrafo* acesso, ResultadoBiconexo* resultado, char* output_path){
+static void exportar_componentes_biconexos(const AcessoGrafo* acesso, ResultadoBiconexo* resultado, char* output_path, const char* representacao){
     if(!acesso || !acesso->grafo || !resultado || !output_path) return;
 
     FILE* fp = fopen(output_path, "w");
@@ -303,7 +202,7 @@ static void exportar_componentes_biconexos(const AcessoGrafo* acesso, ResultadoB
         return;
     }
 
-    fprintf(fp, "========= Componentes Biconexos (%s) ============\n", acesso->descricao);
+    fprintf(fp, "========= Componentes Biconexos (%s) ============\n", representacao);
     fprintf(fp, "Componentes biconexos encontrados: %d\n\n", resultado->qtd_componentes);
 
     for(int c = 0; c < resultado->qtd_componentes; c++){
@@ -321,7 +220,7 @@ static void exportar_componentes_biconexos(const AcessoGrafo* acesso, ResultadoB
     fclose(fp);
 }
 
-static void exportar_vertices_articulacao(const AcessoGrafo* acesso, ResultadoBiconexo* resultado, char* output_path){
+static void exportar_vertices_articulacao(const AcessoGrafo* acesso, ResultadoBiconexo* resultado, char* output_path, const char* representacao){
     if(!acesso || !acesso->grafo || !resultado || !output_path) return;
 
     FILE* fp = fopen(output_path, "w");
@@ -331,7 +230,7 @@ static void exportar_vertices_articulacao(const AcessoGrafo* acesso, ResultadoBi
         return;
     }
 
-    fprintf(fp, "========= Vertices de articulacao (%s) ============\n", acesso->descricao);
+    fprintf(fp, "========= Vertices de articulacao (%s) ============\n", representacao);
     fprintf(fp, "Vertices de articulacao encontrados: %d\n\n", resultado->qtd_articulacoes);
 
     for(int i = 0; i < acesso->qtd_vertices; i++){
@@ -346,22 +245,22 @@ static void exportar_vertices_articulacao(const AcessoGrafo* acesso, ResultadoBi
 
 void exportar_componentes_biconexos_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path){
     AcessoGrafo acesso = criar_acesso_lista(grafo);
-    exportar_componentes_biconexos(&acesso, resultado, output_path);
+    exportar_componentes_biconexos(&acesso, resultado, output_path, "Lista de adjacencia");
 }
 
 void exportar_vertices_articulacao_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path){
     AcessoGrafo acesso = criar_acesso_lista(grafo);
-    exportar_vertices_articulacao(&acesso, resultado, output_path);
+    exportar_vertices_articulacao(&acesso, resultado, output_path, "Lista de adjacencia");
 }
 
 void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
     AcessoGrafo acesso = criar_acesso_matriz(grafo);
-    exportar_componentes_biconexos(&acesso, resultado, output_path);
+    exportar_componentes_biconexos(&acesso, resultado, output_path, "Matriz de adjacencia");
 }
 
 void exportar_vertices_articulacao_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
     AcessoGrafo acesso = criar_acesso_matriz(grafo);
-    exportar_vertices_articulacao(&acesso, resultado, output_path);
+    exportar_vertices_articulacao(&acesso, resultado, output_path, "Matriz de adjacencia");
 }
 
 

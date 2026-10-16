@@ -1,10 +1,14 @@
 #include "pontes.h"
+#include "acesso_grafo.h"
 
 #include <stdio.h>
 #include <stdlib.h>
 
 /*
-    DFS com low-link (Tarjan) para deteccao de pontes.
+    DFS com low-link (Tarjan) para deteccao de pontes, unica para as duas
+    representacoes de grafo (lista e matriz de adjacencia). A diferenca de
+    iteracao dos vizinhos fica nos adaptadores de acesso_grafo.c.
+
     disc[u] = tempo de descoberta; low[u] = menor disc alcancavel pela
     subarvore de u usando no maximo uma aresta de retorno.
     (u, v) e ponte quando low[v] > disc[u].
@@ -64,19 +68,18 @@ static void adicionar_ponte(ListaPontes *pontes, int u, int v) {
     pontes->quantidade++;
 }
 
-/* No->vertice (grafo_lista.c) comeca em 1; o array grafo->lista[] comeca em 0. */
-#define AJUSTE_INDICE_VERTICE 1
-
-static void dfs_pontes_lista(int u, EstadoDFS *estado, GrafoLista *grafo) {
+static void dfs_pontes(const AcessoGrafo *acesso, EstadoDFS *estado, int u) {
     estado->disc[u] = estado->low[u] = estado->tempo++;
 
-    for (No *no = grafo->lista[u]->proximo; no != NULL; no = no->proximo) {
-        int v = no->vertice - AJUSTE_INDICE_VERTICE;
+    CursorVizinhos cursor;
+    for (int v = acesso->iniciar_vizinhos(acesso->grafo, u, &cursor); v != -1;
+         v = acesso->proximo_vizinho(acesso->grafo, u, &cursor)) {
+
         if (v == u) continue; /* laco (ex.: LST -> LST) */
 
         if (estado->disc[v] == -1) {
             estado->pai[v] = u;
-            dfs_pontes_lista(v, estado, grafo);
+            dfs_pontes(acesso, estado, v);
 
             if (estado->low[v] < estado->low[u]) estado->low[u] = estado->low[v];
             if (estado->low[v] > estado->disc[u]) adicionar_ponte(estado->pontes, u, v);
@@ -84,114 +87,85 @@ static void dfs_pontes_lista(int u, EstadoDFS *estado, GrafoLista *grafo) {
             if (estado->disc[v] < estado->low[u]) estado->low[u] = estado->disc[v];
         }
     }
+}
+
+// Roda a DFS a partir de todos os vertices ainda nao visitados e devolve a lista de pontes.
+static ListaPontes *executar_pontes(const AcessoGrafo *acesso) {
+    int V = acesso->qtd_vertices;
+    EstadoDFS *estado = criar_estado_dfs(V);
+
+    for (int i = 0; i < V; i++) {
+        if (estado->disc[i] == -1) dfs_pontes(acesso, estado, i);
+    }
+
+    ListaPontes *pontes = estado->pontes;
+    liberar_estado_dfs(estado);
+    return pontes;
 }
 
 ListaPontes *encontrar_pontes_lista(GrafoLista *grafo) {
-    int V = (int)grafo->qtd_no;
-    EstadoDFS *estado = criar_estado_dfs(V);
-
-    if(!estado) return NULL;
-
-    for (int i = 0; i < V; i++) {
-        if (estado->disc[i] == -1) dfs_pontes_lista(i, estado, grafo);
-    }
-
-    ListaPontes *pontes = estado->pontes;
-    liberar_estado_dfs(estado);
-    return pontes;
-}
-
-static void dfs_pontes_matriz(int u, EstadoDFS *estado, GrafoMatriz *grafo) {
-    estado->disc[u] = estado->low[u] = estado->tempo++;
-
-    for (int v = 0; v < grafo->qtd_estacoes; v++) {
-        if (v == u || !grafo->matriz[u][v]) continue;
-
-        if (estado->disc[v] == -1) {
-            estado->pai[v] = u;
-            dfs_pontes_matriz(v, estado, grafo);
-
-            if (estado->low[v] < estado->low[u]) estado->low[u] = estado->low[v];
-            if (estado->low[v] > estado->disc[u]) adicionar_ponte(estado->pontes, u, v);
-        } else if (v != estado->pai[u]) {
-            if (estado->disc[v] < estado->low[u]) estado->low[u] = estado->disc[v];
-        }
-    }
+    if (!grafo) return NULL;
+    AcessoGrafo acesso = criar_acesso_lista(grafo);
+    return executar_pontes(&acesso);
 }
 
 ListaPontes *encontrar_pontes_matriz(GrafoMatriz *grafo) {
-    int V = grafo->qtd_estacoes;
-    EstadoDFS *estado = criar_estado_dfs(V);
+    if (!grafo) return NULL;
+    AcessoGrafo acesso = criar_acesso_matriz(grafo);
+    return executar_pontes(&acesso);
+}
 
-    if(!estado) return NULL;
+/* Escreve uma ponte no destino (stdout ou arquivo) no formato padrao. */
+static void imprimir_uma_ponte(FILE *saida, const AcessoGrafo *acesso, ListaPontes *pontes, int i) {
+    int u = pontes->itens[i].u, v = pontes->itens[i].v;
+    DadosEstacao *du = acesso->obter_dados_estacao(acesso->grafo, u);
+    DadosEstacao *dv = acesso->obter_dados_estacao(acesso->grafo, v);
+    fprintf(saida, "%d. [%d <-> %d] (%s) %s <-> (%s) %s\n",
+            i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
+}
 
-    for (int i = 0; i < V; i++) {
-        if (estado->disc[i] == -1) dfs_pontes_matriz(i, estado, grafo);
-    }
+static void imprimir_pontes(const AcessoGrafo *acesso, ListaPontes *pontes, const char *representacao) {
+    if (!acesso || !acesso->grafo || !pontes) return;
 
-    ListaPontes *pontes = estado->pontes;
-    liberar_estado_dfs(estado);
-    return pontes;
+    printf("\n=== Pontes (%s) ===\n", representacao);
+    printf("Quantidade de pontes encontradas: %d\n\n", pontes->quantidade);
+    for (int i = 0; i < pontes->quantidade; i++)
+        imprimir_uma_ponte(stdout, acesso, pontes, i);
 }
 
 void imprimir_pontes_lista(GrafoLista *grafo, ListaPontes *pontes) {
-    printf("\n=== Pontes (lista de adjacencia) ===\n");
-    printf("Quantidade de pontes encontradas: %d\n\n", pontes->quantidade);
-    for (int i = 0; i < pontes->quantidade; i++) {
-        int u = pontes->itens[i].u, v = pontes->itens[i].v;
-        DadosEstacao *du = grafo->lista[u]->dados;
-        DadosEstacao *dv = grafo->lista[v]->dados;
-        printf("%d. [%d <-> %d] (%s) %s <-> (%s) %s\n",
-               i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
-    }
+    AcessoGrafo acesso = criar_acesso_lista(grafo);
+    imprimir_pontes(&acesso, pontes, "lista de adjacencia");
 }
 
 void imprimir_pontes_matriz(GrafoMatriz *grafo, ListaPontes *pontes) {
-    printf("\n=== Pontes (matriz de adjacencia) ===\n");
-    printf("Quantidade de pontes encontradas: %d\n\n", pontes->quantidade);
-    for (int i = 0; i < pontes->quantidade; i++) {
-        int u = pontes->itens[i].u, v = pontes->itens[i].v;
-        DadosEstacao *du = grafo->dados_estacao[u];
-        DadosEstacao *dv = grafo->dados_estacao[v];
-        printf("%d. [%d <-> %d] (%s) %s <-> (%s) %s\n",
-               i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
+    AcessoGrafo acesso = criar_acesso_matriz(grafo);
+    imprimir_pontes(&acesso, pontes, "matriz de adjacencia");
+}
+
+static void exportar_pontes(const AcessoGrafo *acesso, ListaPontes *pontes, char *output_path, const char *representacao) {
+    if (!acesso || !acesso->grafo || !pontes || !output_path) return;
+
+    FILE *fp = fopen(output_path, "w"); /* "w" apaga o conteudo anterior */
+    if (fp == NULL) {
+        perror("Falha ao abrir arquivo de saida das pontes");
+        return;
     }
+    fprintf(fp, "=== Pontes (%s) ===\n", representacao);
+    fprintf(fp, "Quantidade de pontes encontradas: %d\n\n", pontes->quantidade);
+    for (int i = 0; i < pontes->quantidade; i++)
+        imprimir_uma_ponte(fp, acesso, pontes, i);
+    fclose(fp);
 }
 
 void exportar_pontes_lista(GrafoLista *grafo, ListaPontes *pontes, char *output_path) {
-    FILE *fp = fopen(output_path, "w"); /* "w" apaga o conteudo anterior */
-    if (fp == NULL) {
-        perror("Falha ao abrir arquivo de saida das pontes (lista)");
-        return;
-    }
-    fprintf(fp, "=== Pontes (lista de adjacencia) ===\n");
-    fprintf(fp, "Quantidade de pontes encontradas: %d\n\n", pontes->quantidade);
-    for (int i = 0; i < pontes->quantidade; i++) {
-        int u = pontes->itens[i].u, v = pontes->itens[i].v;
-        DadosEstacao *du = grafo->lista[u]->dados;
-        DadosEstacao *dv = grafo->lista[v]->dados;
-        fprintf(fp, "%d. [%d <-> %d] (%s) %s <-> (%s) %s\n",
-                i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
-    }
-    fclose(fp);
+    AcessoGrafo acesso = criar_acesso_lista(grafo);
+    exportar_pontes(&acesso, pontes, output_path, "lista de adjacencia");
 }
 
 void exportar_pontes_matriz(GrafoMatriz *grafo, ListaPontes *pontes, char *output_path) {
-    FILE *fp = fopen(output_path, "w"); 
-    if (fp == NULL) {
-        perror("Falha ao abrir arquivo de saida das pontes (matriz)");
-        return;
-    }
-    fprintf(fp, "=== Pontes (matriz de adjacencia) ===\n");
-    fprintf(fp, "Quantidade de pontes encontradas: %d\n\n", pontes->quantidade);
-    for (int i = 0; i < pontes->quantidade; i++) {
-        int u = pontes->itens[i].u, v = pontes->itens[i].v;
-        DadosEstacao *du = grafo->dados_estacao[u];
-        DadosEstacao *dv = grafo->dados_estacao[v];
-        fprintf(fp, "%d. [%d <-> %d] (%s) %s <-> (%s) %s\n",
-                i + 1, u, v, du->code, du->nome, dv->code, dv->nome);
-    }
-    fclose(fp);
+    AcessoGrafo acesso = criar_acesso_matriz(grafo);
+    exportar_pontes(&acesso, pontes, output_path, "matriz de adjacencia");
 }
 
 void liberar_pontes(ListaPontes *pontes) {
