@@ -5,6 +5,7 @@
 
 typedef struct No{
     int vertice;
+    double peso;
     DadosEstacao *dados;
     struct No* proximo;
 } No;

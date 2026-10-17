@@ -59,6 +59,8 @@ dkms.conf
 build
 
 # output files
+output/lista.txt
+output/matriz.txt
 output/pontes_lista.txt
 output/pontes_matriz.txt
 output/biconexo_lista.txt

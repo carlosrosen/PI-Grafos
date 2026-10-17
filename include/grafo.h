@@ -26,7 +26,7 @@ typedef struct DadosAresta{
     float distancia;
     //Tempo de viagem entre elas
     float tempo_viagem;
-    //Peso calculado: tempo_viagem + tempo_transferencia da estação de destino.
+    //Peso calculado (tempo_viagem + tempo_transferencia)
     double peso;
 } DadosAresta;
 
