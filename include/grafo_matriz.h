@@ -5,7 +5,7 @@
 
 typedef struct GrafoMatriz{
     int qtd_estacoes, qtd_arestas;
-    int **matriz;
+    double **matriz;
     DadosEstacao **dados_estacao;
     DadosAresta **dados_arestas;
 } GrafoMatriz;

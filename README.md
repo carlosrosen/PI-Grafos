@@ -1,3 +1,21 @@
+## Peso das arestas
+
+Cada trecho recebe um peso em unidades de tempo, calculado na inicialização do grafo:
+
+```text
+peso = tempo_viagem + tempo_transferencia da estação de destino
+```
+
+* `tempo_viagem`: coluna `travel_time` de `dataset/edges.csv` (a distância não entra na fórmula, o peso é expresso em tempo).
+* `tempo_transferencia`: coluna `transfer_time` de `dataset/stations.csv`, da estação de destino do trecho.
+* Fórmula centralizada em `calcular_peso_aresta` (`src/libs/aux_functions.c`).
+* Lista de adjacência: `Aresta.dados->peso` (`DadosAresta.peso`).
+* Matriz de adjacência: `GrafoMatriz.matriz[origem][destino]`, onde `0` indica ausência de aresta.
+
+Cada linha de `edges.csv` gera as duas orientações do trecho, e cada orientação usa o tempo de baldeação da sua estação de destino.
+
+Exemplo reproduzível: para `AAP,BOP,1.0,0.75` em `edges.csv` e `transfer_time = 9` para `BOP` em `stations.csv`, o peso de `AAP -> BOP` é `0.75 + 9 = 9.75`.
+
 ## Compilação e execução
 
 O projeto utiliza um `Makefile` para facilitar a compilação dos arquivos escritos em C.

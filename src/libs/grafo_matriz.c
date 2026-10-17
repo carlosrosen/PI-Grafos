@@ -60,7 +60,7 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
     grafo->qtd_estacoes = capacidade;
 
     //Cria o vetor de linhas, cada indíce do vetor guarda um endereço de uma delas.
-    grafo->matriz = (int**)calloc(capacidade,sizeof(int*));
+    grafo->matriz = (double**)calloc(capacidade,sizeof(double*));
 
     //Verificação
     if(grafo->matriz == NULL){
@@ -69,12 +69,11 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
         exit(EXIT_FAILURE);
     }
 
-    //Para cada posição do vetor, aloca uma linha com N inteiros, todos iguais a 0. Depois disso a matriz N × N existe:
+    // Para cada posição do vetor, aloca uma linha com N doubles, todos iguais a 0. Depois disso a matriz N × N existe
     for(int row = 0; row < capacidade; row++){
-        grafo->matriz[row] = calloc(capacidade, sizeof(int));
+        grafo->matriz[row] = calloc(capacidade, sizeof(double));
         
         //Tratamento de erros.
-
         if(grafo->matriz[row] == NULL){
             for(int i = 0; i < row; i ++) free(grafo->matriz[i]);
             free(grafo->matriz);
@@ -83,29 +82,20 @@ GrafoMatriz* inicializar_grafo_matriz(char* path_stations, char* path_edges){
         }
     }
 
-    //Percorre todas as arestas no csv e marca elas na matriz.
-
+    //Percorre todas as arestas no csv e grava o peso de cada trecho na matriz.
     for(int i = 0; i < grafo->qtd_arestas; i++){
-
         DadosAresta* data = grafo->dados_arestas[i];
 
         //Se a aresta estiver vazia, marca como NULL e continua.
         if(data == NULL) continue;
 
-        //Se não, coloca 1 na posição [origem][destino].
-        /*Exemplo: se a aresta liga a estação de índice 0 à de índice 2, então matriz[0][2] = 1. 
-        Como matriz[2][0] não é alterada, a ligação vale só em um sentido (grafo dirigido).*/
-        grafo->matriz[data->id_source][data->id_target] = 1;
-        grafo->matriz[data->id_target][data->id_source] = 1;
+        // Grava o peso na posição [origem][destino].
+        grafo->matriz[data->id_source][data->id_target] = data->peso;
     }
-
-    //Retorna o grafo.
-
     return grafo;
 }
 
 //Exibe a matriz:
-
 void exibir_matriz(GrafoMatriz* grafo){ 
     if(!grafo)return; // grafo inexistente: nada a mostrar
     for(int row = 0; row < grafo->qtd_estacoes; row++){
@@ -113,11 +103,11 @@ void exibir_matriz(GrafoMatriz* grafo){
         // Colchete de abertura na 1ª coluna, de fechamento na última
         for(int col = 0; col < grafo->qtd_estacoes; col++){
             if(col == 0){
-                printf("[%d ", grafo->matriz[row][col]);
+                printf("[%.2f ", grafo->matriz[row][col]);
             }else if(col == grafo->qtd_estacoes - 1){
-                printf("%d]", grafo->matriz[row][col]);
+                printf("%.2f]", grafo->matriz[row][col]);
             }else{
-                printf("%d ", grafo->matriz[row][col]);
+                printf("%.2f ", grafo->matriz[row][col]);
             }
         }
         puts(""); // fim da linha da matriz
@@ -145,11 +135,11 @@ void imprimir_matriz(GrafoMatriz* grafo, char* output_path){
     for(int row = 0; row < grafo->qtd_estacoes; row++){
         for(int col = 0; col < grafo->qtd_estacoes; col++){
             if(col == 0){
-                fprintf(fp,"%s [%d ",grafo->dados_estacao[row]->code,grafo->matriz[row][col]);
+                fprintf(fp,"%s [%.2f ",grafo->dados_estacao[row]->code,grafo->matriz[row][col]);
             }else if(col == grafo->qtd_estacoes - 1){
-                fprintf(fp,"%d]", grafo->matriz[row][col]);
+                fprintf(fp,"%.2f]", grafo->matriz[row][col]);
             }else{
-                fprintf(fp,"%d ",grafo->matriz[row][col]);
+                fprintf(fp,"%.2f ",grafo->matriz[row][col]);
             }
         }
         fprintf(fp,"\n");
@@ -189,12 +179,10 @@ void imprimir_matriz_dot(GrafoMatriz *grafo,char* output_path){
     }
     fprintf(fp, "\n");
 
-    // Cada 1 na matriz vira uma aresta; +1 converte índice (base 0) em id (base 1)
-    
+    // Cada peso diferente de zero na matriz vira uma aresta
     for(int i = 0; i < grafo->qtd_estacoes; i++){
         for(int j = 0; j < grafo->qtd_estacoes; j++){
-            
-            if(grafo->matriz[i][j] == 1 && verificador[i][j] == 0){
+            if(grafo->matriz[i][j] > 0 && verificador[i][j] == 0){
                 fprintf(fp, "\t%d -- %d\n", i+1, j+1);
                 verificador[j][i] = 1;
             }
@@ -347,11 +335,11 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char *path_edges){
             
             dados->id_source = idx_source;
             dados->source = dados_source->code;
-            
             dados->id_target = idx_target;
             dados->target = dados_target->code;
             dados->distancia = distance;
             dados->tempo_viagem = travel_time;
+            dados->peso = calcular_peso_aresta(travel_time, dados_target->tempo_transferencia);
             
             if(qtd_arestas >= array_dados_aresta_length -1){
                 array_dados_aresta_length *= 2;
@@ -372,6 +360,7 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char *path_edges){
             dados->id_source = idx_target;
             dados->id_target = idx_source;
             dados->tempo_viagem = travel_time;
+            dados->peso = calcular_peso_aresta(travel_time, dados_source->tempo_transferencia);
             dados->source = (char*)calloc(4,sizeof(char));
             strcpy(dados->source,target);
             dados->target = (char*)calloc(4,sizeof(char));

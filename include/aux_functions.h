@@ -6,6 +6,7 @@
 
 char* converter_inteiro_string(int num);
 FILE* open_file_read_mode(char path[]);
+double calcular_peso_aresta(double tempo_viagem, double tempo_transferencia_destino);
 // void verificar_alocacao(void* alloc, char *var_name);
 
 #endif

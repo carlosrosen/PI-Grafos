@@ -292,6 +292,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char*
             DadosAresta* dados_st = (DadosAresta*)calloc(1,sizeof(DadosAresta));
             dados_st->distancia = distance;
             dados_st->tempo_viagem = travel_time;
+            dados_st->peso = calcular_peso_aresta(travel_time, no_target->dados->tempo_transferencia);
             aresta_st->source = no_source;
             aresta_st->target = no_target;
             aresta_st->dados = dados_st;
@@ -327,6 +328,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char*
             DadosAresta* dados_ts = (DadosAresta*)calloc(1,sizeof(DadosAresta));
             dados_ts->distancia = distance;
             dados_ts->tempo_viagem = travel_time;
+            dados_ts->peso = calcular_peso_aresta(travel_time, no_source->dados->tempo_transferencia);
             aresta_ts->source = no_target;
             aresta_ts->target = no_source;
             aresta_ts->dados = dados_ts;
