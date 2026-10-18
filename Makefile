@@ -29,10 +29,13 @@ BICONEXO_LISTA_SPEC_MAIN = ./spec/grafo_biconexo_lista/teste_grafo_biconexo_list
 PONTES_SPEC_TARGET = ./spec/pontes/bin/run.out
 PONTES_SPEC_MAIN = ./spec/pontes/teste_pontes.c
 
+DIJKSTRA_SPEC_TARGET = ./spec/dijkstra/bin/run.out
+DIJKSTRA_SPEC_MAIN = ./spec/dijkstra/teste_dijkstra.c
+
 # Alvo padrão
 all: compile run
 
-testes: compile_testes_lista run_testes_lista compile_testes_matriz run_testes_matriz compile_testes_pontes run_testes_pontes compile_testes_biconexo_lista run_testes_biconexo_lista compile_testes_biconexo_matriz run_testes_biconexo_matriz
+testes: compile_testes_lista run_testes_lista compile_testes_matriz run_testes_matriz compile_testes_pontes run_testes_pontes compile_testes_biconexo_lista run_testes_biconexo_lista compile_testes_biconexo_matriz run_testes_biconexo_matriz compile_testes_dijkstra run_testes_dijkstra
 
 compile:
 	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
@@ -71,6 +74,12 @@ compile_testes_pontes:
 run_testes_pontes: $(PONTES_SPEC_TARGET)
 	./$(PONTES_SPEC_TARGET)
 
+compile_testes_dijkstra:
+	$(CC) $(CFLAGS) $(LIBS) $(DIJKSTRA_SPEC_MAIN) -o $(DIJKSTRA_SPEC_TARGET)
+
+run_testes_dijkstra: $(DIJKSTRA_SPEC_TARGET)
+	./$(DIJKSTRA_SPEC_TARGET)
+
 compile_debug_lista:
 	$(CC) -g $(CFLAGS) $(LIBS) $(LISTA_SPEC_MAIN) -o $(LISTA_SPEC_TARGET)
 
@@ -83,6 +92,9 @@ compile_debug_biconexo_matriz:
 compile_debug_biconexo_lista:
 	$(CC) -g $(CFLAGS) $(LIBS) $(BICONEXO_LISTA_SPEC_MAIN) -o $(BICONEXO_LISTA_SPEC_TARGET)
 
+compile_debug_dijkstra:
+	$(CC) -g $(CFLAGS) $(LIBS) $(DIJKSTRA_SPEC_MAIN) -o $(DIJKSTRA_SPEC_TARGET)
+
 # Remove os arquivos executáveis
 clean:
-	rm -f  *.dot $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET)
+	rm -f  *.dot $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET) $(DIJKSTRA_SPEC_TARGET)
