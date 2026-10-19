@@ -1,4 +1,5 @@
 #include "grafo_biconexo.h"
+#include "acesso_grafo.h"
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -14,17 +15,15 @@ typedef struct EstadoDFS{
     int qtd_componentes, capacidade_componentes;
 } EstadoDFS;
 
-// Existe ligação entre i e j em qualquer sentido? (grafo tratado como não dirigido)
-static int existe_aresta(GrafoMatriz* grafo, int i, int j){
-    return grafo->matriz[i][j] || grafo->matriz[j][i];
-}
+
+// ============================ Nucleo do algoritmo ============================
 
 
 // Empilha a aresta (u,v) para uso posterior por registrar_componente,
 // que vai desempilhar até essa aresta para formar um componente biconexo.
 static void empilhar_aresta(EstadoDFS* estado, int u, int v){
 
-    // Pilha cheia? Dobra o tamanho do vetor antes de escrever
+    // Caso a pilha esteja cheia, ele dobra o tamanho do vetor antes de escrever
     if(estado->topo_pilha >= estado->capacidade_pilha){
         estado->capacidade_pilha *= 2;
         estado->pilha = realloc(estado->pilha, sizeof(ArestaSimples) * estado->capacidade_pilha);
@@ -53,19 +52,16 @@ static void registrar_componente(EstadoDFS* estado, int u, int v){
 
         // Achou a aresta (u,v), em qualquer ordem? Para por aqui:
         // esse é o limite do componente
-
         if((e.u == u && e.v == v) || (e.u == v && e.v == u)) break;
     }
 
      // Vetor de componentes cheio? Dobra a capacidade antes de adicionar
-
     if(estado->qtd_componentes >= estado->capacidade_componentes){
         estado->capacidade_componentes *= 2;
         estado->componentes = realloc(estado->componentes, sizeof(ComponenteBiconexo) * estado->capacidade_componentes);
     }
     
      // Encolhe temp para o tamanho real usado (n) e salva como um novo componente
-
     estado->componentes[estado->qtd_componentes].arestas = realloc(temp, sizeof(ArestaSimples) * n);
     estado->componentes[estado->qtd_componentes].qtd_arestas = n;
     estado->qtd_componentes++;
@@ -75,7 +71,7 @@ static void registrar_componente(EstadoDFS* estado, int u, int v){
 // DFS com low-link (algoritmo de Tarjan) para achar vértices de articulação
 // e componentes biconexos. u = vértice atual sendo visitado; pai = de onde
 // a DFS veio (-1 se u for a raiz da árvore de busca).
-static void dfs_biconexo(GrafoMatriz* grafo, EstadoDFS* estado, int u, int pai){
+static void dfs_biconexo(const AcessoGrafo* acesso, EstadoDFS* estado, int u, int pai){
 
     // Marca u como visitado e registra seu tempo de descoberta.
     // low[u] começa igual a discovery[u]: por enquanto, u só alcança a si mesmo.
@@ -83,20 +79,21 @@ static void dfs_biconexo(GrafoMatriz* grafo, EstadoDFS* estado, int u, int pai){
     estado->discovery[u] = estado->low[u] = estado->tempo++;
     int filhos = 0; // quantos filhos u tem na árvore da DFS (importa para a raiz)
 
-    for(int v = 0; v < grafo->qtd_estacoes; v++){ // Percorre todos os possíveis vizinhos de u
+    CursorVizinhos cursor;
+    for(int v = acesso->iniciar_vizinhos(acesso->grafo, u, &cursor); v != -1;
+        v = acesso->proximo_vizinho(acesso->grafo, u, &cursor)){
 
-        // Pula: o próprio u, quem mandou a DFS pra cá (pai), e quem não é vizinho
-
-        if(v == u || v == pai || !existe_aresta(grafo, u, v)) continue;
+        // Pula: o próprio u e quem mandou a DFS pra cá (pai)
+        if(v == u || v == pai) continue;
 
         if(!estado->visitado[v]){ // v ainda não foi visitado: é um filho novo de u na árvore da DFS
-            
+
             filhos++;
 
             // guarda a aresta (u,v) para um possível componente
             empilhar_aresta(estado, u, v);
             // desce recursivamente por v
-            dfs_biconexo(grafo, estado, v, u);
+            dfs_biconexo(acesso, estado, v, u);
 
 
             // Ao voltar de v, atualiza low[u]: se v alcança algo mais "antigo"
@@ -105,8 +102,8 @@ static void dfs_biconexo(GrafoMatriz* grafo, EstadoDFS* estado, int u, int pai){
                 estado->low[u] = estado->low[v];
 
             // Condições clássicas de vértice de articulação:
-            // (1) u é raiz e tem 2+ filhos na árvore, OU
-            // (2) u não é raiz e o filho v não consegue alcançar acima de u
+            // u é raiz e tem 2+ filhos na árvore, OU
+            // u não é raiz e o filho v não consegue alcançar acima de u
             if((pai == -1 && filhos > 1) ||
                (pai != -1 && estado->low[v] >= estado->discovery[u])){
                 estado->articulacao[u] = 1;
@@ -128,9 +125,11 @@ static void dfs_biconexo(GrafoMatriz* grafo, EstadoDFS* estado, int u, int pai){
     }
 }
 
-ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
-    if(!grafo) return NULL;
-    int n = grafo->qtd_estacoes;
+
+// Roda a DFS a partir de todos os vértices ainda não visitados e consolida
+// articulações e componentes biconexos em um ResultadoBiconexo.
+static ResultadoBiconexo* executar_biconexos(const AcessoGrafo* acesso){
+    int n = acesso->qtd_vertices;
 
     EstadoDFS estado = {0};
     estado.visitado    = calloc(n, sizeof(int));
@@ -146,7 +145,7 @@ ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
 
     for(int i = 0; i < n; i++){
         if(!estado.visitado[i]){
-            dfs_biconexo(grafo, &estado, i, -1);
+            dfs_biconexo(acesso, &estado, i, -1);
 
             if(estado.topo_pilha > 0){
                 ArestaSimples primeira = estado.pilha[0];
@@ -173,16 +172,37 @@ ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
     return resultado;
 }
 
-void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
-    if(!grafo || !resultado || !output_path) return;
+
+// ============================ Entradas públicas ============================
+
+
+ResultadoBiconexo* encontrar_biconexos_lista(GrafoLista* grafo){
+    if(!grafo) return NULL;
+    AcessoGrafo acesso = criar_acesso_lista(grafo);
+    return executar_biconexos(&acesso);
+}
+
+ResultadoBiconexo* encontrar_biconexos(GrafoMatriz* grafo){
+    if(!grafo) return NULL;
+    AcessoGrafo acesso = criar_acesso_matriz(grafo);
+    return executar_biconexos(&acesso);
+}
+
+
+// ============================== Exportação ==============================
+
+
+static void exportar_componentes_biconexos(const AcessoGrafo* acesso, ResultadoBiconexo* resultado, char* output_path, const char* representacao){
+    if(!acesso || !acesso->grafo || !resultado || !output_path) return;
 
     FILE* fp = fopen(output_path, "w");
+
     if(!fp){
-        perror("Falha ao abrir arquivo de saida dos componentes biconexos (matriz)");
+        perror("Falha ao abrir arquivo de saida dos componentes biconexos");
         return;
     }
 
-    fprintf(fp, "========= Componentes Biconexos (Matriz de adjacencia) ============\n");
+    fprintf(fp, "========= Componentes Biconexos (%s) ============\n", representacao);
     fprintf(fp, "Componentes biconexos encontrados: %d\n\n", resultado->qtd_componentes);
 
     for(int c = 0; c < resultado->qtd_componentes; c++){
@@ -190,10 +210,9 @@ void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo
         for(int e = 0; e < resultado->componentes[c].qtd_arestas; e++){
             int u = resultado->componentes[c].arestas[e].u;
             int v = resultado->componentes[c].arestas[e].v;
-            DadosEstacao* du = grafo->dados_estacao[u];
-            DadosEstacao* dv = grafo->dados_estacao[v];
-            fprintf(fp, "[%d <-> %d] (%s) %s <-> (%s) %s\n",
-                    u, v, du->code, du->nome, dv->code, dv->nome);
+            DadosEstacao* du = acesso->obter_dados_estacao(acesso->grafo, u);
+            DadosEstacao* dv = acesso->obter_dados_estacao(acesso->grafo, v);
+            fprintf(fp, "[%d <-> %d] (%s) %s <-> (%s) %s\n", u, v, du->code, du->nome, dv->code, dv->nome);
         }
         fprintf(fp, "\n");
     }
@@ -201,21 +220,22 @@ void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo
     fclose(fp);
 }
 
-void exportar_vertices_articulacao_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
-    if(!grafo || !resultado || !output_path) return;
+static void exportar_vertices_articulacao(const AcessoGrafo* acesso, ResultadoBiconexo* resultado, char* output_path, const char* representacao){
+    if(!acesso || !acesso->grafo || !resultado || !output_path) return;
 
     FILE* fp = fopen(output_path, "w");
+
     if(!fp){
-        perror("Falha ao abrir arquivo de saida dos vertices de articulacao (matriz)");
+        perror("Falha ao abrir arquivo de saida dos vertices de articulacao");
         return;
     }
 
-    fprintf(fp, "========= Vertices de articulacao (Matriz de adjacencia) ============\n");
+    fprintf(fp, "========= Vertices de articulacao (%s) ============\n", representacao);
     fprintf(fp, "Vertices de articulacao encontrados: %d\n\n", resultado->qtd_articulacoes);
 
-    for(int i = 0; i < grafo->qtd_estacoes; i++){
+    for(int i = 0; i < acesso->qtd_vertices; i++){
         if(resultado->articulacoes[i]){
-            DadosEstacao* d = grafo->dados_estacao[i];
+            DadosEstacao* d = acesso->obter_dados_estacao(acesso->grafo, i);
             fprintf(fp, "[%d] (%s) %s\n", i, d->code, d->nome);
         }
     }
@@ -223,6 +243,32 @@ void exportar_vertices_articulacao_matriz(GrafoMatriz* grafo, ResultadoBiconexo*
     fclose(fp);
 }
 
+void exportar_componentes_biconexos_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path){
+    AcessoGrafo acesso = criar_acesso_lista(grafo);
+    exportar_componentes_biconexos(&acesso, resultado, output_path, "Lista de adjacencia");
+}
+
+void exportar_vertices_articulacao_lista(GrafoLista* grafo, ResultadoBiconexo* resultado, char* output_path){
+    AcessoGrafo acesso = criar_acesso_lista(grafo);
+    exportar_vertices_articulacao(&acesso, resultado, output_path, "Lista de adjacencia");
+}
+
+void exportar_componentes_biconexos_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
+    AcessoGrafo acesso = criar_acesso_matriz(grafo);
+    exportar_componentes_biconexos(&acesso, resultado, output_path, "Matriz de adjacencia");
+}
+
+void exportar_vertices_articulacao_matriz(GrafoMatriz* grafo, ResultadoBiconexo* resultado, char* output_path){
+    AcessoGrafo acesso = criar_acesso_matriz(grafo);
+    exportar_vertices_articulacao(&acesso, resultado, output_path, "Matriz de adjacencia");
+}
+
+
+// ============================== Liberação ==============================
+
+
+// A estrutura de ResultadoBiconexo é a mesma para as duas representações, então
+// a liberação é compartilhada.
 void liberar_resultado_biconexo(ResultadoBiconexo** resultado){
     if(!resultado || !*resultado) return;
 
@@ -233,4 +279,8 @@ void liberar_resultado_biconexo(ResultadoBiconexo** resultado){
     free((*resultado)->articulacoes);
     free(*resultado);
     *resultado = NULL;
+}
+
+void liberar_resultado_biconexo_lista(ResultadoBiconexo** resultado){
+    liberar_resultado_biconexo(resultado);
 }
