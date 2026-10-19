@@ -59,9 +59,13 @@ dkms.conf
 build
 
 # output files
+output/lista.txt
+output/matriz.txt
 output/pontes_lista.txt
 output/pontes_matriz.txt
 output/biconexo_lista.txt
 output/biconexo_matriz.txt
 output/vertice_articulacao_lista.txt
 output/vertice_articulacao_matriz.txt
+output/dijkstra_lista.txt
+output/dijkstra_matriz.txt

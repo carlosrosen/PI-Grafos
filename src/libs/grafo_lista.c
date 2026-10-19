@@ -95,12 +95,13 @@ void imprimir_lista(GrafoLista *grafo, char* output_path){
     for(unsigned int i = 0; i < grafo->qtd_no; i++){
         No* no = grafo->lista[i];
         fprintf(fp,"code: %s, lat: %f, long: %f, nome: %s\n",no->dados->code, no->dados->latitude, no->dados->longitude, no->dados->nome);
-        fprintf(fp,"\t");
-        while(no != NULL){
-            if(no->proximo != NULL)fprintf(fp,"[ %d | %s ] -> ",no->vertice, no->dados->code);
-            else fprintf(fp,"[ %d | %s ]\n",no->vertice, no->dados->code);
+        // A cabeça da lista é o próprio vértice os demais são vizinhos com o peso da aresta
+        fprintf(fp,"\t[ %d | %s ]",no->vertice, no->dados->code);
+        while(no->proximo != NULL){
             no = no->proximo;
+            fprintf(fp," -> [ %d | %s | %.2f ]",no->vertice, no->dados->code, no->peso);
         }
+        fprintf(fp,"\n");
     }
     fclose(fp);
 }
@@ -208,6 +209,7 @@ ResponseObjectLength* inicializa_stations(char* path_stations){
         dados->id = count_lines - 1;
 
         station->vertice = count_lines - 1;
+        station->peso = 0; // a cabeça da lista não representa aresta
         station->dados = dados;
         station->proximo = NULL;
 
@@ -292,6 +294,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char*
             DadosAresta* dados_st = (DadosAresta*)calloc(1,sizeof(DadosAresta));
             dados_st->distancia = distance;
             dados_st->tempo_viagem = travel_time;
+            dados_st->peso = calcular_peso_aresta(travel_time, no_target->dados->tempo_transferencia);
             aresta_st->source = no_source;
             aresta_st->target = no_target;
             aresta_st->dados = dados_st;
@@ -312,6 +315,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char*
             No* new_node_st = (No*)malloc(sizeof(No));
             new_node_st->dados = no_target->dados;
             new_node_st->vertice = no_target->vertice;
+            new_node_st->peso = dados_st->peso;
             new_node_st->proximo = NULL;
             No* aux_st = stations[no_source->vertice - 1];
             while(aux_st->proximo != NULL){
@@ -327,6 +331,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char*
             DadosAresta* dados_ts = (DadosAresta*)calloc(1,sizeof(DadosAresta));
             dados_ts->distancia = distance;
             dados_ts->tempo_viagem = travel_time;
+            dados_ts->peso = calcular_peso_aresta(travel_time, no_source->dados->tempo_transferencia);
             aresta_ts->source = no_target;
             aresta_ts->target = no_source;
             aresta_ts->dados = dados_ts;
@@ -347,6 +352,7 @@ ResponseObjectLength* Inicializar_edges(No** stations,int stations_length, char*
             No* new_node_ts = (No*)malloc(sizeof(No));
             new_node_ts->dados = no_source->dados;
             new_node_ts->vertice = no_source->vertice;
+            new_node_ts->peso = dados_ts->peso;
             new_node_ts->proximo = NULL;
             No* aux_ts = stations[no_target->vertice - 1];
             while(aux_ts->proximo != NULL){

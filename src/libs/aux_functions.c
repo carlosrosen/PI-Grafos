@@ -22,6 +22,10 @@ char* converter_inteiro_string(int num){
     return string;
 }
 
+double calcular_peso_aresta(double tempo_viagem, double tempo_transferencia_destino){
+    return tempo_viagem + tempo_transferencia_destino;
+}
+
 // abre o arquivo em modo leitura, caso não for possivel a leitura o programa será fechado.
 FILE* open_file_read_mode(char path[]){
     FILE* fp = fopen(path, "r");
