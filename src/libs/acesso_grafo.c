@@ -1,6 +1,7 @@
 #include "acesso_grafo.h"
 
 #include <stddef.h>
+#include <string.h>
 
 /*
     Adaptadores que permitem aos algoritmos de grafo percorrerem vizinhos e
@@ -85,4 +86,14 @@ AcessoGrafo criar_acesso_matriz(GrafoMatriz* grafo){
         .proximo_vizinho = proximo_vizinho_matriz,
     };
     return acesso;
+}
+
+
+int buscar_indice_estacao(const AcessoGrafo* acesso, const char* codigo){
+    if(acesso == NULL || acesso->grafo == NULL || codigo == NULL) return -1;
+    for(int i = 0; i < acesso->qtd_vertices; i++){
+        DadosEstacao* estacao = acesso->obter_dados_estacao(acesso->grafo, i);
+        if(strcmp(estacao->code, codigo) == 0) return i;
+    }
+    return -1;
 }

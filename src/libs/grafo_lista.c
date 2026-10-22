@@ -382,3 +382,16 @@ No* get_station(No** stations, int stations_length, char *code){
     }
     return NULL;
 }
+
+
+// exporta a estrutura completa da lista nos formatos texto e dot
+void exportar_estrutura_lista(GrafoLista *grafo){
+    if(grafo == NULL) return;
+
+    imprimir_lista(grafo, "output/lista.txt");
+    imprimir_lista_dot(grafo, "output/grafo_com_arestas_duplicadas.dot");
+
+    printf("\nEstrutura da lista exportada para:\n");
+    printf("  output/lista.txt\n");
+    printf("  output/grafo_com_arestas_duplicadas.dot\n");
+}

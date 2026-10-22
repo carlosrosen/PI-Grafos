@@ -28,4 +28,7 @@ typedef struct AcessoGrafo{
 AcessoGrafo criar_acesso_lista(GrafoLista* grafo);
 AcessoGrafo criar_acesso_matriz(GrafoMatriz* grafo);
 
+// procura uma estacao pelo codigo e devolve o indice, ou -1 se nao existir
+int buscar_indice_estacao(const AcessoGrafo* acesso, const char* codigo);
+
 #endif

@@ -27,6 +27,7 @@ GrafoLista* inicializar_grafo_lista(char* path_stations, char* path_edges);
 void exibir_lista(GrafoLista* grafo);
 void imprimir_lista(GrafoLista *grafo, char* output_path);
 void imprimir_lista_dot(GrafoLista *grafo, char* output_path);
+void exportar_estrutura_lista(GrafoLista *grafo);
 void Liberar_Grafo(GrafoLista* grafo);
 
 #endif
