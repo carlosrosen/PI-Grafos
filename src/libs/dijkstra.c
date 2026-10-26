@@ -1,4 +1,5 @@
 #include "dijkstra.h"
+#include "acesso_grafo.h"
 
 #include <math.h>
 #include <stdio.h>
@@ -403,4 +404,42 @@ void liberar_resultado_dijkstra(ResultadoDijkstra **resultado){
     free((*resultado)->caminho);
     free(*resultado);
     *resultado = NULL;
+}
+
+static int imprimir_rota_por_codigo(void *grafo, TipoGrafo tipo, int qtd_vertices,const char *origem_codigo,const char *destino_codigo){
+    AcessoGrafo acesso;
+    ResultadoDijkstra *resultado;
+    int origem;
+    int destino;
+
+    if (grafo == NULL) return -1;
+
+    acesso = tipo == TIPO_GRAFO_LISTA ? criar_acesso_lista((GrafoLista *)grafo) : criar_acesso_matriz((GrafoMatriz *)grafo);
+
+    origem = buscar_indice_estacao(&acesso, origem_codigo);
+    destino = buscar_indice_estacao(&acesso, destino_codigo);
+
+    if (origem < 0 || destino < 0) return 0;
+
+    resultado = executar_dijkstra(grafo, tipo, qtd_vertices, origem, destino);
+    if (resultado == NULL) return -1;
+
+    if (tipo == TIPO_GRAFO_LISTA){
+        imprimir_resultado_dijkstra_lista((GrafoLista *)grafo, resultado);
+    } else {
+        imprimir_resultado_dijkstra_matriz((GrafoMatriz *)grafo, resultado);
+    }
+
+    liberar_resultado_dijkstra(&resultado);
+    return 1;
+}
+
+int imprimir_rota_por_codigo_lista(GrafoLista *grafo, const char *origem, const char *destino){
+    if (grafo == NULL) return -1;
+    return imprimir_rota_por_codigo(grafo, TIPO_GRAFO_LISTA, (int)grafo->qtd_no, origem, destino);
+}
+
+int imprimir_rota_por_codigo_matriz(GrafoMatriz *grafo, const char *origem, const char *destino){
+    if (grafo == NULL) return -1;
+    return imprimir_rota_por_codigo(grafo, TIPO_GRAFO_MATRIZ, grafo->qtd_estacoes, origem, destino);
 }

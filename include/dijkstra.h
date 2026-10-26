@@ -27,6 +27,11 @@ typedef struct ResultadoDijkstra{
 ResultadoDijkstra *dijkstra_lista(GrafoLista *grafo, int origem, int destino);
 ResultadoDijkstra *dijkstra_matriz(GrafoMatriz *grafo, int origem, int destino);
 
+// resolve os codigos das estacoes, calcula e imprime a rota.
+// retorna 1 em sucesso, 0 se alguma estacao nao existir e -1 em falha.
+int imprimir_rota_por_codigo_lista(GrafoLista *grafo, const char *origem, const char *destino);
+int imprimir_rota_por_codigo_matriz(GrafoMatriz *grafo, const char *origem, const char *destino);
+
 void imprimir_resultado_dijkstra_lista(GrafoLista *grafo, ResultadoDijkstra *resultado);
 void imprimir_resultado_dijkstra_matriz(GrafoMatriz *grafo, ResultadoDijkstra *resultado);
 

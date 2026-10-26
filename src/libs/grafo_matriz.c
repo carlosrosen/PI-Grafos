@@ -385,3 +385,16 @@ InitMatrizResponse* inicializar_matriz(char* path_stations, char *path_edges){
     response->qtd_arestas = qtd_arestas;
     return response;
 }
+
+
+// exporta a estrutura completa da matriz nos formatos texto e DOT
+void exportar_estrutura_matriz(GrafoMatriz *grafo){
+    if(grafo == NULL) return;
+
+    imprimir_matriz(grafo, "output/matriz.txt");
+    imprimir_matriz_dot(grafo, "output/grafo_sem_aresta_duplicada.dot");
+
+    printf("\nEstrutura da matriz exportada para:\n");
+    printf("  output/matriz.txt\n");
+    printf("  output/grafo_sem_aresta_duplicada.dot\n");
+}
