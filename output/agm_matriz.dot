@@ -1,0 +1,16 @@
+graph AGM {
+  label="AGM da expansao - matriz de adjacencia";
+  labelloc="t";
+  node [shape=ellipse];
+  NETWORK [shape=box, style=filled, fillcolor=lightgray];
+  "NB04" -- "NETWORK" [label="R$ 0.88 | £ 0.1180 | NDL"];
+  "NB01" -- "NETWORK" [label="R$ 1.21 | £ 0.1622 | CRH"];
+  "NB01" -- "NB03" [label="R$ 2.19 | £ 0.2936"];
+  "NB01" -- "NB02" [label="R$ 2.39 | £ 0.3204"];
+  "NB08" -- "NETWORK" [label="R$ 3.34 | £ 0.4478 | DNM"];
+  "NB02" -- "NB06" [label="R$ 3.62 | £ 0.4853"];
+  "NB02" -- "NB10" [label="R$ 5.66 | £ 0.7588"];
+  "NB09" -- "NB10" [label="R$ 5.92 | £ 0.7936"];
+  "NB04" -- "NB05" [label="R$ 18.34 | £ 2.4587"];
+  "NB04" -- "NB07" [label="R$ 19.35 | £ 2.5941"];
+}

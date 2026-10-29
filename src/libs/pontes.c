@@ -20,10 +20,10 @@ typedef struct {
     int *pai;
     int tempo;
     ListaPontes *pontes;
-} EstadoDFS;
+} EstadoDFSPontes;
 
-static EstadoDFS *criar_estado_dfs(int V) {
-    EstadoDFS *estado = malloc(sizeof(EstadoDFS));
+static EstadoDFSPontes *criar_estado_dfs(int V) {
+    EstadoDFSPontes *estado = malloc(sizeof(EstadoDFSPontes));
     estado->disc = malloc(sizeof(int) * V);
     estado->low = malloc(sizeof(int) * V);
     estado->pai = malloc(sizeof(int) * V);
@@ -44,7 +44,7 @@ static EstadoDFS *criar_estado_dfs(int V) {
     return estado;
 }
 
-static void liberar_estado_dfs(EstadoDFS *estado) {
+static void liberar_estado_dfs(EstadoDFSPontes *estado) {
     free(estado->disc);
     free(estado->low);
     free(estado->pai);
@@ -68,7 +68,7 @@ static void adicionar_ponte(ListaPontes *pontes, int u, int v) {
     pontes->quantidade++;
 }
 
-static void dfs_pontes(const AcessoGrafo *acesso, EstadoDFS *estado, int u) {
+static void dfs_pontes(const AcessoGrafo *acesso, EstadoDFSPontes *estado, int u) {
     estado->disc[u] = estado->low[u] = estado->tempo++;
 
     CursorVizinhos cursor;
@@ -92,7 +92,7 @@ static void dfs_pontes(const AcessoGrafo *acesso, EstadoDFS *estado, int u) {
 // Roda a DFS a partir de todos os vertices ainda nao visitados e devolve a lista de pontes.
 static ListaPontes *executar_pontes(const AcessoGrafo *acesso) {
     int V = acesso->qtd_vertices;
-    EstadoDFS *estado = criar_estado_dfs(V);
+    EstadoDFSPontes *estado = criar_estado_dfs(V);
 
     for (int i = 0; i < V; i++) {
         if (estado->disc[i] == -1) dfs_pontes(acesso, estado, i);

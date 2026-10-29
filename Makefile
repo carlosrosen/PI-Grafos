@@ -32,10 +32,13 @@ PONTES_SPEC_MAIN = ./spec/pontes/teste_pontes.c
 DIJKSTRA_SPEC_TARGET = ./spec/dijkstra/bin/run.out
 DIJKSTRA_SPEC_MAIN = ./spec/dijkstra/teste_dijkstra.c
 
+AGM_SPEC_TARGET = ./spec/agm/bin/run.out
+AGM_SPEC_MAIN = ./spec/agm/teste_agm.c
+
 # Alvo padrão
 all: compile run
 
-testes: compile_testes_lista run_testes_lista compile_testes_matriz run_testes_matriz compile_testes_pontes run_testes_pontes compile_testes_biconexo_lista run_testes_biconexo_lista compile_testes_biconexo_matriz run_testes_biconexo_matriz compile_testes_dijkstra run_testes_dijkstra
+testes: compile_testes_lista run_testes_lista compile_testes_matriz run_testes_matriz compile_testes_pontes run_testes_pontes compile_testes_biconexo_lista run_testes_biconexo_lista compile_testes_biconexo_matriz run_testes_biconexo_matriz compile_testes_dijkstra run_testes_dijkstra compile_testes_agm run_testes_agm
 
 compile:
 	$(CC) $(CFLAGS) $(SRC) $(LIBS) -o $(TARGET)
@@ -80,6 +83,13 @@ compile_testes_dijkstra:
 run_testes_dijkstra: $(DIJKSTRA_SPEC_TARGET)
 	./$(DIJKSTRA_SPEC_TARGET)
 
+compile_testes_agm:
+	mkdir -p ./spec/agm/bin
+	$(CC) $(CFLAGS) $(LIBS) $(AGM_SPEC_MAIN) -o $(AGM_SPEC_TARGET)
+
+run_testes_agm: $(AGM_SPEC_TARGET)
+	./$(AGM_SPEC_TARGET)
+
 compile_debug_lista:
 	$(CC) -g $(CFLAGS) $(LIBS) $(LISTA_SPEC_MAIN) -o $(LISTA_SPEC_TARGET)
 
@@ -97,4 +107,4 @@ compile_debug_dijkstra:
 
 # Remove os arquivos executáveis
 clean:
-	rm -f  *.dot $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET) $(DIJKSTRA_SPEC_TARGET)
+	rm -f  *.dot $(TARGET) $(LISTA_SPEC_TARGET) $(MATRIZ_SPEC_TARGET) $(BICONEXO_MATRIZ_SPEC_TARGET) $(BICONEXO_LISTA_SPEC_TARGET) $(PONTES_SPEC_TARGET) $(DIJKSTRA_SPEC_TARGET) $(AGM_SPEC_TARGET)

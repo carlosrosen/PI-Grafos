@@ -16,6 +16,35 @@ Cada linha de `edges.csv` gera as duas orientações do trecho, e cada orientaç
 
 Exemplo reproduzível: para `AAP,BOP,1.0,0.75` em `edges.csv` e `transfer_time = 9` para `BOP` em `stations.csv`, o peso de `AAP -> BOP` é `0.75 + 9 = 9.75`.
 
+## Planejamento da expansão com AGM
+
+A opção `[3] Planejar expansao da malha com AGM`, dentro da Parte 2 do menu,
+carrega os 10 bairros de `dataset/expansion_neighborhoods.csv` e as 25 conexões
+candidatas de `dataset/expansion_tunnels.csv`. A malha existente é representada
+pelo supernó `NETWORK`; as conexões com ele exibem as âncoras `CRH`, `NDL` ou
+`DNM` informadas no dataset.
+
+O algoritmo de Kruskal usa `cost_billions_brl` como peso, union-find com
+compressão de caminho e união por rank. Empates são resolvidos pelo custo e,
+depois, pelos códigos de origem e destino. O grafo de expansão é independente
+do grafo operacional e pode ser executado como lista ou matriz de adjacência.
+O carregamento e as saídas da expansão ficam em `src/libs/agm.c`, enquanto o
+algoritmo e o union-find ficam isolados em `src/libs/kruskal.c`, com a interface
+pública declarada em `include/kruskal.h`.
+
+Ao executar a opção, o programa mostra cada túnel selecionado e os totais em
+bilhões de reais e libras. Também valida o resultado contra a outra
+representação e grava os arquivos correspondentes:
+
+- `output/agm_lista.txt` e `output/agm_lista.dot`;
+- `output/agm_matriz.txt` e `output/agm_matriz.dot`.
+
+Para reproduzir automaticamente a validação das duas representações:
+
+```bash
+make compile_testes_agm run_testes_agm
+```
+
 ## Compilação e execução
 
 O projeto utiliza um `Makefile` para facilitar a compilação dos arquivos escritos em C.
