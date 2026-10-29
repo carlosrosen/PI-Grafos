@@ -1,0 +1,18 @@
+AGM da expansao - lista de adjacencia
+Vertices: 11 (10 bairros + NETWORK)
+Arestas candidatas: 25
+Arestas selecionadas: 10
+
+NB04 -- NETWORK: R$ 0.88 bilhoes | £ 0.1180 bilhoes | ancora NDL
+NB01 -- NETWORK: R$ 1.21 bilhoes | £ 0.1622 bilhoes | ancora CRH
+NB01 -- NB03: R$ 2.19 bilhoes | £ 0.2936 bilhoes
+NB01 -- NB02: R$ 2.39 bilhoes | £ 0.3204 bilhoes
+NB08 -- NETWORK: R$ 3.34 bilhoes | £ 0.4478 bilhoes | ancora DNM
+NB02 -- NB06: R$ 3.62 bilhoes | £ 0.4853 bilhoes
+NB02 -- NB10: R$ 5.66 bilhoes | £ 0.7588 bilhoes
+NB09 -- NB10: R$ 5.92 bilhoes | £ 0.7936 bilhoes
+NB04 -- NB05: R$ 18.34 bilhoes | £ 2.4587 bilhoes
+NB04 -- NB07: R$ 19.35 bilhoes | £ 2.5941 bilhoes
+
+Custo total: R$ 62.90 bilhoes | £ 8.4325 bilhoes
+Status: todos os bairros conectados
