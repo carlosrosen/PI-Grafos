@@ -3,12 +3,10 @@
 #include <errno.h>
 #include <math.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include <string.h>
 #ifdef _WIN32
 #include <direct.h>
 #else
-#include <sys/stat.h>
 #endif
 
 #define LINHA_CSV 512
@@ -153,40 +151,44 @@ static int criar_diretorio_output(void) {
 int exportar_agm(const ResultadoAGM *r, const char *txt_path,
                  const char *dot_path, const char *representacao) {
     if (r == NULL || !criar_diretorio_output()) return 0;
-    FILE *txt = fopen(txt_path, "w");
-    FILE *dot = fopen(dot_path, "w");
-    if (txt == NULL || dot == NULL) {
+    FILE *txt = txt_path ? fopen(txt_path, "w") : NULL;
+    FILE *dot = dot_path ? fopen(dot_path, "w") : NULL;
+    if ((txt_path && txt == NULL) || (dot_path && dot == NULL)) {
         if (txt) fclose(txt);
         if (dot) fclose(dot);
         return 0;
     }
-    fprintf(txt, "AGM da expansao - %s\n", representacao);
-    fprintf(txt, "Vertices: %d (10 bairros + NETWORK)\n", r->qtd_vertices);
-    fprintf(txt, "Arestas candidatas: %d\n", r->qtd_arestas_candidatas);
-    fprintf(txt, "Arestas selecionadas: %d\n\n", r->qtd_arestas);
-    for (int i = 0; i < r->qtd_arestas; i++) {
-        const ArestaAGM *a = &r->arestas[i];
-        fprintf(txt, "%s -- %s: R$ %.2f bilhoes | £ %.4f bilhoes",
-                a->codigo_origem, a->codigo_destino, a->custo_brl, a->custo_gbp);
-        if (a->ancora[0]) fprintf(txt, " | ancora %s", a->ancora);
-        fputc('\n', txt);
+    if (txt) {
+        fprintf(txt, "AGM da expansao - %s\n", representacao);
+        fprintf(txt, "Vertices: %d (10 bairros + NETWORK)\n", r->qtd_vertices);
+        fprintf(txt, "Arestas candidatas: %d\n", r->qtd_arestas_candidatas);
+        fprintf(txt, "Arestas selecionadas: %d\n\n", r->qtd_arestas);
+        for (int i = 0; i < r->qtd_arestas; i++) {
+            const ArestaAGM *a = &r->arestas[i];
+            fprintf(txt, "%s -- %s: R$ %.2f bilhoes | £ %.4f bilhoes",
+                    a->codigo_origem, a->codigo_destino, a->custo_brl, a->custo_gbp);
+            if (a->ancora[0]) fprintf(txt, " | ancora %s", a->ancora);
+            fputc('\n', txt);
+        }
+        fprintf(txt, "\nCusto total: R$ %.2f bilhoes | £ %.4f bilhoes\n",
+                r->custo_total_brl, r->custo_total_gbp);
+        fprintf(txt, "Status: %s\n", r->conectado ? "todos os bairros conectados" : "ha bairros impossiveis de conectar");
+        fclose(txt);
     }
-    fprintf(txt, "\nCusto total: R$ %.2f bilhoes | £ %.4f bilhoes\n",
-            r->custo_total_brl, r->custo_total_gbp);
-    fprintf(txt, "Status: %s\n", r->conectado ? "todos os bairros conectados" : "ha bairros impossiveis de conectar");
 
-    fprintf(dot, "graph AGM {\n  label=\"AGM da expansao - %s\";\n", representacao);
-    fprintf(dot, "  labelloc=\"t\";\n  node [shape=ellipse];\n  NETWORK [shape=box, style=filled, fillcolor=lightgray];\n");
-    for (int i = 0; i < r->qtd_arestas; i++) {
-        const ArestaAGM *a = &r->arestas[i];
-        fprintf(dot, "  \"%s\" -- \"%s\" [label=\"R$ %.2f | £ %.4f",
-                a->codigo_origem, a->codigo_destino, a->custo_brl, a->custo_gbp);
-        if (a->ancora[0]) fprintf(dot, " | %s", a->ancora);
-        fprintf(dot, "\"];\n");
+    if (dot) {
+        fprintf(dot, "graph AGM {\n  label=\"AGM da expansao - %s\";\n", representacao);
+        fprintf(dot, "  labelloc=\"t\";\n  node [shape=ellipse];\n  NETWORK [shape=box, style=filled, fillcolor=lightgray];\n");
+        for (int i = 0; i < r->qtd_arestas; i++) {
+            const ArestaAGM *a = &r->arestas[i];
+            fprintf(dot, "  \"%s\" -- \"%s\" [label=\"R$ %.2f | £ %.4f",
+                    a->codigo_origem, a->codigo_destino, a->custo_brl, a->custo_gbp);
+            if (a->ancora[0]) fprintf(dot, " | %s", a->ancora);
+            fprintf(dot, "\"];\n");
+        }
+        fprintf(dot, "}\n");
+        fclose(dot);
     }
-    fprintf(dot, "}\n");
-    fclose(txt);
-    fclose(dot);
     return 1;
 }
 

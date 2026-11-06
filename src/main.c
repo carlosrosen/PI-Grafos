@@ -219,10 +219,9 @@ static void planejar_expansao(EstadoGrafos *estado){
     }
 
     exibir_resultado_agm(&resultado, nome);
-    if (!exportar_agm(&resultado,
-                      lista ? "output/agm_lista.txt" : "output/agm_matriz.txt",
+    if (!exportar_agm(&resultado, NULL,
                       lista ? "output/agm_lista.dot" : "output/agm_matriz.dot", nome))
-        printf("Aviso: nao foi possivel exportar os arquivos da AGM.\n");
+        printf("Aviso: nao foi possivel exportar o grafo da AGM.\n");
     pausar();
 }
 
