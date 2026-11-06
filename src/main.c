@@ -205,38 +205,24 @@ static void calcular_rota(EstadoGrafos *estado){
 }
 
 static void planejar_expansao(EstadoGrafos *estado){
-    ResultadoAGM lista, matriz;
-    ResultadoAGM *resultado;
-    const char *nome;
-
-    int sucesso_lista = executar_agm_lista("./dataset/expansion_neighborhoods.csv",
-                                           "./dataset/expansion_tunnels.csv", &lista);
-    int sucesso_matriz = executar_agm_matriz("./dataset/expansion_neighborhoods.csv",
-                                             "./dataset/expansion_tunnels.csv", &matriz);
-    if (!sucesso_lista || !sucesso_matriz){
+    ResultadoAGM resultado;
+    int lista = estado->representacao == LISTA;
+    const char *nome = lista ? "lista de adjacência" : "matriz de adjacência";
+    const char *bairros = "./dataset/expansion_neighborhoods.csv";
+    const char *tuneis = "./dataset/expansion_tunnels.csv";
+    int sucesso = lista ? executar_agm_lista(bairros, tuneis, &resultado)
+                        : executar_agm_matriz(bairros, tuneis, &resultado);
+    if (!sucesso){
         printf("\nFalha ao carregar ou processar o grafo de expansao.\n");
         pausar();
         return;
     }
 
-    if (estado->representacao == LISTA){
-        resultado = &lista;
-        nome = "lista de adjacencia";
-    } else{
-        resultado = &matriz;
-        nome = "matriz de adjacencia";
-    }
-    exibir_resultado_agm(resultado, nome);
-    int exportou_lista = exportar_agm(&lista, "output/agm_lista.txt",
-                                      "output/agm_lista.dot", "lista de adjacencia");
-    int exportou_matriz = exportar_agm(&matriz, "output/agm_matriz.txt",
-                                       "output/agm_matriz.dot", "matriz de adjacencia");
-    if (!exportou_lista || !exportou_matriz)
-        printf("Aviso: nao foi possivel exportar todos os arquivos da AGM.\n");
-    if (!resultados_agm_iguais(&lista, &matriz))
-        printf("Aviso: as representacoes produziram resultados diferentes.\n");
-    else
-        printf("Resultado validado contra a outra representacao.\n");
+    exibir_resultado_agm(&resultado, nome);
+    if (!exportar_agm(&resultado,
+                      lista ? "output/agm_lista.txt" : "output/agm_matriz.txt",
+                      lista ? "output/agm_lista.dot" : "output/agm_matriz.dot", nome))
+        printf("Aviso: nao foi possivel exportar os arquivos da AGM.\n");
     pausar();
 }
 

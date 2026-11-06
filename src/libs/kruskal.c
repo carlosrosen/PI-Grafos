@@ -4,12 +4,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#define EPSILON_KRUSKAL 1e-9
-
 typedef struct UnionFind {
     int *pai;
     int *rank;
-    int quantidade;
 } UnionFind;
 
 static int inicializar_union_find(UnionFind *conjuntos, int quantidade) {
@@ -23,7 +20,6 @@ static int inicializar_union_find(UnionFind *conjuntos, int quantidade) {
         return 0;
     }
 
-    conjuntos->quantidade = quantidade;
     for (int i = 0; i < quantidade; i++) conjuntos->pai[i] = i;
     return 1;
 }
@@ -63,7 +59,7 @@ static int comparar_arestas(const void *p1, const void *p2) {
     const ArestaAGM *a = p1;
     const ArestaAGM *b = p2;
 
-    if (fabs(a->custo_brl - b->custo_brl) > EPSILON_KRUSKAL) {
+    if (a->custo_brl != b->custo_brl) {
         return a->custo_brl < b->custo_brl ? -1 : 1;
     }
 
@@ -80,7 +76,9 @@ static int entrada_valida(const ArestaAGM *arestas, int qtd_vertices,
 
     for (int i = 0; i < qtd_arestas; i++) {
         if (arestas[i].origem < 0 || arestas[i].origem >= qtd_vertices ||
-            arestas[i].destino < 0 || arestas[i].destino >= qtd_vertices) return 0;
+            arestas[i].destino < 0 || arestas[i].destino >= qtd_vertices ||
+            !isfinite(arestas[i].custo_brl) || !isfinite(arestas[i].custo_gbp) ||
+            arestas[i].custo_brl < 0 || arestas[i].custo_gbp < 0) return 0;
     }
     return 1;
 }

@@ -1,7 +1,17 @@
 #ifndef KRUSKAL_H
 #define KRUSKAL_H
 
-#include "agm.h"
+#include "grafo_expansao.h"
+
+typedef struct ResultadoAGM {
+    ArestaAGM arestas[AGM_MAX_VERTICES - 1];
+    int qtd_vertices;
+    int qtd_arestas_candidatas;
+    int qtd_arestas;
+    double custo_total_brl;
+    double custo_total_gbp;
+    int conectado;
+} ResultadoAGM;
 
 /*
  * Executa Kruskal sobre um vetor de arestas não direcionadas.

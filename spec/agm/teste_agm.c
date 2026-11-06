@@ -83,6 +83,79 @@ static void imprimir_resultado(const ResultadoAGM *resultado) {
            resultado->custo_total_brl, resultado->custo_total_gbp);
 }
 
+static void verificar_desempate_e_desconexao(void) {
+    /* A ordem de entrada e de extração não deve influenciar os empates. */
+    ArestaAGM arestas[] = {
+        { .origem = 1, .destino = 2, .codigo_origem = "B", .codigo_destino = "C", .custo_brl = 1, .custo_gbp = 0.1 },
+        { .origem = 0, .destino = 2, .codigo_origem = "A", .codigo_destino = "C", .custo_brl = 1, .custo_gbp = 0.1 },
+        { .origem = 0, .destino = 1, .codigo_origem = "A", .codigo_destino = "B", .custo_brl = 1, .custo_gbp = 0.1 },
+    };
+    for (int representacao = 0; representacao < 2; representacao++) {
+        ArestaAGM extraidas[AGM_MAX_ARESTAS];
+        int total;
+        if (representacao == 0) {
+            GrafoExpansaoLista grafo;
+            assert(criar_grafo_expansao_lista(&grafo, 4, arestas, 3));
+            total = extrair_arestas_expansao_lista(&grafo, extraidas);
+            liberar_grafo_expansao_lista(&grafo);
+            assert(grafo.n == 0);
+        } else {
+            GrafoExpansaoMatriz grafo;
+            assert(criar_grafo_expansao_matriz(&grafo, 4, arestas, 3));
+            total = extrair_arestas_expansao_matriz(&grafo, extraidas);
+            liberar_grafo_expansao_matriz(&grafo);
+            assert(grafo.n == 0);
+        }
+        ResultadoAGM resultado;
+        assert(total == 3);
+        assert(executar_kruskal_agm(extraidas, 4, total, &resultado));
+        assert(!resultado.conectado);
+        assert(resultado.qtd_arestas == 2);
+        assert(resultado.custo_total_brl == 2);
+        assert(strcmp(resultado.arestas[0].codigo_origem, "A") == 0);
+        assert(strcmp(resultado.arestas[0].codigo_destino, "B") == 0);
+        assert(strcmp(resultado.arestas[1].codigo_origem, "A") == 0);
+        assert(strcmp(resultado.arestas[1].codigo_destino, "C") == 0);
+        verificar_ausencia_de_ciclos(&resultado);
+    }
+    ResultadoAGM resultado;
+    assert(executar_kruskal_agm(NULL, 1, 0, &resultado));
+    assert(resultado.conectado && resultado.qtd_arestas == 0);
+    assert(executar_kruskal_agm(NULL, 4, 0, &resultado));
+    assert(!resultado.conectado && resultado.custo_total_brl == 0);
+    arestas[0].custo_brl = 0;
+    assert(executar_kruskal_agm(arestas, 3, 3, &resultado));
+    assert(resultado.conectado && resultado.custo_total_brl == 1);
+    arestas[0].custo_brl = NAN;
+    assert(!executar_kruskal_agm(arestas, 3, 3, &resultado));
+    arestas[0].custo_brl = 1;
+    arestas[0].destino = 4;
+    assert(!executar_kruskal_agm(arestas, 3, 3, &resultado));
+    GrafoExpansaoLista lista;
+    GrafoExpansaoMatriz matriz;
+    assert(!criar_grafo_expansao_lista(&lista, 3, arestas, 3));
+    assert(!criar_grafo_expansao_matriz(&matriz, 3, arestas, 3));
+}
+
+static void verificar_dataset_desconectado(void) {
+    const char *caminho = "output/teste_agm_desconectado.csv";
+    FILE *arquivo = fopen(caminho, "w");
+    assert(arquivo != NULL);
+    fputs("source,target,straight_line_km,sinuosity_factor,cost_billions_brl,cost_billions_gbp,anchor\n"
+          "NETWORK,NB01,1,1,1,0.1,CRH\n", arquivo);
+    assert(fclose(arquivo) == 0);
+    ResultadoAGM lista, matriz;
+    assert(executar_agm_lista("dataset/expansion_neighborhoods.csv", caminho, &lista));
+    assert(executar_agm_matriz("dataset/expansion_neighborhoods.csv", caminho, &matriz));
+    assert(!lista.conectado && !matriz.conectado);
+    assert(lista.qtd_arestas == 1 && matriz.qtd_arestas == 1);
+    assert(lista.custo_total_brl == 1 && matriz.custo_total_brl == 1);
+    assert(strcmp(lista.arestas[0].codigo_origem, "NB01") == 0);
+    assert(strcmp(matriz.arestas[0].codigo_destino, "NETWORK") == 0);
+    assert(strcmp(lista.arestas[0].ancora, "CRH") == 0);
+    assert(remove(caminho) == 0);
+}
+
 int main(void) {
     ResultadoAGM lista, matriz;
 
@@ -110,7 +183,12 @@ int main(void) {
     verificar_arestas_e_custos(&matriz);
     puts("Custos individuais e totais verificados.");
 
-    assert(resultados_agm_iguais(&lista, &matriz));
+    for (int i = 0; i < lista.qtd_arestas; i++) {
+        assert(lista.arestas[i].origem == matriz.arestas[i].origem);
+        assert(lista.arestas[i].destino == matriz.arestas[i].destino);
+    }
+    assert(fabs(lista.custo_total_brl - matriz.custo_total_brl) < 1e-9);
+    assert(fabs(lista.custo_total_gbp - matriz.custo_total_gbp) < 1e-9);
     puts("Resultados equivalentes para lista e matriz.");
 
     assert(fabs(lista.custo_total_brl - 62.90) < 1e-9);
@@ -124,6 +202,9 @@ int main(void) {
     verificar_arquivo("output/agm_lista.dot");
     verificar_arquivo("output/agm_matriz.dot");
     puts("\nArquivos TXT e DOT gerados para as duas representacoes.");
+    verificar_desempate_e_desconexao();
+    verificar_dataset_desconectado();
+    puts("Desempates, custos zero, desconexao e entradas invalidas verificados.");
     puts("Teste concluido com sucesso.");
     return 0;
 }

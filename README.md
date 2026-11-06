@@ -30,11 +30,13 @@ depois, pelos códigos de origem e destino. O grafo de expansão é independente
 do grafo operacional e pode ser executado como lista ou matriz de adjacência.
 O carregamento e as saídas da expansão ficam em `src/libs/agm.c`, enquanto o
 algoritmo e o union-find ficam isolados em `src/libs/kruskal.c`, com a interface
-pública declarada em `include/kruskal.h`.
+pública declarada em `include/kruskal.h`. A criação, liberação e extração das
+arestas das duas representações ficam em `grafo_expansao.[c h]`.
 
 Ao executar a opção, o programa mostra cada túnel selecionado e os totais em
-bilhões de reais e libras. Também valida o resultado contra a outra
-representação e grava os arquivos correspondentes:
+bilhões de reais e libras em uma tabela, usando apenas a representação ativa.
+A equivalência entre lista e matriz é verificada pelos testes. Cada execução
+grava os arquivos da representação selecionada:
 
 - `output/agm_lista.txt` e `output/agm_lista.dot`;
 - `output/agm_matriz.txt` e `output/agm_matriz.dot`.
