@@ -71,3 +71,5 @@ output/dijkstra_lista.txt
 output/dijkstra_matriz.txt
 output/grafo_com_arestas_duplicadas.dot
 output/grafo_sem_aresta_duplicada.dot
+output/agm_lista.dot
+output/agm_matriz.dot

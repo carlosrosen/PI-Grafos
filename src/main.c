@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "dijkstra.h"
+#include "agm.h"
 #include "grafo_lista.h"
 #include "grafo_matriz.h"
 #include "topologia.h"
@@ -203,6 +204,27 @@ static void calcular_rota(EstadoGrafos *estado){
     pausar();
 }
 
+static void planejar_expansao(EstadoGrafos *estado){
+    ResultadoAGM resultado;
+    int lista = estado->representacao == LISTA;
+    const char *nome = lista ? "lista de adjacência" : "matriz de adjacência";
+    const char *bairros = "./dataset/expansion_neighborhoods.csv";
+    const char *tuneis = "./dataset/expansion_tunnels.csv";
+    int sucesso = lista ? executar_agm_lista(bairros, tuneis, &resultado)
+                        : executar_agm_matriz(bairros, tuneis, &resultado);
+    if (!sucesso){
+        printf("\nFalha ao carregar ou processar o grafo de expansao.\n");
+        pausar();
+        return;
+    }
+
+    exibir_resultado_agm(&resultado, nome);
+    if (!exportar_agm(&resultado, NULL,
+                      lista ? "output/agm_lista.dot" : "output/agm_matriz.dot", nome))
+        printf("Aviso: nao foi possivel exportar o grafo da AGM.\n");
+    pausar();
+}
+
 static int menu_topologia(EstadoGrafos *estado){
     int opcao;
 
@@ -259,8 +281,7 @@ static int menu_otimizacao(EstadoGrafos *estado){
                 calcular_rota(estado);
                 break;
             case 3:
-                printf("\n[PLACEHOLDER] Planejar expansao da malha com AGM ");
-                pausar();
+                planejar_expansao(estado);
                 break;
         }
     } while (opcao != 0);
